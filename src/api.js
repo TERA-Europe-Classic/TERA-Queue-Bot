@@ -164,23 +164,36 @@ function createApiServer(port = 443) {
     next();
   });
   
+  // Helper to normalize IPv6-mapped IPv4 and loopback
+  const normalizeIP = (ip) => {
+    if (!ip) return ip;
+    const v4mapped = /^::ffff:(\d+\.\d+\.\d+\.\d+)$/i.exec(ip);
+    if (v4mapped) return v4mapped[1];
+    if (ip === '::1') return '127.0.0.1';
+    return ip;
+  };
+
   // IP whitelist middleware for all requests
   const ipWhitelistMiddleware = (req, res, next) => {
     if (!SECURITY_CONFIG.ALLOWED_IPS) return next();
-    
-    const clientIP = req.ip || req.connection.remoteAddress;
-    const isAllowed = SECURITY_CONFIG.ALLOWED_IPS.some(allowedIP => {
+
+    const clientIPRaw = req.ip || req.connection.remoteAddress;
+    const clientIP = normalizeIP(clientIPRaw);
+    const allowedList = SECURITY_CONFIG.ALLOWED_IPS.map(x => normalizeIP(String(x).trim()));
+
+    const isAllowed = allowedList.some(allowedIP => {
+      if (!allowedIP) return false;
       if (allowedIP.includes('/')) {
         return clientIP.startsWith(allowedIP.split('/')[0]);
       }
       return clientIP === allowedIP;
     });
-    
+
     if (!isAllowed) {
-      logSecurityEvent('IP_BLOCKED', req, { clientIP, allowedIPs: SECURITY_CONFIG.ALLOWED_IPS });
+      logSecurityEvent('IP_BLOCKED', req, { clientIP, allowedIPs: allowedList });
       return res.status(403).end();
     }
-    
+
     next();
   };
   
