@@ -418,7 +418,7 @@ function createApiServer(port = 443) {
       return https.createServer(credentials, app);
     } catch (error) {
       console.error('Failed to load SSL certificates:', error.message);
-      console.log('Falling back to HTTP server on port 3000');
+      console.log(`Falling back to HTTP server on port 3000`);
       return null;
     }
   };
@@ -433,7 +433,7 @@ function createApiServer(port = 443) {
   } else {
     // Fallback to HTTP if SSL certificates not available
     app.listen(3000, () => {
-      console.log(`⚠️  HTTP API server running on port 3000 (SSL certificates not found)`);
+      console.log(`⚠️  HTTP API server running on port ${port} (SSL certificates not found)`);
       console.log(`📊 API endpoints available at: http://localhost:3000/api/v1/`);
     });
   }

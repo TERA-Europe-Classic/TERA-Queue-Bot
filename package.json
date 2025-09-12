@@ -6,8 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "generate-ssl": "node generate-ssl.js"
+    "dev": "nodemon src/index.js"
   },
   "engines": {
     "node": ">=18.0.0"
