@@ -53,11 +53,11 @@ class QueueManager {
   }
 
   getQueues() {
-    // Clean up old entries (older than 5 minutes)
-    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+    // Clean up old entries (older than 24 hours)
+    const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     
     Object.keys(this.queues).forEach(type => {
-      this.queues[type] = this.queues[type].filter(q => q.lastSeen > fiveMinutesAgo);
+      this.queues[type] = this.queues[type].filter(q => q.lastSeen > oneDayAgo);
     });
 
     return {
@@ -127,7 +127,6 @@ const serverNameSchema = Joi.string().max(50).pattern(/^[a-zA-Z0-9_-]+$/);
 function createApiServer(port = 443) {
   const app = express();
   
-  // Security middleware
   app.use(helmet({
     contentSecurityPolicy: {
       directives: {
@@ -144,7 +143,6 @@ function createApiServer(port = 443) {
     }
   }));
   
-  // CORS configuration
   app.use(cors({
     origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://localhost:3000'],
     credentials: true,
@@ -155,7 +153,6 @@ function createApiServer(port = 443) {
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
   
-  // Request timeout middleware
   app.use((req, res, next) => {
     req.setTimeout(SECURITY_CONFIG.REQUEST_TIMEOUT, () => {
       logSecurityEvent('REQUEST_TIMEOUT', req);
@@ -164,7 +161,6 @@ function createApiServer(port = 443) {
     next();
   });
   
-  // Helper to normalize IPv6-mapped IPv4 and loopback
   const normalizeIP = (ip) => {
     if (!ip) return ip;
     const v4mapped = /^::ffff:(\d+\.\d+\.\d+\.\d+)$/i.exec(ip);
@@ -173,7 +169,6 @@ function createApiServer(port = 443) {
     return ip;
   };
 
-  // IP whitelist middleware for all requests
   const ipWhitelistMiddleware = (req, res, next) => {
     if (!SECURITY_CONFIG.ALLOWED_IPS) return next();
 
@@ -197,10 +192,8 @@ function createApiServer(port = 443) {
     next();
   };
   
-  // Apply IP whitelist to all requests
   app.use(ipWhitelistMiddleware);
   
-  // Request fingerprinting middleware
   app.use((req, res, next) => {
     const fingerprint = crypto.createHash('sha256')
       .update(req.ip + req.get('User-Agent') + req.get('Accept-Language'))
@@ -211,7 +204,6 @@ function createApiServer(port = 443) {
     next();
   });
   
-  // API key validation middleware with enhanced security
   const validateApiKey = (req, res, next) => {
     const authHeader = req.headers.authorization;
     const expectedApiKey = process.env.API_KEY;
@@ -245,7 +237,6 @@ function createApiServer(port = 443) {
     next();
   };
   
-  // Input validation middleware
   const validateInput = (schema) => {
     return (req, res, next) => {
       const { error, value } = schema.validate(req.body, { 
@@ -266,7 +257,6 @@ function createApiServer(port = 443) {
     };
   };
   
-  // Server name validation middleware
   const validateServerName = (req, res, next) => {
     const serverName = req.params.server;
     const { error } = serverNameSchema.validate(serverName);
@@ -291,17 +281,10 @@ function createApiServer(port = 443) {
     next();
   };
   
-  // Request logging middleware
-  app.use((req, res, next) => {
-    const timestamp = new Date().toISOString();
-    console.log(`[${timestamp}] ${req.method} ${req.path} - ${req.ip}`);
-    next();
-  });
+  // No per-request logging in production
   
-  // API v1 routes
   const v1Router = express.Router();
   
-  // Health check endpoint
   app.get('/health', (req, res) => {
     res.json({ 
       status: 'ok', 
@@ -311,7 +294,6 @@ function createApiServer(port = 443) {
     });
   });
   
-  // API v1 routes
   v1Router.get('/health', (req, res) => {
     res.json({ 
       status: 'ok', 
@@ -320,7 +302,6 @@ function createApiServer(port = 443) {
     });
   });
   
-  // Get all queues for a server
   v1Router.get('/servers/:server/queues', validateServerName, (req, res) => {
     const { server } = req.params;
     const queues = queueManager.getQueues();
@@ -332,7 +313,6 @@ function createApiServer(port = 443) {
     });
   });
   
-  // Get specific queue type for a server
   v1Router.get('/servers/:server/queues/:type', validateServerName, (req, res) => {
     const { server, type } = req.params;
     const queues = queueManager.getQueues();
@@ -357,7 +337,6 @@ function createApiServer(port = 443) {
     }
   });
   
-  // Update queue data (requires API key)
   v1Router.post('/servers/:server/queues', 
     validateApiKey, 
     validateServerName,
@@ -385,7 +364,6 @@ function createApiServer(port = 443) {
     }
   );
   
-  // Clear all queues for a server (requires API key)
   v1Router.delete('/servers/:server/queues', 
     validateApiKey, 
     validateServerName,
@@ -400,21 +378,17 @@ function createApiServer(port = 443) {
     }
   );
   
-  // Mount API v1 routes
   app.use('/api/v1', v1Router);
   
-  // Error handling middleware
   app.use((err, req, res, next) => {
     console.error('API Error:', err);
     res.status(500).json({ error: 'Internal server error' });
   });
   
-  // 404 handler
   app.use((req, res) => {
     res.status(404).json({ error: 'Endpoint not found' });
   });
   
-  // Create HTTPS server
   const createHttpsServer = () => {
     const sslKeyPath = process.env.SSL_KEY_PATH || './ssl/private.key';
     const sslCertPath = process.env.SSL_CERT_PATH || './ssl/certificate.crt';
@@ -431,7 +405,6 @@ function createApiServer(port = 443) {
       return https.createServer(credentials, app);
     } catch (error) {
       console.error('Failed to load SSL certificates:', error.message);
-      console.log(`Falling back to HTTP server on port 3000`);
       return null;
     }
   };
@@ -439,16 +412,9 @@ function createApiServer(port = 443) {
   const server = createHttpsServer();
   
   if (server) {
-    server.listen(port, () => {
-      console.log(`🔒 HTTPS API server running on port ${port}`);
-      console.log(`📊 API endpoints available at: https://localhost:${port}/api/v1/`);
-    });
+    server.listen(port, () => {});
   } else {
-    // Fallback to HTTP if SSL certificates not available
-    app.listen(3000, () => {
-      console.log(`⚠️  HTTP API server running on port ${port} (SSL certificates not found)`);
-      console.log(`📊 API endpoints available at: http://localhost:3000/api/v1/`);
-    });
+    app.listen(3000, () => {});
   }
   
   return app;

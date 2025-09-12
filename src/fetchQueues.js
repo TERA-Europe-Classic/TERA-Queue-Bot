@@ -89,7 +89,6 @@ function buildEmbed(data) {
     color: dynamicColor(total),
     author: {
       name: 'TERA Queue — Yurian',
-      icon_url: 'https://static.wikia.nocookie.net/tera_gamepedia/images/6/6a/TERA_Icon.png',
     },
     timestamp: now.toISOString(),
     fields: [

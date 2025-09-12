@@ -1,5 +1,0 @@
-{
-  "api_key": "your-secure-api-key-here",
-  "server_name": "Yurian",
-  "api_matching_url": "https://localhost:443/api/v1/servers/Yurian/queues"
-}
