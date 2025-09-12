@@ -1,18 +1,30 @@
 const axios = require('axios');
 
-const DUNGEON_URL = 'https://tera.digitalsavior.fr/matching/Yurian/dungeon';
-const BG_URL = 'https://tera.digitalsavior.fr/matching/Yurian/bg';
+// Internal API endpoints - these will be served by our own Express server
+const API_BASE_URL = process.env.API_BASE_URL || 'https://localhost:443';
+const SERVER_NAME = process.env.SERVER_NAME || 'Yurian';
+
+const DUNGEON_URL = `${API_BASE_URL}/api/v1/servers/${SERVER_NAME}/queues/dungeons`;
+const BG_URL = `${API_BASE_URL}/api/v1/servers/${SERVER_NAME}/queues/battlegrounds`;
 
 async function fetchQueues() {
   try {
+    const axiosConfig = {
+      headers: { 'Content-Type': 'application/json' },
+      timeout: 5000, // 5 second timeout
+      httpsAgent: new (require('https').Agent)({
+        rejectUnauthorized: process.env.NODE_ENV === 'production' // Only reject in production
+      })
+    };
+    
     const [dungeonRes, bgRes] = await Promise.all([
-      axios.get(DUNGEON_URL, { headers: { 'Content-Type': 'application/json' } }),
-      axios.get(BG_URL, { headers: { 'Content-Type': 'application/json' } })
+      axios.get(DUNGEON_URL, axiosConfig),
+      axios.get(BG_URL, axiosConfig)
     ]);
 
     return {
-      dungeons: dungeonRes.data?.dungeons ?? [],
-      bgs: bgRes.data?.bgs ?? [],
+      dungeons: dungeonRes.data?.data ?? [],
+      bgs: bgRes.data?.data ?? [],
       raw: {
         dungeons: dungeonRes.data,
         bgs: bgRes.data,

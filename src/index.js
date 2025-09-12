@@ -1,14 +1,19 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { fetchQueues, buildEmbed } = require('./fetchQueues');
+const { createApiServer } = require('./api');
 
 const TOKEN = process.env.DISCORD_TOKEN;
 const PREFIX = process.env.COMMAND_PREFIX || '!';
+const API_PORT = process.env.API_PORT || 443;
 
 if (!TOKEN) {
   console.error('Missing DISCORD_TOKEN in .env');
   process.exit(1);
 }
+
+// Start the API server
+const apiServer = createApiServer(API_PORT);
 
 const client = new Client({
   intents: [
