@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { resolveInstanceLabels } = require('./data/instanceMap');
 
 // Internal API endpoints - these will be served by our own Express server
 const API_BASE_URL = process.env.API_BASE_URL || 'https://localhost:443';
@@ -53,7 +54,8 @@ function formatList(items) {
   // Build a neat table-like list in a code block, truncated to fit field limits.
   const rows = items.map((it) => {
     if (typeof it === 'string') return it;
-    const name = String(it.name || it.queue || it.id || it.code || 'Unknown');
+    const instanceNames = resolveInstanceLabels(it?.instances);
+    const name = String(it.name || it.queue || it.id || it.code || instanceNames || 'Unknown');
     const queued = pickNumber(it.queued ?? it.players ?? it.count);
     const wait = it.avgWait || it.average || it.wait || null;
     const qty = queued !== undefined ? queued.toString() : '-';

@@ -9,7 +9,7 @@ module.exports = function createTrackCommand({ fetchQueues, buildEmbed, messagin
         if (!sent) return;
 
         tracking.start(sent, fetchQueues);
-        await messaging.reply(message, 'Tracking this message. It will update every 30 seconds.').catch(() => {});
+        await messaging.reply(message, 'Tracking this message. It will update every 1 minute.').catch(() => {});
       } catch (err) {
         console.error('track command failed', err);
       }

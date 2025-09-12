@@ -17,7 +17,7 @@ class TrackingService {
     this.trackers.clear();
   }
 
-  start(message, fetchQueues, intervalMs = 30_000) {
+  start(message, fetchQueues, intervalMs = 60_000) {
     const intervalId = setInterval(async () => {
       try {
         const updated = await fetchQueues();
