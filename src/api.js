@@ -7,67 +7,62 @@ const crypto = require('crypto');
 class QueueManager {
   constructor() {
     this.queues = {
-      dungeons: [],
-      bgs: []
+      dungeons: new Map(),
+      bgs: new Map()
     };
     this.lastUpdated = new Date();
   }
 
+  // Simple add/subtract counting per instance
+  // matching_state === 1 → add `players` to queued for each instance
+  // matching_state === 0 → subtract `players` from queued for each instance
   updateQueue(queueData) {
     const { type, players, instances, server, matching_state } = queueData;
     
     // Determine queue type: 0 = dungeons, 1 = battlegrounds
     const queueType = type === 0 ? 'dungeons' : 'bgs';
     
-    if (matching_state === 1) {
-      // Queue is active - add or update
-      const existingIndex = this.queues[queueType].findIndex(q => 
-        q.server === server && q.instances.join(',') === instances.join(',')
-      );
-      
-      const queueEntry = {
-        server,
-        players,
-        instances,
-        matching_state,
-        queued: players,
-        lastSeen: new Date()
-      };
-      
-      if (existingIndex >= 0) {
-        this.queues[queueType][existingIndex] = queueEntry;
+    instances.forEach(instance => {
+      const key = `${server}:${instance}`;
+      const current = this.queues[queueType].get(key) || 0;
+
+      if (matching_state === 1) {
+        this.queues[queueType].set(key, current + Number(players || 0));
       } else {
-        this.queues[queueType].push(queueEntry);
+        const newValue = Math.max(0, current - Number(players || 0));
+        if (newValue > 0) {
+          this.queues[queueType].set(key, newValue);
+        } else {
+          this.queues[queueType].delete(key);
+        }
       }
-    } else {
-      // Queue is inactive - remove matching entries
-      this.queues[queueType] = this.queues[queueType].filter(q => 
-        !(q.server === server && q.instances.join(',') === instances.join(','))
-      );
-    }
+    });
     
     this.lastUpdated = new Date();
   }
 
   getQueues() {
-    // Clean up old entries (older than 24 hours)
-    const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
-    
-    Object.keys(this.queues).forEach(type => {
-      this.queues[type] = this.queues[type].filter(q => q.lastSeen > oneDayAgo);
+    const toArray = (map) => Array.from(map.entries()).map(([key, queued]) => {
+      const [server, instance] = key.split(':');
+      return {
+        server,
+        instances: [instance],
+        queued,
+        lastSeen: this.lastUpdated
+      };
     });
 
     return {
-      dungeons: this.queues.dungeons,
-      bgs: this.queues.bgs,
+      dungeons: toArray(this.queues.dungeons),
+      bgs: toArray(this.queues.bgs),
       lastUpdated: this.lastUpdated
     };
   }
 
   clearAll() {
     this.queues = {
-      dungeons: [],
-      bgs: []
+      dungeons: new Map(),
+      bgs: new Map()
     };
     this.lastUpdated = new Date();
   }
