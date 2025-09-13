@@ -9,6 +9,8 @@ const BLAST_GROUP = [
   '9087', '9088', '9089', '9071', '9072', '9093', '9094', '9076', '9073'
 ];
 
+const DEBUG_BFP = process.env.DEBUG_BFP === 'true';
+
 function resolveInstanceName(id) {
   const key = String(id);
   const value = idToName[key];
@@ -21,11 +23,16 @@ function resolveInstanceName(id) {
 function resolveInstanceLabels(ids) {
   if (!Array.isArray(ids) || ids.length === 0) return null;
   const asStrings = ids.map((x) => String(x));
+  if (DEBUG_BFP) console.log('[instanceMap] Input IDs:', asStrings);
   // Special case: if all classic IDs are present, label as Blast from the Past
   {
     const set = new Set(asStrings);
     const isBlast = BLAST_GROUP.every((id) => set.has(id));
-    if (isBlast) return 'Blast from the Past';
+    if (isBlast) {
+      if (DEBUG_BFP) console.log('[instanceMap] Detected Blast from the Past', asStrings);
+      return 'Blast from the Past';
+    }
+    if (DEBUG_BFP) console.log('[instanceMap] Not BFTP, ids=', asStrings);
   }
   return asStrings.map((id) => resolveInstanceName(id)).join(', ');
 }

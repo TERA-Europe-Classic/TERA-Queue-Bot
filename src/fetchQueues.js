@@ -49,7 +49,7 @@ function sumQueued(items) {
 }
 
 function formatList(items) {
-  if (!Array.isArray(items) || items.length === 0) return '`No data`';
+  if (!Array.isArray(items) || items.length === 0) return '`no queues`';
 
   // Build a neat table-like list in a code block, truncated to fit field limits.
   const rows = items.map((it) => {
@@ -61,15 +61,15 @@ function formatList(items) {
     const qty = queued !== undefined ? queued.toString() : '-';
     const waitTxt = wait ? String(wait) : '';
 
-    // Fixed-width left column for name, then qty, then optional wait
-    const left = name.length > 28 ? name.slice(0, 27) + '…' : name;
-    const padded = left.padEnd(30, ' ');
+    // Wider fixed-width left column to reduce truncation
+    const left = name.length > 38 ? name.slice(0, 37) + '…' : name;
+    const padded = left.padEnd(40, ' ');
     return `${padded} ${qty}${waitTxt ? `  (${waitTxt})` : ''}`;
   });
 
   let body = rows.join('\n');
-  // Keep within ~950 chars to leave room for backticks
-  if (body.length > 950) body = body.slice(0, 947) + '…';
+  // Keep within ~1900 chars to leave room for backticks
+  if (body.length > 1900) body = body.slice(0, 1897) + '…';
   return '```\n' + body + '\n```';
 }
 
