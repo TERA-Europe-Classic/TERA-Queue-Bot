@@ -1,9 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
 const Joi = require('joi');
 const crypto = require('crypto');
 
@@ -124,7 +121,7 @@ const queueDataSchema = Joi.object({
 
 const serverNameSchema = Joi.string().max(50).pattern(/^[a-zA-Z0-9_-]+$/);
 
-function createApiServer(port = 443) {
+function createApiServer(port = 3000) {
   const app = express();
   
   app.use(helmet({
@@ -389,33 +386,8 @@ function createApiServer(port = 443) {
     res.status(404).json({ error: 'Endpoint not found' });
   });
   
-  const createHttpsServer = () => {
-    const sslKeyPath = process.env.SSL_KEY_PATH || './ssl/private.key';
-    const sslCertPath = process.env.SSL_CERT_PATH || './ssl/certificate.crt';
-    
-    try {
-      const privateKey = fs.readFileSync(sslKeyPath, 'utf8');
-      const certificate = fs.readFileSync(sslCertPath, 'utf8');
-      
-      const credentials = {
-        key: privateKey,
-        cert: certificate
-      };
-      
-      return https.createServer(credentials, app);
-    } catch (error) {
-      console.error('Failed to load SSL certificates:', error.message);
-      return null;
-    }
-  };
-  
-  const server = createHttpsServer();
-  
-  if (server) {
-    server.listen(port, () => {});
-  } else {
-    app.listen(3000, () => {});
-  }
+  // Start HTTP server only
+  app.listen(port, () => {});
   
   return app;
 }

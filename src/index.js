@@ -9,7 +9,7 @@ const createTrackCommand = require('./commands/track');
 
 const TOKEN = process.env.DISCORD_TOKEN;
 const PREFIX = process.env.COMMAND_PREFIX || '!';
-const API_PORT = process.env.API_PORT || 443;
+const API_PORT = process.env.API_PORT || 3000;
 
 if (!TOKEN) {
   console.error('Missing DISCORD_TOKEN in .env');
