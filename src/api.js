@@ -22,7 +22,20 @@ class QueueManager {
     // Determine queue type: 0 = dungeons, 1 = battlegrounds
     const queueType = type === 0 ? 'dungeons' : 'bgs';
     
-    instances.forEach(instance => {
+    // Normalize Blast from the Past: replace classic 9 IDs with 9999, keep others
+    const BLAST_GROUP = ['9087','9088','9089','9071','9072','9093','9094','9076','9073'];
+    const incoming = (instances || []).map(String);
+    const hasClassicSubset = BLAST_GROUP.every(id => incoming.includes(id));
+    const DEBUG_BFP = process.env.DEBUG_BFP === 'true';
+    let normalized = incoming;
+    if (hasClassicSubset) {
+      const classicSet = new Set(BLAST_GROUP);
+      normalized = incoming.filter(id => !classicSet.has(id));
+      normalized.push('9999');
+    }
+
+    // Track each instance separately (including 9999 if present)
+    normalized.forEach(instance => {
       const key = `${server}:${instance}`;
       const current = this.queues[queueType].get(key) || 0;
 
