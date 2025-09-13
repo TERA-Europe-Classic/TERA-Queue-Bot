@@ -21,8 +21,8 @@ function resolveInstanceName(id) {
 function resolveInstanceLabels(ids) {
   if (!Array.isArray(ids) || ids.length === 0) return null;
   const asStrings = ids.map((x) => String(x));
-  // Special case: specific set of instances represents "Blast from the Past"
-  if (asStrings.length === BLAST_GROUP.length) {
+  // Special case: if all classic IDs are present, label as Blast from the Past
+  {
     const set = new Set(asStrings);
     const isBlast = BLAST_GROUP.every((id) => set.has(id));
     if (isBlast) return 'Blast from the Past';
