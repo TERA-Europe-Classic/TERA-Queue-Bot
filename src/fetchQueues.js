@@ -90,9 +90,6 @@ function buildEmbed(data) {
 
   return {
     color: dynamicColor(total),
-    author: {
-      name: 'TERA Queue — Yurian',
-    },
     timestamp: now.toISOString(),
     fields: [
       { name: `🏰 Dungeons — Total: ${totalD}`, value: formatList(dungeons), inline: false },
