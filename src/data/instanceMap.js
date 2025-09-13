@@ -37,9 +37,19 @@ function resolveInstanceLabels(ids) {
   return asStrings.map((id) => resolveInstanceName(id)).join(', ');
 }
 
+function resolveInstanceNames(ids) {
+  if (!Array.isArray(ids) || ids.length === 0) return [];
+  const asStrings = ids.map((x) => String(x));
+  const set = new Set(asStrings);
+  const isBlast = BLAST_GROUP.every((id) => set.has(id));
+  if (isBlast) return ['Blast from the Past'];
+  return asStrings.map((id) => resolveInstanceName(id));
+}
+
 module.exports = {
   resolveInstanceName,
   resolveInstanceLabels,
+  resolveInstanceNames,
 };
 
 
