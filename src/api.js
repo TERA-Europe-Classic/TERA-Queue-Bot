@@ -13,6 +13,10 @@ class QueueManager {
     };
     this.lastUpdated = new Date();
     this.sortedDungeonKeys = [];
+    this.playerCounters = {
+      dungeons: new Map(), // server -> players
+      bgs: new Map(),
+    };
   }
 
   // Simple add/subtract counting per instance
@@ -53,6 +57,22 @@ class QueueManager {
       }
     });
     
+    // Maintain player counters by server (players are per request, not per instance)
+    {
+      const map = this.playerCounters[queueType];
+      const current = map.get(server) || 0;
+      if (matching_state === 1) {
+        map.set(server, current + Number(players || 0));
+      } else {
+        const newValue = Math.max(0, current - Number(players || 0));
+        if (newValue > 0) {
+          map.set(server, newValue);
+        } else {
+          map.delete(server);
+        }
+      }
+    }
+
     this.lastUpdated = new Date();
 
     // Recompute cached sorted order for dungeons after each update
@@ -93,9 +113,16 @@ class QueueManager {
 
     const bgs = Array.from(this.queues.bgs.entries()).map(([key, queued]) => mapEntryToObj(key, queued));
 
+    const sumMapValues = (map) => Array.from(map.values()).reduce((acc, v) => acc + v, 0);
+    const playersTotals = {
+      dungeons: sumMapValues(this.playerCounters.dungeons),
+      bgs: sumMapValues(this.playerCounters.bgs),
+    };
+
     return {
       dungeons,
       bgs,
+      playersTotals,
       lastUpdated: this.lastUpdated
     };
   }
@@ -107,6 +134,10 @@ class QueueManager {
     };
     this.lastUpdated = new Date();
     this.sortedDungeonKeys = [];
+    this.playerCounters = {
+      dungeons: new Map(),
+      bgs: new Map(),
+    };
   }
 }
 

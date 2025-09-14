@@ -26,6 +26,7 @@ async function fetchQueues() {
     return {
       dungeons: dungeonRes.data?.data ?? [],
       bgs: bgRes.data?.data ?? [],
+      playersTotals: dungeonRes.data?.playersTotals ? dungeonRes.data.playersTotals : undefined,
       raw: {
         dungeons: dungeonRes.data,
         bgs: bgRes.data,
@@ -89,7 +90,9 @@ function sortByIlvlThenLevelThenId(items) {
 }
 
 function formatDungeonSections(items) {
-  if (!Array.isArray(items) || items.length === 0) return '`no queues`';
+  if (!Array.isArray(items) || items.length === 0) {
+    return { endTxt: '`no queues`', lvlTxt: '`no queues`', endCount: 0, lvlCount: 0 };
+  }
 
   const withCat = items.map((it) => {
     const id = String((it.instances && it.instances[0]) || it.id || it.code || '');
@@ -114,20 +117,22 @@ function dynamicColor(totalQueued) {
 }
 
 function buildEmbed(data) {
-  const { dungeons, bgs } = data;
+  const { dungeons, bgs, playersTotals } = data;
   const { endTxt, lvlTxt, endCount, lvlCount } = formatDungeonSections(dungeons);
-  const totalD = endCount + lvlCount;
-  const totalB = sumQueued(bgs);
-  const total = totalD + totalB;
+  const totalDQueues = endCount + lvlCount;
+  const totalBQueues = sumQueued(bgs);
+  const totalPlayersD = playersTotals?.dungeons ?? totalDQueues;
+  const totalPlayersB = playersTotals?.bgs ?? totalBQueues;
+  const totalPlayers = totalPlayersD + totalPlayersB;
   const now = new Date();
 
   return {
-    color: dynamicColor(total),
+    color: dynamicColor(totalPlayers),
     timestamp: now.toISOString(),
     fields: [
       { name: `🏰 Dungeons — Endgame: ${endCount}`, value: endTxt, inline: false },
       { name: `🏰 Dungeons — Leveling: ${lvlCount}`, value: lvlTxt, inline: false },
-      { name: `⚔️ Battlegrounds — Total: ${totalB}`, value: formatList(bgs), inline: false },
+      { name: `⚔️ Battlegrounds — Players: ${totalPlayersB}`, value: formatList(bgs), inline: false },
     ],
     footer: { text: 'Use !track to auto-update' },
   };
