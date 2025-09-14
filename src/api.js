@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const Joi = require('joi');
 const crypto = require('crypto');
+const { getItemLevel, getLevel, supportIds } = require('./data/xmlData');
 
 class QueueManager {
   constructor() {
@@ -11,6 +12,7 @@ class QueueManager {
       bgs: new Map()
     };
     this.lastUpdated = new Date();
+    this.sortedDungeonKeys = [];
   }
 
   // Simple add/subtract counting per instance
@@ -22,8 +24,8 @@ class QueueManager {
     // Determine queue type: 0 = dungeons, 1 = battlegrounds
     const queueType = type === 0 ? 'dungeons' : 'bgs';
     
-    // Normalize Blast from the Past: replace classic 9 IDs with 9999, keep others
-    const BLAST_GROUP = ['9087','9088','9089','9071','9072','9093','9094','9076','9073'];
+    // Normalize Blast from the Past: replace classic group (from XML) with 9999, keep others
+    const BLAST_GROUP = Array.from(supportIds || []);
     const incoming = (instances || []).map(String);
     const hasClassicSubset = BLAST_GROUP.every(id => incoming.includes(id));
     const DEBUG_BFP = process.env.DEBUG_BFP === 'true';
@@ -52,10 +54,30 @@ class QueueManager {
     });
     
     this.lastUpdated = new Date();
+
+    // Recompute cached sorted order for dungeons after each update
+    this._recomputeDungeonOrder();
+  }
+
+  _recomputeDungeonOrder() {
+    const keys = Array.from(this.queues.dungeons.keys());
+    keys.sort((a, b) => {
+      const ia = a.split(':')[1];
+      const ib = b.split(':')[1];
+      const iaIlvl = getItemLevel(ia);
+      const ibIlvl = getItemLevel(ib);
+      if (iaIlvl !== ibIlvl) return iaIlvl - ibIlvl; // sort by item level requirement
+      const la = getLevel(ia);
+      const lb = getLevel(ib);
+      if (la !== lb) return la - lb; // tie-break by character level
+      // Tie-break by instance id for stability
+      return String(ia).localeCompare(String(ib));
+    });
+    this.sortedDungeonKeys = keys;
   }
 
   getQueues() {
-    const toArray = (map) => Array.from(map.entries()).map(([key, queued]) => {
+    const mapEntryToObj = (key, queued) => {
       const [server, instance] = key.split(':');
       return {
         server,
@@ -63,11 +85,17 @@ class QueueManager {
         queued,
         lastSeen: this.lastUpdated
       };
-    });
+    };
+
+    const dungeons = this.sortedDungeonKeys
+      .filter((key) => this.queues.dungeons.has(key))
+      .map((key) => mapEntryToObj(key, this.queues.dungeons.get(key)));
+
+    const bgs = Array.from(this.queues.bgs.entries()).map(([key, queued]) => mapEntryToObj(key, queued));
 
     return {
-      dungeons: toArray(this.queues.dungeons),
-      bgs: toArray(this.queues.bgs),
+      dungeons,
+      bgs,
       lastUpdated: this.lastUpdated
     };
   }
@@ -78,6 +106,7 @@ class QueueManager {
       bgs: new Map()
     };
     this.lastUpdated = new Date();
+    this.sortedDungeonKeys = [];
   }
 }
 

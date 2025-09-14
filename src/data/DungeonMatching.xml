@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DungeonMatching>
+  <!-- Define positions by class order: 1 is for Dealers, 0 is for Tanks, and 2 is for Healers in that order, set up to 3 basic chosen positions and selectable positions! -->
+  <ClassPosition>
+    <Class name="Warrior" defaultPosition="1" secondPosition="0" thirdPosition="1" />
+    <Class name="Lancer" defaultPosition="0" secondPosition="0" thirdPosition="0" />
+    <Class name="Slayer" defaultPosition="1" secondPosition="1" thirdPosition="1" />
+    <Class name="Berserker" defaultPosition="1" secondPosition="1" thirdPosition="1" />
+    <Class name="Sorcerer" defaultPosition="1" secondPosition="1" thirdPosition="1" />
+    <Class name="Archer" defaultPosition="1" secondPosition="1" thirdPosition="1" />
+    <Class name="Priest" defaultPosition="2" secondPosition="2" thirdPosition="2" />
+    <Class name="Elementalist" defaultPosition="2" secondPosition="2" thirdPosition="2" />
+    <Class name="Soulless" defaultPosition="1" secondPosition="1" thirdPosition="1" />
+    <Class name="Engineer" defaultPosition="1" secondPosition="1" thirdPosition="1" />
+  </ClassPosition>
+  <!-- Defining the contents of the mail that sends the Valkyon summoning order, rewards received by characters who respond to additional recruitment, dungeon clear bonus rewards, and rewards-->
+  <Compensation>
+    <PositionCall addItemTemplateId="" addItemAmount="" />
+    <PositionCallMail sender="@DungeonMatchingMail:10" title="@DungeonMatchingMail:11" body="@DungeonMatchingMail:12" />
+    <AddEntry addItemTemplateId="150014" addItemAmount="1" />
+    <AddEntryMail sender="@DungeonMatchingMail:20" title="@DungeonMatchingMail:21" body="@DungeonMatchingMail:22" />
+    <!-- In the case of a dungeon clear reward, an item to be displayed on the UI is designated. In reality, the specified item is paid for each Dungeon. !-->
+    <DungeonClear addItemTemplateId="407" addItemAmount="1" />
+    <DungeonClearMail sender="@DungeonMatchingMail:30" title="@DungeonMatchingMail:31" body="@DungeonMatchingMail:32" />
+    <!-- Blast from the Past -->
+    <SupportMatchingClear addItemTemplateId="95144" addItemAmount="1"/>
+		<SupportMatchingClearMail sender="@DungeonMatchingMail:30" title="@DungeonMatchingMail:31" body="@DungeonMatchingMail:32"/>
+  </Compensation>
+  <PartyMatchBonus>
+  		<Bonus countOfRegistration="1" classGroup="defence" abnormalityId="4800"/> <!-- Chain of Protection III -->
+		<Bonus countOfRegistration="1" classGroup="attack" abnormalityId="4801"/> <!-- Chain of Attack III -->
+		<Bonus countOfRegistration="1" classGroup="heal" abnormalityId="4802"/> <!-- Chain of Recovery III -->
+		<Bonus countOfRegistration="2" classGroup="defence" abnormalityId="4800"/> <!-- Chain of Protection III -->
+		<Bonus countOfRegistration="2" classGroup="attack" abnormalityId="4801"/> <!-- Chain of Attack III -->
+		<Bonus countOfRegistration="2" classGroup="heal" abnormalityId="4802"/> <!-- Chain of Recovery III -->
+		<Bonus countOfRegistration="3" classGroup="defence" abnormalityId="4810"/> <!-- Chain of Protection II -->
+		<Bonus countOfRegistration="3" classGroup="attack" abnormalityId="4811"/> <!-- Chain of Attack II -->
+		<Bonus countOfRegistration="3" classGroup="heal" abnormalityId="4812"/> <!-- Chain of Recovery II -->
+		<Bonus countOfRegistration="4" classGroup="defence" abnormalityId="4820"/> <!-- Chain of Protection I -->
+		<Bonus countOfRegistration="4" classGroup="attack" abnormalityId="4821"/> <!-- Chain of Attack I -->
+		<Bonus countOfRegistration="4" classGroup="heal" abnormalityId="4822"/> <!-- Chain of Recovery I -->
+  </PartyMatchBonus>
+  <Penalty withdrawalAbnormalitySec="180" withdrawalAbnormalityId="999994" />
+  <SupportMatching id="9999" dungeonMinLevel="60" dungeonMaxLevel="65" increaseSupportUserTime="60" maxSupportUser="2">
+		<MatchingDungeon id="9087" name="Bastion of Lok"/>
+		<MatchingDungeon id="9088" name="Sinestral Manor"/>
+		<MatchingDungeon id="9089" name="Cultists' Refuge"/>
+		<MatchingDungeon id="9071" name="Necromancer Tomb"/>
+		<MatchingDungeon id="9072" name="Golden Labyrinth"/> 
+		<MatchingDungeon id="9093" name="Akasha's Hideout"/> 
+		<MatchingDungeon id="9094" name="Saleron's Sky Garden"/> 
+		<MatchingDungeon id="9076" name="Labyrinth of Terror"/>
+		<MatchingDungeon id="9073" name="Ebon Tower"/>
+  </SupportMatching> 
+  <!-- Dungeon ID, dungeon matching min-max level, minimum equipment level, required items (maximum 3 types), completion conditions (maximum 3 types can be specified)!-->
+  <!-- Item level is not only bet when the dungeon difficulty is high, but must be cast in all dungeons. In dungeons with low difficulty, you can hang it down a little more comfortably. -->
+  <!-- Current reward items are doubled (events and tokens are doubled)  !-->
+  <!-- If hide="true" is used, the corresponding dungeon is not visible in the dungeon matching UI (dungeon matching cannot be used). In the dungeon stats information window of the character window, hide="true" dungeon stats are also displayed. -->
+  <!-- The matchingRoleId="23" in the Blast from the Past System is a rule implemented so that dungeon matching is possible without a tank. --> 
+  <Dungeon id="9087" name="Bastion of Lok" dungeonLevel="20" dungeonMinLevel="20" dungeonMaxLevel="25" minItemLevel="33" matchingRoleId="23">
+    <NeedItem id="" />
+    <DungeonClearCompensation itemTemplateId="408" itemAmount="1" /> <!-- Valkyon's Response I -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="10" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+  <Dungeon id="9088" name="Sinestral Manor" dungeonLevel="26" dungeonMinLevel="26" dungeonMaxLevel="31" minItemLevel="45" matchingRoleId="23">
+    <NeedItem id="" />
+    <DungeonClearCompensation itemTemplateId="408" itemAmount="1" /> <!-- Valkyon's Response I -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="10" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+  <Dungeon id="9979" name="Saravash's Ascent" dungeonLevel="32" dungeonMinLevel="32" dungeonMaxLevel="36" minItemLevel="50" matchingRoleId="23">
+    <NeedItem id="" />
+    <DungeonClearCompensation itemTemplateId="408" itemAmount="1" /> <!-- Valkyon's Response I -->
+    <ClearCondition huntingZoneId="979" templateId="47954" amount="1" killCount="1" />
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="10" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+  <Dungeon id="9089" name="Cultists' Refuge" dungeonLevel="35" dungeonMinLevel="35" dungeonMaxLevel="42" minItemLevel="65" matchingRoleId="23">
+    <!-- Required item is no longer required and has been removed -->
+    <NeedItem id="" />
+    <DungeonClearCompensation itemTemplateId="409" itemAmount="1" /> <!-- Valkyon's Response II -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="10" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+  <Dungeon id="9071" name="Necromancer Tomb" dungeonLevel="41" dungeonMinLevel="41" dungeonMaxLevel="47" minItemLevel="77" matchingRoleId="23">
+    <NeedItem id="" />
+    <DungeonClearCompensation itemTemplateId="409" itemAmount="1" /> <!-- Valkyon's Response II -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="10" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+  <Dungeon id="9072" name="Golden Labyrinth" dungeonLevel="48" dungeonMinLevel="48" dungeonMaxLevel="53" minItemLevel="91" matchingRoleId="23">
+    <NeedItem id="" />
+    <DungeonClearCompensation itemTemplateId="410" itemAmount="1" /> <!-- Valkyon's Response III -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="10" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+  <Dungeon id="9093" name="Akasha's Hideout" dungeonLevel="48" dungeonMinLevel="48" dungeonMaxLevel="54" minItemLevel="91" matchingRoleId="17">
+    <NeedItem id="103" /> <!-- Holy Potion of Protection -->
+    <DungeonClearCompensation itemTemplateId="410" itemAmount="1" /> <!-- Valkyon's Response III -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="10" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>--&gt;
+	<!-- <Dungeon id="9793" name="Akasha's Hideout (Hard)" dungeonLevel="48" dungeonMinLevel="48" dungeonMaxLevel="56" minItemLevel="110">
+		<NeedItem id="103"/>
+		<DungeonClearCompensation itemTemplateId="410" itemAmount="1"/> 
+		<DungeonClearCompensation itemTemplateId="54" itemAmount="12"/>
+	</Dungeon> -->
+  <Dungeon id="9094" name="Saleron's Sky Garden" dungeonLevel="53" dungeonMinLevel="53" dungeonMaxLevel="57" minItemLevel="101" matchingRoleId="23">
+    <NeedItem id="" />
+    <DungeonClearCompensation itemTemplateId="410" itemAmount="1" /> <!-- Valkyon's Response III -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="10" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>  
+  <Dungeon id="9076" name="Labyrinth of Terror" dungeonLevel="57" dungeonMinLevel="57" dungeonMaxLevel="58" minItemLevel="124" matchingRoleId="23">
+    <NeedItem id="5126" /> <!-- Potion of Will -->
+    <DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="10" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+  <Dungeon id="9073" name="Ebon Tower" dungeonLevel="58" dungeonMinLevel="58" dungeonMaxLevel="59" minItemLevel="124" matchingRoleId="23">
+    <NeedItem id="" />
+    <DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="10" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+  <Dungeon id="9075" name="Kelsaik's Nest" dungeonLevel="58" dungeonMinLevel="58" dungeonMaxLevel="63" minItemLevel="131">
+    <NeedItem id="5123" /> <!-- Torch of the Gods -->
+    <DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="20" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+<!-- T3+ dungeon list temporarily removed before being reactivated as per original settings prior to being removed on December 1st update version --><!-- <Dungeon id="9079" name="Saravash's Ascent" dungeonLevel="58" dungeonMinLevel="58" dungeonMaxLevel="63" minItemLevel="134">
+		<NeedItem id=""/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="356" itemAmount="2"/>
+	</Dungeon> --><!-- <Dungeon id="9080" name="Sigil Adstringo" dungeonLevel="58" dungeonMinLevel="58" dungeonMaxLevel="63" minItemLevel="134">
+		<NeedItem id=""/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="356" itemAmount="2"/>
+	</Dungeon> --><!-- <Dungeon id="9082" name="Temple of Temerity" dungeonLevel="58" dungeonMinLevel="58" dungeonMaxLevel="63" minItemLevel="124" >
+		<NeedItem id=""/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="356" itemAmount="2"/>
+	</Dungeon> --><!-- <Dungeon id="9773" name="Ebon Tower (Hard)" dungeonLevel="58" dungeonMinLevel="58" dungeonMaxLevel="63" minItemLevel="131">
+		<NeedItem id="5127"/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="356" itemAmount="2"/>
+	</Dungeon> --><!-- <Dungeon id="9775" name="Kelsaik's Nest (Hard)" dungeonLevel="58" dungeonMinLevel="58" dungeonMaxLevel="63" minItemLevel="132">
+		<NeedItem id="5123"/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="356" itemAmount="2"/>
+	</Dungeon> --><!-- <Dungeon id="9776" name="Labyrinth of Terror (Hard)" dungeonLevel="58" dungeonMinLevel="58" dungeonMaxLevel="63" minItemLevel="131">
+		<NeedItem id="5126"/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="356" itemAmount="2"/>
+	</Dungeon> --><!-- <Dungeon id="9078" name="Suryati's Peak" dungeonLevel="58" dungeonMinLevel="58" dungeonMaxLevel="63" minItemLevel="126">
+		<NeedItem id=""/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="346" itemAmount="20"/>
+	</Dungeon> --><!--<Dungeon id="9024" name="Fane of Kaprima" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="138" >
+		<NeedItem id=""/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="2"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+		<ClearCondition huntingZoneId="424" templateId="2000" amount="1" killCount="1" />
+	</Dungeon>-->
+  <Dungeon id="9025" name="Balder's Temple" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="138">
+    <NeedItem id="45323" /> <!-- Dampening Shroud -->
+    <DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+    <DungeonClearCompensation itemTemplateId="364" itemAmount="1" /> <!-- Amethyst -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="20" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+  <!--<Dungeon id="9724" name="Fane of Kaprima (Hard)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="142">
+		<NeedItem id=""/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+		<ClearCondition huntingZoneId="724" templateId="2000" amount="1" killCount="1" />
+	</Dungeon>--><!--<Dungeon id="9725" name="Balder's Temple (Hard)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="142">
+		<NeedItem id="45323"/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+		<ClearCondition huntingZoneId="725" templateId="8005" amount="1" killCount="1" />
+	</Dungeon>--><!-- <Dungeon id="9095" name="Crucible of Flame" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="142">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+	</Dungeon> --><!-- <Dungeon id="9096" name="Sirjuka Gallery" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="147">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="" itemAmount=""/>
+	</Dungeon> -->
+  <Dungeon id="9026" name="Argon Corpus" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="138">
+    <DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+    <DungeonClearCompensation itemTemplateId="364" itemAmount="1" /> <!-- Amethyst -->
+    <DungeonClearCompensation itemTemplateId="92074" itemAmount="20" /> <!-- Easter Fashion Coupon -->
+
+  </Dungeon>
+  <!--<Dungeon id="9726" name="Argon Corpus (Hard)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="147">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+		<ClearCondition huntingZoneId="726" templateId="20000" amount="1" killCount="1" />
+	</Dungeon>--><!-- <Dungeon id="9027" name="Manaya's Core (Hard)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="153">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+	</Dungeon> -->
+  <Dungeon id="9727" name="Manaya's Core" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="138">
+	<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/> <!-- Valkyon's Response IV -->
+	<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/> <!-- Amethyst -->
+	<DungeonClearCompensation itemTemplateId="92074" itemAmount="30" /> <!-- Easter Fashion Coupon -->
+  </Dungeon>
+  <!-- newbieBonusOff "true" If this is the case, the 'Bellik's Abundance Blessing' abnormal state is not visible for the corresponding dungeon, and the 'Butterfly' next to the character is not visible. Same as false if no parameters -->
+  <!-- <Dungeon id="9975" name="Kelsaik's Raid (20-Person)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="153" matchingRoleId="8">
+		<NeedItem id=""/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+	</Dungeon> --><!-- <Dungeon id="9911" name="Kelsaik's Raid (10-Person)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="147" matchingRoleId="7">
+		<NeedItem id=""/>
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+	</Dungeon> -->
+	<Dungeon id="9777" name="Channelworks (3-Person)" dungeonLevel="65" dungeonMinLevel="65" dungeonMaxLevel="65" minItemLevel="181" matchingRoleId="11">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/> <!-- Valkyon's Response IV -->
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/> <!-- Amethyst -->
+		<DungeonClearCompensation itemTemplateId="92074" itemAmount="30" /> <!-- Easter Fashion Coupon -->
+	</Dungeon>
+	<!-- <Dungeon id="9766" name="Shattered Fleet" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="153" matchingRoleId="1">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+	</Dungeon> --><!--<Dungeon id="9825" name="Balder's Temple (Solo)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="138"  matchingRoleId="14">
+		<ClearCondition huntingZoneId="825" templateId="6000" amount="1" killCount="1" />
+	</Dungeon>--><!-- <Dungeon id="9043" name="Wonderholme (Hard) (10-Person)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="159" matchingRoleId="13">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+	</Dungeon> --><!-- <Dungeon id="9743" name="Wonderholme (10-Person)" dungeonLevel="65" dungeonMinLevel="65" dungeonMaxLevel="65" minItemLevel="171" matchingRoleId="13">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+	</Dungeon> --><!-- <Dungeon id="9050" name="Rift's Edge (Hard)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="164" matchingRoleId="15">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+	</Dungeon> -->
+	<Dungeon id="9750" name="Rift's Edge" dungeonLevel="65" dungeonMinLevel="65" dungeonMaxLevel="65" minItemLevel="174" matchingRoleId="15">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/> <!-- Valkyon's Response IV -->
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/> <!-- Amethyst -->
+		<DungeonClearCompensation itemTemplateId="92074" itemAmount="30" /> <!-- Easter Fashion Coupon -->
+	</Dungeon>
+	<!-- <Dungeon id="9053" name="Kezzel's Gorge" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="153"  matchingRoleId="12">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1"/>
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1"/>
+	</Dungeon> --><!-- <Dungeon id="9811" name="The Abscess (7-Person)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="159"  matchingRoleId="12">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" />
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" />
+	</Dungeon> --><!-- <Dungeon id="9810" name="Lakan's Prison" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="159"  matchingRoleId="1">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" />
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" />
+	</Dungeon> --><!--Dungeon id="9711" name="The Abscess (Hard)" dungeonLevel="60" dungeonMinLevel="60" dungeonMaxLevel="65" minItemLevel="175"  matchingRoleId="1">
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" />
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" />
+	</Dungeon-->
+	<Dungeon id="9808" name="Sabex Armory" dungeonLevel="61" dungeonMinLevel="61" dungeonMaxLevel="65" minItemLevel="160" matchingRoleId="17" newbieBonusOff="true">
+		<NeedItem id="" />
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" /> <!-- Amethyst -->
+		<DungeonClearCompensation itemTemplateId="92074" itemAmount="30" /> <!-- Easter Fashion Coupon -->
+	</Dungeon>
+	<Dungeon id="9809" name="Macellarius Catacombs" dungeonLevel="64" dungeonMinLevel="64" dungeonMaxLevel="65" minItemLevel="170" matchingRoleId="23" newbieBonusOff="true">
+		<NeedItem id="" />
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" /> <!-- Amethyst -->
+		<DungeonClearCompensation itemTemplateId="92074" itemAmount="30" /> <!-- Easter Fashion Coupon -->
+	</Dungeon>
+	<Dungeon id="9754" name="Bathysmal Rise" dungeonLevel="65" dungeonMinLevel="65" dungeonMaxLevel="65" minItemLevel="181" matchingRoleId="1">
+		<NeedItem id="" />
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" /> <!-- Amethyst -->
+		<DungeonClearCompensation itemTemplateId="92074" itemAmount="30" /> <!-- Easter Fashion Coupon -->
+	</Dungeon>
+	<Dungeon id="9055" name="Ravenous Gorge (3-Person)" dungeonLevel="65" dungeonMinLevel="65" dungeonMaxLevel="65" minItemLevel="181" matchingRoleId="11">
+		<NeedItem id="" />
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" /> <!-- Amethyst -->
+		<DungeonClearCompensation itemTemplateId="92074" itemAmount="30" /> <!-- Easter Fashion Coupon -->
+		</Dungeon>
+	<Dungeon id="9054" name="Bathysmal Rise (Hard)" dungeonLevel="65" dungeonMinLevel="65" dungeonMaxLevel="65" minItemLevel="188" matchingRoleId="1">
+		<NeedItem id="" />
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" /> <!-- Amethyst -->
+		<DungeonClearCompensation itemTemplateId="92074" itemAmount="50" /> <!-- Easter Fashion Coupon -->
+	</Dungeon>
+	<Dungeon id="9716" name="Sky Cruiser Endeavor" dungeonLevel="65" dungeonMinLevel="65" dungeonMaxLevel="65" minItemLevel="188" matchingRoleId="1">
+		<NeedItem id="" />
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" /> <!-- Amethyst -->
+		<DungeonClearCompensation itemTemplateId="92074" itemAmount="50" /> <!-- Easter Fashion Coupon -->
+	</Dungeon>
+	<Dungeon id="9916" name="Sky Cruiser Endeavor (Hard)" dungeonLevel="65" dungeonMinLevel="65" dungeonMaxLevel="65" minItemLevel="190" matchingRoleId="1">
+		<NeedItem id="" />
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" /> <!-- Amethyst -->
+		<DungeonClearCompensation itemTemplateId="92074" itemAmount="50" /> <!-- Easter Fashion Coupon -->
+	</Dungeon>
+	<Dungeon id="9885" name="Dreadspire" dungeonLevel="65" dungeonMinLevel="65" dungeonMaxLevel="65" minItemLevel="181" matchingRoleId="1">
+		<NeedItem id="" />
+		<DungeonClearCompensation itemTemplateId="411" itemAmount="1" /> <!-- Valkyon's Response IV -->
+		<DungeonClearCompensation itemTemplateId="364" itemAmount="1" /> <!-- Amethyst -->
+		<DungeonClearCompensation itemTemplateId="92074" itemAmount="30" /> <!-- Easter Fashion Coupon -->
+	</Dungeon>
+</DungeonMatching>

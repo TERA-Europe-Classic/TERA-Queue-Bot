@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { resolveInstanceLabels, resolveInstanceNames } = require('./data/instanceMap');
+const { resolveNames, getItemLevel, getLevel, getCategory } = require('./data/xmlData');
 
 // Internal API endpoints - these will be served by our own Express server
 const API_BASE_URL = process.env.API_BASE_URL || 'https://localhost:443';
@@ -54,7 +54,7 @@ function formatList(items) {
   // Build a neat table-like list in a code block, truncated to fit field limits.
   const rows = items.flatMap((it) => {
     if (typeof it === 'string') return it;
-    const names = resolveInstanceNames(it?.instances);
+    const names = resolveNames(it?.instances, true);
     const displayNames = names.length > 0 ? names : [String(it.name || it.queue || it.id || it.code || 'Unknown')];
     const queued = pickNumber(it.queued ?? it.players ?? it.count);
     const wait = it.avgWait || it.average || it.wait || null;
@@ -74,6 +74,38 @@ function formatList(items) {
   return '```\n' + body + '\n```';
 }
 
+function sortByIlvlThenLevelThenId(items) {
+  return [...items].sort((a, b) => {
+    const ia = String((a.instances && a.instances[0]) || a.id || a.code || '');
+    const ib = String((b.instances && b.instances[0]) || b.id || b.code || '');
+    const aIlvl = getItemLevel(ia);
+    const bIlvl = getItemLevel(ib);
+    if (aIlvl !== bIlvl) return aIlvl - bIlvl;
+    const aLvl = getLevel(ia);
+    const bLvl = getLevel(ib);
+    if (aLvl !== bLvl) return aLvl - bLvl;
+    return ia.localeCompare(ib);
+  });
+}
+
+function formatDungeonSections(items) {
+  if (!Array.isArray(items) || items.length === 0) return '`no queues`';
+
+  const withCat = items.map((it) => {
+    const id = String((it.instances && it.instances[0]) || it.id || it.code || '');
+    const category = getCategory(id) || 'leveling';
+    return { ...it, _id: id, _category: category };
+  });
+
+  const endgame = sortByIlvlThenLevelThenId(withCat.filter((x) => x._category === 'endgame'));
+  const leveling = sortByIlvlThenLevelThenId(withCat.filter((x) => x._category !== 'endgame'));
+
+  const endTxt = endgame.length ? formatList(endgame) : '`none`';
+  const lvlTxt = leveling.length ? formatList(leveling) : '`none`';
+
+  return { endTxt, lvlTxt, endCount: sumQueued(endgame), lvlCount: sumQueued(leveling) };
+}
+
 function dynamicColor(totalQueued) {
   // green if active, blue if moderate, grey if low
   if (totalQueued >= 50) return 0x2ecc71; // green
@@ -83,7 +115,8 @@ function dynamicColor(totalQueued) {
 
 function buildEmbed(data) {
   const { dungeons, bgs } = data;
-  const totalD = sumQueued(dungeons);
+  const { endTxt, lvlTxt, endCount, lvlCount } = formatDungeonSections(dungeons);
+  const totalD = endCount + lvlCount;
   const totalB = sumQueued(bgs);
   const total = totalD + totalB;
   const now = new Date();
@@ -92,7 +125,8 @@ function buildEmbed(data) {
     color: dynamicColor(total),
     timestamp: now.toISOString(),
     fields: [
-      { name: `🏰 Dungeons — Total: ${totalD}`, value: formatList(dungeons), inline: false },
+      { name: `🏰 Dungeons — Endgame: ${endCount}`, value: endTxt, inline: false },
+      { name: `🏰 Dungeons — Leveling: ${lvlCount}`, value: lvlTxt, inline: false },
       { name: `⚔️ Battlegrounds — Total: ${totalB}`, value: formatList(bgs), inline: false },
     ],
     footer: { text: 'Use !track to auto-update' },
