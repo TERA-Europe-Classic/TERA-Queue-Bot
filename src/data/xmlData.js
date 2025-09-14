@@ -2,10 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const { XMLParser } = require('fast-xml-parser');
 
-const XML_PATH = path.join(__dirname, 'DungeonMatching.xml');
+const DUNGEON_XML_PATH = path.join(__dirname, 'DungeonMatching.xml');
+const BG_XML_PATH = path.join(__dirname, 'BattleFieldData.xml');
+const BG_STR_XML_PATH = path.join(__dirname, 'StrSheet_BattleField-00000.xml');
 
-function loadXml() {
-  const xml = fs.readFileSync(XML_PATH, 'utf8');
+function loadXmlFile(filePath) {
+  const xml = fs.readFileSync(filePath, 'utf8');
   const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '' });
   return parser.parse(xml);
 }
@@ -16,8 +18,9 @@ function normalizeArray(x) {
 }
 
 function buildIndex() {
-  const doc = loadXml();
-  const root = doc.DungeonMatching || {};
+  // Dungeons
+  const dDoc = loadXmlFile(DUNGEON_XML_PATH);
+  const root = dDoc.DungeonMatching || {};
 
   const dungeonsRaw = normalizeArray(root.Dungeon);
   const support = root.SupportMatching || {};
@@ -55,13 +58,45 @@ function buildIndex() {
     };
   }
 
-  return { idToMeta, supportIds: new Set(supportList) };
+  // Battlegrounds
+  const bDoc = loadXmlFile(BG_XML_PATH);
+  const bRoot = bDoc.BattleFieldData || {};
+  const bListRaw = normalizeArray(bRoot.BattleField);
+
+  // BG String sheet
+  let bgStringMap = {};
+  try {
+    const sDoc = loadXmlFile(BG_STR_XML_PATH);
+    const sRoot = sDoc['StrSheet_BattleField'] || {};
+    const strings = normalizeArray(sRoot.String);
+    bgStringMap = strings.reduce((acc, it) => {
+      if (it && it.id != null && it.string != null) acc[String(it.id)] = String(it.string);
+      return acc;
+    }, {});
+  } catch (_) {
+    bgStringMap = {};
+  }
+
+  const idToBGMeta = {};
+  for (const bf of bListRaw) {
+    if (!bf || bf.id == null) continue;
+    const id = String(bf.id);
+    const nameId = bf.name != null ? String(bf.name) : undefined;
+    const name = nameId ? (bgStringMap[nameId] || nameId) : id;
+    const common = bf.CommonData || {};
+    const minLevel = common.minLevel != null ? Number(common.minLevel) : undefined;
+    const maxLevel = common.maxLevel != null ? Number(common.maxLevel) : undefined;
+    idToBGMeta[id] = { id, nameId, name, minLevel, maxLevel, category: 'battleground' };
+  }
+
+  return { idToMeta, idToBGMeta, supportIds: new Set(supportList) };
 }
 
-const { idToMeta, supportIds } = buildIndex();
+const { idToMeta, idToBGMeta, supportIds } = buildIndex();
 
 function getMeta(id) {
-  return idToMeta[String(id)];
+  const key = String(id);
+  return idToMeta[key] || idToBGMeta[key];
 }
 
 function getName(id) {
@@ -69,7 +104,11 @@ function getName(id) {
 }
 
 function getLevel(id) {
-  return getMeta(id)?.level ?? Number.POSITIVE_INFINITY;
+  const meta = getMeta(id);
+  if (!meta) return Number.POSITIVE_INFINITY;
+  if (meta.level != null) return meta.level; // dungeons
+  if (meta.minLevel != null) return meta.minLevel; // battlegrounds fallback
+  return Number.POSITIVE_INFINITY;
 }
 
 function getItemLevel(id) {
@@ -85,8 +124,13 @@ function getCategory(id) {
 function getDisplayName(id, includeLevel = false) {
   const base = getName(id);
   if (!includeLevel) return base;
-  const lvl = getLevel(id);
-  return Number.isFinite(lvl) ? `[${lvl}] ${base}` : base;
+  const key = String(id);
+  if (idToMeta[key]) { // dungeon -> show [level]
+    const lvl = getLevel(id);
+    return Number.isFinite(lvl) ? `[${lvl}] ${base}` : base;
+  }
+  // battlegrounds: no level prefix
+  return base;
 }
 
 function resolveNames(ids, includeLevel = false) {

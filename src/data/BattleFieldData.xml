@@ -1,0 +1,2673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BattleFieldData>
+  <BattleFieldGlobalData matchingInSameWorldServer="true">
+    <BFMatchingUISortPriority battleFieldId="70,46,39,40,111,5,10,26,37,38,11,27" />
+    <!-- 전장 매칭UI에 출력될 전장ID 순서 지정 (지정 안되어있으면 전장ID순으로 출력됨)-->
+    <ActionKeyEffect resourceType="medium" resourceSize="100" />
+    <StrongholdEffect blue="65100" red="65101" blueOverlay="50565" redOverlay="50566" blueNRedAtk="65105" redNBlueAtk="65106" blueAtk="65096" redAtk="65097" tryOccupation="50554" blueOccupation="50559" redOccupation="50558" />
+    <VehicleExEffect blueTeamFixEffectId="50567" redTeamFixEffectId="50568" />
+    <RewardParcel titleStringId="8" msgStringId="9" writerStringId="7" />
+    <StrongholdOccupationCancelAbnormality kind="57,9638,9640,35203,35208,22401,22402,22405,22406,22407,22411,22412,22414,22416,22420,22430,22433,22440,22446,41603" />
+    <!-- PC 스킬에 의한 기절, 수면, 공포 이상상태 kind-->
+    <MatchingRule minTeam="1" revisionCount="50" revisionWinRatio="0.25" expansionTurn="3" expansionWinRatio="1" matchingRange="5" />
+    <RankingRule seasonPeriod="28" calcDay="Wednesday" calcHour="12" minCountOfPlayForCalc="1" basicGradePoint="10" minimumGradePoint="0" pvpPlayValue="0" pvpWinValue="0" pvpLossValue="0" pvpKillValue="0" pvpDeathValue="0" pvpGiveHelpValue="0" strongholdPlayValue="0" strongholdWinValue="30" strongholdLossValue="-20" strongholdKillValue="0" strongholdDeathValue="0" strongholdGiveHelpValue="0" strongholdAttackValue="0" strongholdDefenceValue="0" roundPvpPlayValue="0" roundPvpWinValue="0" roundPvpLossValue="0" roundPvpKillValue="0" roundPvpDeathValue="0" roundPvpGiveHelpValue="0"></RankingRule>
+    <RankingGrade>
+      <RankingGradeData GradeLimit="1300" rankGrade="0" />
+      <RankingGradeData GradeLimit="1700" rankGrade="1" />
+      <RankingGradeData GradeLimit="4000" rankGrade="2" />
+    </RankingGrade>
+    <BattleFieldRankingWindow allServerName="100" myServerName="101" />
+    <LookBaseRange sightRange="500" />
+    <TopRankingList>
+      <!--		<TopRanking BattleFieldType="StrongholdOccupation" topRankingerLimit="0" topRankingerSkillId="" />
+			<TopRanking BattleFieldType="Round_PvP" topRankingerLimit="0" topRankingerSkillId="" />
+			<TopRanking BattleFieldType="Cannon" topRankingerLimit="0" topRankingerSkillId="" />   -->
+      <!--  길드경쟁 도입 이후로 전장보상으로 살의스킬 지급 중단  -->
+    </TopRankingList>
+    <Observer observerKey="Jump" />
+    <CommonCancelAbnormality id="902,911,912,913,99005500,99005510,99005520,99005530,99005540,99005550,99005560,99005600,99005610,99005620,99005630,99005640,99005650,99005660,99005900,99005910,99005920,99005930,99005940,99005950,99005960,902,910,911,912" />
+    <SpecialConditionMessage>
+      <MultiKillMessage checkDelaySec="10" />
+    </SpecialConditionMessage>
+  </BattleFieldGlobalData>
+  <BattleField type="Snow_Event" id="46" name="90" enterLimitCount="10" guideText="92" listHide="true" isNotOff="true">
+    <!-- 겨울 이벤트 전장 !-->
+    <!-- type : BFType, id : BFId, listHide : 전장매칭창 포함 여부, name, guideText( 매칭창에서 매칭설명 ) : StrSheet_BattleField.xml -->
+    <BGM fadeTime="1.0" enter="" start="War_Battle.War_Music_Cue.Carol_Time_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <!-- BGM 입장, 시작, 종료 -->
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_04" desc="91" checkBoxType="-1" />
+    <!-- checkBoxType 값 -1: 체크박스 사용 안함 / 0: 지휘관 지원 / 1: 평점제 적용. default는 값 없으면 0 -->
+    <!-- 전장 매칭창에서 보여지는 이미지와 설명 -->
+    <CommonData realTimeRevive="false" maxBattleMin="0" minTeamMember="1" maxTeamMember="10" minLevel="11" maxLevel="65" preCombatSec="40" forceExitSec="60" banSec="120" countOfMinFinalBlow="0" continentId="102" blueTeamSpawnPos="2340,-112451,2695" blueTeamSpawnDir="92" redTeamSpawnPos="2340,-109501,2695" redTeamSpawnDir="-88" blueTeamDoorId="1021" redTeamDoorId="1022" desertionAbnormalityId="999998" initCoolTimeSec="0" blueTeamStringId="25" redTeamStringId="26" despawnTerritoryIdsAfterCombatStart="10200006,10200007" useObserverMode="false" observerViewDistance="14000" isMultiKillBattleField="true" minChatbanEnableMemberCount="6" />
+    <WarPoint helperRange="300" killPoint="500" assistPoint="250" />
+    <Balance increaseAvrGradePointPerSec="10" increaseAvrGradePoint="10" increaseAvrGradePointPerSecLimit="100" permitRangePoint="50" />
+    <RuleData ruleId="6" maxMatchingMember="2" />
+    <!-- MatchingRoleTemplate.xml -->
+    <OverrideSkillSet skillSetId="1023005" />
+    <!-- 전장 입장 시 해당 스킬 셋으로 변경 -->
+    <Reward>
+      <RewardData maxContributeLimit="" winPoint="60" losePoint="30" bonusPoint="10" winCaptainPoint="" personalPointRate="0.01" npcGuildId="901" winExp="150" loseExp="50" />
+      <RewardData maxContributeLimit="" winPoint="30" losePoint="10" bonusPoint="10" winCaptainPoint="" personalPointRate="0.01" npcGuildId="902" winExp="150" loseExp="50" />
+      <TeamRewardData>
+        <WinOrLoseTeam WinTeamRewardItem="561" WinTeamRewardItemCount="40" LoseTeamRewardItem="561" LoseTeamRewardItemCount="20" />
+        <Message senderId="@Event:101" title="@Event:10101" text="@Event:10102" />
+      </TeamRewardData>
+    </Reward>
+    <RestrictPassivityType typeIdList="242" />
+    <AvailableItems>
+      <Item id="562" remove="true" />
+      <Item id="563" remove="true" />
+      <Item id="564" remove="true" />
+      <Item id="565" remove="true" />
+      <Item id="19323" remove="true" />
+      <Item id="19324" remove="true" />
+      <Item id="212981" />
+    </AvailableItems>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="1000" reviveSec="0" />
+    </Rivive>
+    <SpecificData>
+      <Round maxRound="3" victoryRound="2" maxBatleFieldRoundMin="300" roundMinCountDown="10" resultPrintTime="10" />
+      <Score victoryScore="1000" tensionScore="800" strongholdCaptureScore="5" addScore="10" killScore="40" />
+      <BattleFieldAbnormality>
+        <AbnormalityId id="4877" invoke="true" />
+      </BattleFieldAbnormality>
+    </SpecificData>
+    <!-- 겨울 이벤트 보상 추가 -->
+    <Revision>
+      <LevelRevision isLevelRevision="true" maxRevisionLevel="64" revisionLevel="65" />
+    </Revision>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="Kumas_World" id="5" coolTimeMin="10" name="50" redTeamName="54" blueTeamName="55" isNotOff="False" listHide="False">
+    <!-- 쿠마스 월드 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Time_Kumas_Cue" start="War_Battle.War_Music_Cue.War_Time_Kumas_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_KumasWorld" desc="51" checkBoxType="-1" />
+    <CommonData realTimeRevive="false" maxBattleMin="15" minTeamMember="1" maxTeamMember="13" minLevel="65" maxLevel="65" preCombatSec="20" forceExitSec="120" banSec="120" countOfMinFinalBlow="0" continentId="117" blueTeamSpawnPos="14298,130754,12495" blueTeamSpawnDir="0" redTeamSpawnPos="5538,131176,12983" redTeamSpawnDir="180" blueTeamDoorId="1171" redTeamDoorId="1172" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" useObserverMode="false" observerViewDistance="14000" minChatbanEnableMemberCount="6" />
+    <Balance increaseAvrGradePointPerSec="10" increaseAvrGradePoint="10" increaseAvrGradePointPerSecLimit="100" permitRangePoint="50" />
+    <RuleData ruleId="14" minMatchingMember="1" maxMatchingMember="1" isSupplement="true" />
+    <EloData eloId="" basicGradePoint="" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" />
+    <WarPoint helperRange="300" finalBlowWP="5" finalBlowHelperWP="2" winWP="100" loseWP="20" addWP="50" perScore="500" attackStrongholdWP="50" defenceStrongholdWP="50" captureStongholdWP="10" />
+    <CompetitionPoint winReward="1" />
+    <Reward expRewardGuildId="901" expRewardMultiple="1.5">
+      <RewardData maxContributeLimit="" winPoint="900" losePoint="500" bonusPoint="100" winCaptainPoint="200" personalPointRate="0.01" npcGuildId="901" winExp="150" loseExp="50" />
+      <RewardData maxContributeLimit="" winPoint="700" losePoint="300" bonusPoint="100" winCaptainPoint="200" personalPointRate="0.01" npcGuildId="902" winExp="150" loseExp="50" />
+      <TeamRewardData>
+        <RedTeam standardRewardItem="19321" standardRewardItemCount="1" resultRewardItem="19321" />
+        <BlueTeam standardRewardItem="" standardRewardItemCount="" resultRewardItem="19321" />
+        <Message senderId="@Event:401" title="@Event:40101" text="@Event:40102" />
+        <WinOrLoseTeam WinTeamRewardItem="92074" winTeamRewardItemCount="25" LoseTeamRewardItem="92074" LoseTeamRewardItemCount="15" />
+      </TeamRewardData>
+    </Reward>
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="98" />
+      <Item id="400" />
+      <Item id="70116" />
+      <Item id="70117" />
+      <Item id="6" />
+      <Item id="7" />
+      <Item id="8" />
+      <Item id="31" />
+      <Item id="32" />
+      <Item id="33" />
+      <Item id="178" />
+      <Item id="179" />
+      <Item id="180" />
+      <Item id="181" />
+      <Item id="182" />
+      <Item id="183" />
+      <Item id="184" />
+      <Item id="185" />
+      <Item id="186" />
+      <Item id="187" />
+      <Item id="188" />
+      <Item id="189" />
+      <Item id="190" />
+      <Item id="191" />
+      <Item id="192" />
+      <Item id="193" />
+      <Item id="7100" />
+      <Item id="7101" />
+      <Item id="7102" />
+      <Item id="7103" />
+      <Item id="7104" />
+      <Item id="7105" />
+      <Item id="7106" />
+      <Item id="7107" />
+      <Item id="7108" />
+      <Item id="7109" />
+      <Item id="7110" />
+      <Item id="7111" />
+      <Item id="70019" />
+      <Item id="70020" />
+      <Item id="70021" />
+      <Item id="70022" />
+      <Item id="70023" />
+      <Item id="70024" />
+      <Item id="70025" />
+      <Item id="70026" />
+      <Item id="70027" />
+      <Item id="70028" />
+      <Item id="70029" />
+      <Item id="70030" />
+      <Item id="70031" />
+      <Item id="70032" />
+      <Item id="70033" />
+      <Item id="70034" />
+      <Item id="70053" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="45411" remove="true" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="5" toCaptureSec="30" attackSocialMotionId="37" shareAlarmSec="1">
+      <BFTreasureOfKumas name="53" />
+      <!-- 보물 마커 스트링 출력해주는 내용 -->
+      <Round maxRound="1" victoryRound="1" maxBatleFieldRoundMin="900" roundMinCountDown="10" resultPrintTime="10" />
+      <Score victoryScore="1000" tensionScore="800" strongholdCaptureScore="5" addScore="10" killScore="40" redTeamStartScore="3" blueTeamStartScore="0" />
+      <BattleFieldAbnormality>
+        <AbnormalityId id="2052" />
+        <AbnormalityId id="2063" />
+        <AbnormalityId id="2069" />
+        <AbnormalityId id="2092" invoke="true" />
+      </BattleFieldAbnormality>
+      <SpawnTerritoryGroupList>
+        <!-- 보물 그룹 -->
+        <SpawnTerritoryGroup territoryGroupId="11700011" probability="0.2" treasureCount="3" />
+        <SpawnTerritoryGroup territoryGroupId="11700012" probability="0.2" treasureCount="3" />
+        <SpawnTerritoryGroup territoryGroupId="11700013" probability="0.2" treasureCount="3" />
+        <SpawnTerritoryGroup territoryGroupId="11700008" probability="0.2" treasureCount="3" />
+        <SpawnTerritoryGroup territoryGroupId="11700009" probability="0.2" treasureCount="3" />
+      </SpawnTerritoryGroupList>
+      <ItemTransport>
+        <ItemList itemId="45411" boxNpcTemplateId="1000" />
+        <TerritoryList territoryId="11700051,11700052,11700053" />
+        <ItemHaveAbnormality pcHaveAbnormalityId="2052,2063" kumasHaveAbnormalityId="2069" />
+        <TreasureBack pcTreasureBackPos="4705,130470,12902" />
+      </ItemTransport>
+      <NpcTransformation continentId="117" redTeamMasterNpcTemplateId="5000" redTeamMemberNpcTemplateId="6000" />
+      <GuardTowerList>
+        <GuardTower continentId="117" id="3000" pos="13850,126438,12251" posDir="0" alarmWhenHpBelow="50,30" alarmCoolTime="5" />
+        <!-- 수호탑 npc오브젝트 id와 좌표 -->
+        <GuardTower continentId="117" id="3002" pos="13699,134653,12291" posDir="0" alarmWhenHpBelow="50,30" alarmCoolTime="5" />
+        <!-- 수호탑 npc오브젝트 id와 좌표 -->
+      </GuardTowerList>
+    </SpecificData>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="6" reviveSec="15" />
+      <Step minDeathCount="7" maxDeathCount="500" reviveSec="15" />
+    </Rivive>
+    <Revision>
+      <LevelRevision isLevelRevision="true" maxRevisionLevel="64" revisionLevel="65" />
+      <SkillRevision isSkillRevision="true" />
+    </Revision>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="Cannon" id="10" coolTimeMin="15" name="40">
+    <!-- 60레벨 포화의 전장 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Start_Cue" start="War_Battle.War_Music_Cue.War_Time_Fire_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_05" desc="41" checkBoxType="0" />
+    <CommonData realTimeRevive="false" maxBattleMin="15" minTeamMember="1" maxTeamMember="20" minLevel="30" maxLevel="65" preCombatSec="120" forceExitSec="120" banSec="180" countOfMinFinalBlow="0" continentId="116" blueTeamSpawnPos="2317.3845,109757.8281,1558.3425" blueTeamSpawnDir="0" redTeamSpawnPos="13950,121464,2265" redTeamSpawnDir="180" blueTeamDoorId="1161" redTeamDoorId="1162" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" useObserverMode="false" isMultiKillBattleField="true" minChatbanEnableMemberCount="6" />
+    <Balance increaseAvrGradePointPerSec="10" increaseAvrGradePoint="10" increaseAvrGradePointPerSecLimit="100" permitRangePoint="10" />
+    <RuleData ruleId="9" minMatchingMember="1" maxMatchingMember="5" />
+    <EloData eloId="2" basicGradePoint="1000" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" />
+    <WarPoint helperRange="300" killPoint="2000" assistPoint="1000" destroyedPoint="5000" />
+    <CompetitionPoint winReward="1" />
+    <Reward expRewardGuildId="901" expRewardMultiple="1.5">
+      <RewardData maxContributeLimit="500" winPoint="700" losePoint="300" bonusPoint="100" winCaptainPoint="200" personalPointRate="0.01" npcGuildId="901" winExp="150" loseExp="50" />
+      <RewardData maxContributeLimit="500" winPoint="500" losePoint="150" bonusPoint="100" winCaptainPoint="200" personalPointRate="0.01" npcGuildId="902" winExp="150" loseExp="50" />
+      <TeamRewardData>
+        <WinOrLoseTeam WinTeamRewardItem="92074" winTeamRewardItemCount="40" LoseTeamRewardItem="92074" LoseTeamRewardItemCount="20" />
+      </TeamRewardData>
+    </Reward>
+    <RewardNpc rewardNpcSpawnHuntingZone="63" rewardNpcId="1256" rewardNpcSpawnPos="10557,118082,2074" />
+    <!-- 전장 내에 보상npc를 소환하려 할 때 사용 !-->
+    <StartDoorList>
+      <StartDoor doorId="1161" />
+      <StartDoor doorId="1162" />
+      <StartDoor doorId="1163" />
+      <StartDoor doorId="1164" />
+      <StartDoor doorId="1165" />
+      <StartDoor doorId="1166" />
+    </StartDoorList>
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="98" />
+      <Item id="400" />
+      <Item id="70116" />
+      <Item id="70117" />
+      <Item id="6" />
+      <Item id="7" />
+      <Item id="8" />
+      <Item id="31" />
+      <Item id="32" />
+      <Item id="33" />
+      <Item id="178" />
+      <Item id="179" />
+      <Item id="180" />
+      <Item id="181" />
+      <Item id="182" />
+      <Item id="183" />
+      <Item id="184" />
+      <Item id="185" />
+      <Item id="186" />
+      <Item id="187" />
+      <Item id="188" />
+      <Item id="189" />
+      <Item id="190" />
+      <Item id="191" />
+      <Item id="192" />
+      <Item id="193" />
+      <Item id="7100" />
+      <Item id="7101" />
+      <Item id="7102" />
+      <Item id="7103" />
+      <Item id="7104" />
+      <Item id="7105" />
+      <Item id="7106" />
+      <Item id="7107" />
+      <Item id="7108" />
+      <Item id="7109" />
+      <Item id="7110" />
+      <Item id="7111" />
+      <Item id="70019" />
+      <Item id="70020" />
+      <Item id="70021" />
+      <Item id="70022" />
+      <Item id="70023" />
+      <Item id="70024" />
+      <Item id="70025" />
+      <Item id="70026" />
+      <Item id="70027" />
+      <Item id="70028" />
+      <Item id="70029" />
+      <Item id="70030" />
+      <Item id="70031" />
+      <Item id="70032" />
+      <Item id="70033" />
+      <Item id="70034" />
+      <Item id="70053" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData autoReviveSec="10" toAttackSec="10" toCaptureSec="30" attackSocialMotionId="37" baseStepGauge="100" oneUserCaptureGaugePerSec="10" captureTryLimitUser="3" autoBackGauge="2" baseAttackShowSec="2" baseAttackShowInterval="2" shareAlarmSec="1">
+      <StrongholdList>
+        <Stronghold id="1" reviveSelectable="true" name="42" pos="10287.9541,117819.1094,2687.3677" posDir="0" tombPos="10287.9541,117819.1094,2687.3677" tombDir="0" spawnPos="10287.9541,117819.1094,2687.3677" spawnDir="0" />
+        <!-- 부활 거점 좌표 및 이름 -->
+        <Stronghold id="2" reviveSelectable="true" name="45" pos="11159,113069,1909" posDir="0" tombPos="11159,113069,1909" tombDir="0" spawnPos="11159,113069,1909" spawnDir="0" />
+        <!-- 부활 거점 좌표 및 이름 -->
+        <Stronghold id="3" reviveSelectable="true" name="46" pos="5302,118633,1909" posDir="0" tombPos="5302,118633,1909" tombDir="0" spawnPos="5302,118633,1909" spawnDir="0" />
+        <!-- 부활 거점 좌표 및 이름 -->
+      </StrongholdList>
+      <GuardTower continentId="116" objectNpcId="2000" />
+      <!-- 수호 탑의 정보 -->
+      <CastleDoor continentId="116" smallObjectNpcId="3000" bigObjectNpcId="3001" />
+      <!-- 성 문 오브젝트의 정보 -->
+      <AirShipRespawnList>
+        <AirShipRespawn continentId="116" objectNpcId="1001" pos="2847.0815,108127.8594,1428.2605" whichSide="0" />
+        <!-- 비공정 오브젝트의 리스폰 될 마커 위치 정보 -->
+        <AirShipRespawn continentId="116" objectNpcId="1002" pos="879.3168,110544.0938,1428.8274" whichSide="0" />
+        <!-- 비공정 오브젝트의 리스폰 될 마커 위치 정보 -->
+        <AirShipRespawn continentId="116" objectNpcId="1003" pos="10301.8926,121076.8047,3233" whichSide="1" />
+        <!-- 비공정 오브젝트의 리스폰 될 마커 위치 정보 -->
+      </AirShipRespawnList>
+      <GateList>
+        <Gate id="1" continentId="116" templateId="3001" pos="11779.3545,119314.2188,2121.1748" posDir="-134" alarmWhenHpBelow="50,30" alarmCoolTime="10" />
+        <!-- 성문 npc오브젝트 id와 좌표 -->
+        <Gate id="2" continentId="116" templateId="3000" pos="11862.9063,114746.3047,2039.4011" posDir="-178" alarmWhenHpBelow="50,30" alarmCoolTime="10" />
+        <!-- 성문 npc오브젝트 id와 좌표 -->
+        <Gate id="3" continentId="116" templateId="3000" pos="7209.9043,119395.3047,2039.1650" posDir="-87" alarmWhenHpBelow="50,30" alarmCoolTime="10" />
+        <!-- 성문 npc오브젝트 id와 좌표 -->
+      </GateList>
+      <GuardTowerList>
+        <GuardTower continentId="116" id="2000" pos="13205.5947,120774.5703,2030.0493" posDir="-134" alarmWhenHpBelow="50,30" alarmCoolTime="5" />
+        <!-- 수호탑 npc오브젝트 id와 좌표 -->
+      </GuardTowerList>
+      <Round roundMinCountDown="60" resultPrintTime="10" maxBatleFieldRoundMin="420">
+        <destroyBonusTime objectID="3000" giveTime="120" giveCount="1" />
+        <destroyBonusTime objectID="3001" giveTime="180" giveCount="1" />
+        <captureBonusTime objectID="1" giveTime="180" giveCount="1" />
+      </Round>
+      <Score victoryScore="1000" tensionScore="800" strongholdCaptureScore="5" addScore="10" killScore="40" />
+      <BattleFieldAbnormality>
+        <AbnormalityId id="10151200" />
+        <AbnormalityId id="10151201" />
+        <AbnormalityId id="10151202" />
+        <AbnormalityId id="2092" invoke="true" />
+      </BattleFieldAbnormality>
+      <RoundEraseAbnormality>
+        <AbnormalityId id="10151200" />
+        <AbnormalityId id="10151201" />
+        <AbnormalityId id="10151202" />
+        <AbnormalityId id="2092" />
+      </RoundEraseAbnormality>
+      <SystemMessage>
+        <RoundTimeRemainList>
+          <RoundTimeRemain roundTime="5" />
+          <RoundTimeRemain roundTime="4" />
+          <RoundTimeRemain roundTime="3" />
+          <RoundTimeRemain roundTime="2" />
+          <RoundTimeRemain roundTime="1" />
+        </RoundTimeRemainList>
+      </SystemMessage>
+    </SpecificData>
+    <CommanderSkillList team="blue">
+      <Skill id="63000101" />
+    </CommanderSkillList>
+    <CommanderSkillList team="red">
+      <Skill id="63000101" />
+    </CommanderSkillList>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="10" reviveSec="10" />
+      <Step minDeathCount="11" maxDeathCount="20" reviveSec="10" />
+      <Step minDeathCount="21" maxDeathCount="30" reviveSec="10" />
+      <Step minDeathCount="31" maxDeathCount="50" reviveSec="10" />
+      <Step minDeathCount="51" maxDeathCount="500" reviveSec="10" />
+    </Rivive>
+    <Revision>
+      <LevelRevision isLevelRevision="true" maxRevisionLevel="64" revisionLevel="65" />
+      <SkillRevision isSkillRevision="true" />
+    </Revision>
+    <!-- 이벤트 보상 추가 -->
+    <EventReward event="true">
+      <Condition win="3">
+        <Reward templateId="5173" min="1" max="1" />
+        <Message senderId="@Event:101" title="@Event:10101" text="@Event:10102" />
+      </Condition>
+      <Condition lose="3">
+        <Reward templateId="5174" min="1" max="1" />
+        <Message senderId="@Event:102" title="@Event:10201" text="@Event:10202" />
+      </Condition>
+      <PreventAbuse prevent="true">
+        <AbuseScore kill="0" death="0" asist="0" hold="0" prevent="true" />
+        <AbuseDisconnect prevent="true" />
+      </PreventAbuse>
+    </EventReward>
+    <!--잭팟시스템-->
+    <Jackpot event="true" notifyTime="7" bindRewardGroup="true">
+      <RewardGroup id="1" type="item" prob="0.1" senderId="@Event:201" title="@Event:20101" text="@Event:20102" abnormality="999001002">
+        <Reward templateId="368" amount="1" prob="0.7" />
+        <Reward templateId="369" amount="1" prob="0.1" />
+        <Reward templateId="28501" amount="1" prob="0.2" />
+      </RewardGroup>
+      <RewardGroup id="2" type="winPoint" prob="0.2" abnormality="999001001">
+        <Reward winExpRatio="2" prob="0.5" />
+        <Reward winExpRatio="3" prob="0.35" />
+        <Reward winExpRatio="5" prob="0.1" />
+        <Reward winExpRatio="10" prob="0.05" />
+      </RewardGroup>
+    </Jackpot>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="Cannon" id="11" coolTimeMin="15" name="43">
+    <!-- 정예 포화의 전장, 20인 매칭 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Start_Cue" start="War_Battle.War_Music_Cue.War_Time_Fire_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_05" desc="44" checkBoxType="0" />
+    <CommonData realTimeRevive="false" maxBattleMin="15" minTeamMember="1" maxTeamMember="20" minLevel="30" maxLevel="65" preCombatSec="120" forceExitSec="120" banSec="180" countOfMinFinalBlow="0" continentId="116" blueTeamSpawnPos="2317.3845,109757.8281,1558.3425" blueTeamSpawnDir="0" redTeamSpawnPos="13950,121464,2265" redTeamSpawnDir="180" blueTeamDoorId="1161" redTeamDoorId="1162" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" useObserverMode="false" isMultiKillBattleField="true" minChatbanEnableMemberCount="6" />
+    <Balance increaseAvrGradePointPerSec="10" increaseAvrGradePoint="100" increaseAvrGradePointPerSecLimit="500" permitRangePoint="500" />
+    <RuleData ruleId="16" minMatchingMember="20" maxMatchingMember="20" />
+    <EloData eloId="2" basicGradePoint="1000" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" />
+    <WarPoint helperRange="300" killPoint="2000" assistPoint="1000" destroyedPoint="5000" />
+    <CompetitionPoint winReward="1" />
+    <Reward>
+      <RewardData maxContributeLimit="500" winPoint="700" losePoint="300" bonusPoint="100" winCaptainPoint="200" personalPointRate="0.01" npcGuildId="901" winExp="150" loseExp="50" />
+      <RewardData maxContributeLimit="150" winPoint="150" losePoint="50" bonusPoint="100" winCaptainPoint="200" personalPointRate="0.01" npcGuildId="902" winExp="150" loseExp="50" />
+    </Reward>
+    <RewardNpc rewardNpcSpawnHuntingZone="63" rewardNpcId="1256" rewardNpcSpawnPos="10557,118082,2074" />
+    <!-- 전장 내에 보상npc를 소환하려 할 때 사용 !-->
+    <StartDoorList>
+      <StartDoor doorId="1161" />
+      <StartDoor doorId="1162" />
+      <StartDoor doorId="1163" />
+      <StartDoor doorId="1164" />
+      <StartDoor doorId="1165" />
+      <StartDoor doorId="1166" />
+    </StartDoorList>
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="98" />
+      <Item id="400" />
+      <Item id="70116" />
+      <Item id="70117" />
+      <Item id="6" />
+      <Item id="7" />
+      <Item id="8" />
+      <Item id="31" />
+      <Item id="32" />
+      <Item id="33" />
+      <Item id="178" />
+      <Item id="179" />
+      <Item id="180" />
+      <Item id="181" />
+      <Item id="182" />
+      <Item id="183" />
+      <Item id="184" />
+      <Item id="185" />
+      <Item id="186" />
+      <Item id="187" />
+      <Item id="188" />
+      <Item id="189" />
+      <Item id="190" />
+      <Item id="191" />
+      <Item id="192" />
+      <Item id="193" />
+      <Item id="7100" />
+      <Item id="7101" />
+      <Item id="7102" />
+      <Item id="7103" />
+      <Item id="7104" />
+      <Item id="7105" />
+      <Item id="7106" />
+      <Item id="7107" />
+      <Item id="7108" />
+      <Item id="7109" />
+      <Item id="7110" />
+      <Item id="7111" />
+      <Item id="70019" />
+      <Item id="70020" />
+      <Item id="70021" />
+      <Item id="70022" />
+      <Item id="70023" />
+      <Item id="70024" />
+      <Item id="70025" />
+      <Item id="70026" />
+      <Item id="70027" />
+      <Item id="70028" />
+      <Item id="70029" />
+      <Item id="70030" />
+      <Item id="70031" />
+      <Item id="70032" />
+      <Item id="70033" />
+      <Item id="70034" />
+      <Item id="70053" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData autoReviveSec="10" toAttackSec="10" toCaptureSec="30" attackSocialMotionId="37" baseStepGauge="100" oneUserCaptureGaugePerSec="10" captureTryLimitUser="3" autoBackGauge="2" baseAttackShowSec="2" baseAttackShowInterval="2" shareAlarmSec="1">
+      <StrongholdList>
+        <Stronghold id="1" reviveSelectable="true" name="42" pos="10287.9541,117819.1094,2687.3677" posDir="0" tombPos="10287.9541,117819.1094,2687.3677" tombDir="0" spawnPos="10287.9541,117819.1094,2687.3677" spawnDir="0" />
+        <!-- 부활 거점 좌표 및 이름 -->
+        <Stronghold id="2" reviveSelectable="true" name="45" pos="11159,113069,1909" posDir="0" tombPos="11159,113069,1909" tombDir="0" spawnPos="11159,113069,1909" spawnDir="0" />
+        <!-- 부활 거점 좌표 및 이름 -->
+        <Stronghold id="3" reviveSelectable="true" name="46" pos="5302,118633,1909" posDir="0" tombPos="5302,118633,1909" tombDir="0" spawnPos="5302,118633,1909" spawnDir="0" />
+        <!-- 부활 거점 좌표 및 이름 -->
+      </StrongholdList>
+      <GuardTower continentId="116" objectNpcId="2000" />
+      <!-- 수호 탑의 정보 -->
+      <CastleDoor continentId="116" smallObjectNpcId="3000" bigObjectNpcId="3001" />
+      <!-- 성 문 오브젝트의 정보 -->
+      <AirShipRespawnList>
+        <AirShipRespawn continentId="116" objectNpcId="1001" pos="2847.0815,108127.8594,1428.2605" whichSide="0" />
+        <!-- 비공정 오브젝트의 리스폰 될 마커 위치 정보 -->
+        <AirShipRespawn continentId="116" objectNpcId="1002" pos="879.3168,110544.0938,1428.8274" whichSide="0" />
+        <!-- 비공정 오브젝트의 리스폰 될 마커 위치 정보 -->
+        <AirShipRespawn continentId="116" objectNpcId="1003" pos="10301.8926,121076.8047,3233" whichSide="1" />
+        <!-- 비공정 오브젝트의 리스폰 될 마커 위치 정보 -->
+      </AirShipRespawnList>
+      <GateList>
+        <Gate id="1" continentId="116" templateId="3001" pos="11779.3545,119314.2188,2121.1748" posDir="-134" alarmWhenHpBelow="50,30" alarmCoolTime="10" />
+        <!-- 성문 npc오브젝트 id와 좌표 -->
+        <Gate id="2" continentId="116" templateId="3000" pos="11862.9063,114746.3047,2039.4011" posDir="-178" alarmWhenHpBelow="50,30" alarmCoolTime="10" />
+        <!-- 성문 npc오브젝트 id와 좌표 -->
+        <Gate id="3" continentId="116" templateId="3000" pos="7209.9043,119395.3047,2039.1650" posDir="-87" alarmWhenHpBelow="50,30" alarmCoolTime="10" />
+        <!-- 성문 npc오브젝트 id와 좌표 -->
+      </GateList>
+      <GuardTowerList>
+        <GuardTower continentId="116" id="2000" pos="13205.5947,120774.5703,2030.0493" posDir="-134" alarmWhenHpBelow="50,30" alarmCoolTime="5" />
+        <!-- 수호탑 npc오브젝트 id와 좌표 -->
+      </GuardTowerList>
+      <Round roundMinCountDown="60" resultPrintTime="10" maxBatleFieldRoundMin="420">
+        <destroyBonusTime objectID="3000" giveTime="120" giveCount="1" />
+        <destroyBonusTime objectID="3001" giveTime="180" giveCount="1" />
+        <captureBonusTime objectID="1" giveTime="180" giveCount="1" />
+      </Round>
+      <Score victoryScore="1000" tensionScore="800" strongholdCaptureScore="5" addScore="10" killScore="40" />
+      <BattleFieldAbnormality>
+        <AbnormalityId id="10151200" />
+        <AbnormalityId id="10151201" />
+        <AbnormalityId id="10151202" />
+        <AbnormalityId id="2092" invoke="true" />
+      </BattleFieldAbnormality>
+      <RoundEraseAbnormality>
+        <AbnormalityId id="10151200" />
+        <AbnormalityId id="10151201" />
+        <AbnormalityId id="10151202" />
+        <AbnormalityId id="2092" />
+      </RoundEraseAbnormality>
+      <SystemMessage>
+        <RoundTimeRemainList>
+          <RoundTimeRemain roundTime="5" />
+          <RoundTimeRemain roundTime="4" />
+          <RoundTimeRemain roundTime="3" />
+          <RoundTimeRemain roundTime="2" />
+          <RoundTimeRemain roundTime="1" />
+        </RoundTimeRemainList>
+      </SystemMessage>
+    </SpecificData>
+    <CommanderSkillList team="blue">
+      <Skill id="63000101" />
+    </CommanderSkillList>
+    <CommanderSkillList team="red">
+      <Skill id="63000101" />
+    </CommanderSkillList>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="10" reviveSec="10" />
+      <Step minDeathCount="11" maxDeathCount="20" reviveSec="10" />
+      <Step minDeathCount="21" maxDeathCount="30" reviveSec="10" />
+      <Step minDeathCount="31" maxDeathCount="50" reviveSec="10" />
+      <Step minDeathCount="51" maxDeathCount="500" reviveSec="10" />
+    </Rivive>
+    <Revision>
+      <LevelRevision isLevelRevision="true" maxRevisionLevel="64" revisionLevel="65" />
+      <SkillRevision isSkillRevision="true" />
+    </Revision>
+    <!-- 이벤트 보상 추가 -->
+    <EventReward event="true">
+      <Condition win="3">
+        <Reward templateId="5173" min="1" max="1" />
+        <Message senderId="@Event:101" title="@Event:10101" text="@Event:10102" />
+      </Condition>
+      <Condition lose="3">
+        <Reward templateId="5174" min="1" max="1" />
+        <Message senderId="@Event:102" title="@Event:10201" text="@Event:10202" />
+      </Condition>
+      <PreventAbuse prevent="true">
+        <AbuseScore kill="0" death="0" asist="0" hold="0" prevent="true" />
+        <AbuseDisconnect prevent="true" />
+      </PreventAbuse>
+    </EventReward>
+    <!--잭팟시스템-->
+    <Jackpot event="true" notifyTime="7" bindRewardGroup="true">
+      <RewardGroup id="1" type="item" prob="0.05" senderId="@Event:201" title="@Event:20101" text="@Event:20102" abnormality="999001002">
+        <Reward templateId="365" amount="1" prob="0.1" />
+        <Reward templateId="366" amount="1" prob="0.32" />
+        <Reward templateId="367" amount="1" prob="0.45" />
+        <Reward templateId="368" amount="1" prob="0.1" />
+        <Reward templateId="369" amount="1" prob="0.03" />
+      </RewardGroup>
+      <RewardGroup id="2" type="winPoint" prob="0.03" abnormality="999001001">
+        <Reward winExpRatio="2" prob="0.5" />
+        <Reward winExpRatio="3" prob="0.35" />
+        <Reward winExpRatio="5" prob="0.1" />
+        <Reward winExpRatio="10" prob="0.05" />
+      </RewardGroup>
+    </Jackpot>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="StrongholdOccupation" id="26" coolTimeMin="10" name="20">
+    <!-- 60레벨 명예의 전장 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Start_Cue" start="War_Battle.War_Music_Cue.War_Time_honor_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_02" desc="21" checkBoxType="0" />
+    <!-- checkBoxType 값 -1: 체크박스 사용 안함 / 0: 지휘관 지원 / 1: 평점제 적용. default는 값 없으면 0 -->
+    <CommonData maxBattleMin="0" minTeamMember="1" maxTeamMember="15" minLevel="65" maxLevel="65" preCombatSec="90" forceExitSec="120" banSec="120" countOfMinFinalBlow="" continentId="112" blueTeamSpawnPos="3782, 34548, 1625" blueTeamSpawnDir="10" redTeamSpawnPos="11753, 42431, 1625" redTeamSpawnDir="230" blueTeamDoorId="1121" redTeamDoorId="1122" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" isMultiKillBattleField="true" />
+    <Balance increaseAvrGradePointPerSec="20" increaseAvrGradePoint="20" increaseAvrGradePointPerSecLimit="200" permitRangePoint="20" />
+    <RuleData ruleId="2" maxMatchingMember="5" />
+    <EloData eloId="2" basicGradePoint="1000" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" killMagneticEffectId="11808" assistMagneticEffectId="11808" />
+    <WarPoint helperRange="300" killPoint="2000" assistPoint="1000" capturePoint="5000" winWP="0" loseWP="0" addWP="0" perScore="0" attackStrongholdWP="0" defenceStrongholdWP="0" captureStongholdWP="0" />
+    <Reward>
+      <RewardData maxContributeLimit="300" winPoint="300" losePoint="100" winCaptainPoint="200" bonusPoint="100" personalPointRate="0.01" npcGuildId="901" winExp="150" loseExp="50" />
+      <RewardData maxContributeLimit="500" winPoint="1000" losePoint="500" winCaptainPoint="200" bonusPoint="100" personalPointRate="0.01" npcGuildId="902" winExp="150" loseExp="50" />
+      <TeamRewardData>
+        <WinOrLoseTeam WinTeamRewardItem="92074" winTeamRewardItemCount="30" LoseTeamRewardItem="92074" LoseTeamRewardItemCount="15" />
+      </TeamRewardData>
+    </Reward>
+    <CompetitionPoint winReward="2" />
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="98" />
+      <Item id="400" />
+      <Item id="70116" />
+      <Item id="70117" />
+      <Item id="6" />
+      <Item id="7" />
+      <Item id="8" />
+      <Item id="31" />
+      <Item id="32" />
+      <Item id="33" />
+      <Item id="178" />
+      <Item id="179" />
+      <Item id="180" />
+      <Item id="181" />
+      <Item id="182" />
+      <Item id="183" />
+      <Item id="184" />
+      <Item id="185" />
+      <Item id="186" />
+      <Item id="187" />
+      <Item id="188" />
+      <Item id="189" />
+      <Item id="190" />
+      <Item id="191" />
+      <Item id="192" />
+      <Item id="193" />
+      <Item id="7100" />
+      <Item id="7101" />
+      <Item id="7102" />
+      <Item id="7103" />
+      <Item id="7104" />
+      <Item id="7105" />
+      <Item id="7106" />
+      <Item id="7107" />
+      <Item id="7108" />
+      <Item id="7109" />
+      <Item id="7110" />
+      <Item id="7111" />
+      <Item id="70019" />
+      <Item id="70020" />
+      <Item id="70021" />
+      <Item id="70022" />
+      <Item id="70023" />
+      <Item id="70024" />
+      <Item id="70025" />
+      <Item id="70026" />
+      <Item id="70027" />
+      <Item id="70028" />
+      <Item id="70029" />
+      <Item id="70030" />
+      <Item id="70031" />
+      <Item id="70032" />
+      <Item id="70033" />
+      <Item id="70034" />
+      <Item id="70053" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="10" toCaptureSec="30" attackSocialMotionId="37" baseStepGauge="100" oneUserCaptureGaugePerSec="10" captureTryLimitUser="3" autoBackGauge="2" baseAttackShowSec="2" baseAttackShowInterval="2" shareAlarmSec="1">
+      <StrongholdList>
+        <Stronghold id="1" name="22" pos="7740.0508,38344.1953,1690.7493" posDir="0" tombPos="7066.0469,38674.6797,1721.2910" tombDir="0" spawnPos="7066.0469,38674.6797,1721.2910" spawnDir="0" />
+        <Stronghold id="2" name="23" pos="3185.0229,40149.0000,1582.0415" posDir="0" tombPos="2538.4023,40576.1836,1619.3870" tombDir="0" spawnPos="2538.4023,40576.1836,1619.3870" spawnDir="0" />
+        <Stronghold id="3" name="24" pos="12005.9355,36751.6328,1552.7979" posDir="0" tombPos="12859.9990,36326.3242,1599.2111" tombDir="0" spawnPos="12859.9990,36326.3242,1599.2111" spawnDir="0" />
+        <!-- 전장 거점 오브젝트 테스트용 ( 여명의 정원 )-->
+        <!--<Stronghold id="4" name="22" pos="93487,-88197,-4523" posDir="0" tombPos="93487,-88197,-4523" tombDir="0" spawnPos="93487,-88197,-4523" spawnDir="0"/>
+				<Stronghold id="5" name="23" pos="93260,-88642,-4575" posDir="0" tombPos="93260,-88642,-4575" tombDir="0" spawnPos="93260,-88642,-4575" spawnDir="0"/>
+				<Stronghold id="6" name="24" pos="93244,-87761,-4558" posDir="0" tombPos="93244,-87761,-4558" tombDir="0" spawnPos="93244,-87761,-4558" spawnDir="0"/>-->
+      </StrongholdList>
+      <Score victoryScore="5000" tensionScore="5000" strongholdCaptureScore="100" addScore="0" killScore="40">
+        <ScoreData captureBaseGap="1" addPointPerSec="4" />
+        <SocreData captureBaseGap="2" addPointPerSec="6" />
+        <SocreData captureBaseGap="3" addPointPerSec="8" />
+        <ContributeScore contributeScoreRate="0.5" minimumScore="80" />
+      </Score>
+      <TeamBuff enemyCaptureBaseCount="3" minimumApplyPoint="2000" enemyGapTeamPoint="1500" endGapTeamPoint="500">
+        <KillGapBuffList>
+          <KillGap grade="1" applyKill="20" clearKill="10" abnormalityId="2083" />
+          <KillGap grade="2" applyKill="40" clearKill="30" abnormalityId="2084" />
+          <KillGap grade="3" applyKill="60" clearKill="50" abnormalityId="2085" />
+        </KillGapBuffList>
+      </TeamBuff>
+      <BattleFieldAbnormality>
+        <AbnormalityId id="2080" />
+        <AbnormalityId id="2070" />
+        <AbnormalityId id="2060" />
+        <AbnormalityId id="2050" />
+        <AbnormalityId id="2083" />
+        <AbnormalityId id="2084" />
+        <AbnormalityId id="2085" />
+      </BattleFieldAbnormality>
+      <SystemMessage>
+        <OverPointList>
+          <OverPoint point="2500" />
+          <OverPoint point="4000" />
+        </OverPointList>
+        <TrunAroundTeamScore minimumPoint="2000" />
+      </SystemMessage>
+    </SpecificData>
+    <CommanderSkillList team="blue">
+      <Skill id="63000101" />
+      <Skill id="63000111" />
+    </CommanderSkillList>
+    <CommanderSkillList team="red">
+      <Skill id="63000101" />
+      <Skill id="63000111" />
+    </CommanderSkillList>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="10" reviveSec="15" />
+      <Step minDeathCount="11" maxDeathCount="20" reviveSec="15" />
+      <Step minDeathCount="21" maxDeathCount="30" reviveSec="15" />
+      <Step minDeathCount="31" maxDeathCount="50" reviveSec="15" />
+      <Step minDeathCount="51" maxDeathCount="500" reviveSec="15" />
+    </Rivive>
+    <!-- 이벤트 보상 추가 -->
+    <EventReward event="true">
+      <Condition win="3">
+        <Reward templateId="5173" min="1" max="1" />
+        <Message sender="@Event:101" title="@Event:10101" text="@Event:10102" />
+      </Condition>
+      <Condition lose="3">
+        <Reward templateId="5174" min="1" max="1" />
+        <Message sender="@Event:102" title="@Event:10201" text="@Event:10202" />
+      </Condition>
+      <PreventAbuse prevent="true">
+        <AbuseScore kill="0" death="0" asist="0" hold="0" prevent="true" />
+        <AbuseDisconnect prevent="true" />
+      </PreventAbuse>
+    </EventReward>
+    <!--잭팟시스템-->
+    <Jackpot event="true" notifyTime="7" bindRewardGroup="true">
+      <RewardGroup id="1" type="item" prob="0.1" sender="@Event:201" title="@Event:20101" text="@Event:20102" abnormality="999001002">
+        <Reward templateId="368" amount="1" prob="0.7" />
+        <Reward templateId="369" amount="1" prob="0.1" />
+        <Reward templateId="28501" amount="1" prob="0.2" />
+      </RewardGroup>
+      <RewardGroup id="2" type="winPoint" prob="0.2" abnormality="999001001">
+        <Reward winExpRatio="2" prob="0.5" />
+        <Reward winExpRatio="3" prob="0.35" />
+        <Reward winExpRatio="5" prob="0.1" />
+        <Reward winExpRatio="10" prob="0.05" />
+      </RewardGroup>
+    </Jackpot>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="StrongholdOccupation" id="27" coolTimeMin="10" name="27">
+    <!-- 60레벨 정예 명예의 전장 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Start_Cue" start="War_Battle.War_Music_Cue.War_Time_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_02" desc="28" checkBoxType="0" />
+    <!-- checkBoxType 값 -1: 체크박스 사용 안함 / 0: 지휘관 지원 / 1: 평점제 적용. default는 값 없으면 0 -->
+    <CommonData maxBattleMin="0" minTeamMember="1" maxTeamMember="15" minLevel="65" maxLevel="65" preCombatSec="90" forceExitSec="120" banSec="120" countOfMinFinalBlow="" continentId="112" blueTeamSpawnPos="3782, 34548, 1625" blueTeamSpawnDir="10" redTeamSpawnPos="11753, 42431, 1625" redTeamSpawnDir="230" blueTeamDoorId="1121" redTeamDoorId="1122" desertionAbnormalityId="999998" initCoolTimeSec="120" minChatbanEnableMemberCount="6" />
+    <Balance increaseAvrGradePointPerSec="10" increaseAvrGradePoint="100" increaseAvrGradePointPerSecLimit="500" permitRangePoint="500" />
+    <RuleData ruleId="5" minMatchingMember="15" maxMatchingMember="15" />
+    <EloData eloId="2" basicGradePoint="1000" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" killMagneticEffectId="11808" assistMagneticEffectId="11808" />
+    <WarPoint helperRange="300" killPoint="2000" assistPoint="1000" capturePoint="5000" winWP="0" loseWP="0" addWP="0" perScore="0" attackStrongholdWP="0" defenceStrongholdWP="0" captureStongholdWP="0" />
+    <Reward>
+      <RewardData maxContributeLimit="150" winPoint="150" losePoint="50" winCaptainPoint="200" bonusPoint="100" personalPointRate="0.01" npcGuildId="901" winExp="150" loseExp="50" />
+      <RewardData maxContributeLimit="500" winPoint="850" losePoint="400" winCaptainPoint="200" bonusPoint="100" personalPointRate="0.01" npcGuildId="902" winExp="150" loseExp="50" />
+      <TeamRewardData>
+        <WinOrLoseTeam WinTeamRewardItem="92074" winTeamRewardItemCount="30" LoseTeamRewardItem="92074" LoseTeamRewardItemCount="15" />
+      </TeamRewardData>
+    </Reward>
+    <CompetitionPoint winReward="2" />
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="98" />
+      <Item id="400" />
+      <Item id="70116" />
+      <Item id="70117" />
+      <Item id="6" />
+      <Item id="7" />
+      <Item id="8" />
+      <Item id="31" />
+      <Item id="32" />
+      <Item id="33" />
+      <Item id="178" />
+      <Item id="179" />
+      <Item id="180" />
+      <Item id="181" />
+      <Item id="182" />
+      <Item id="183" />
+      <Item id="184" />
+      <Item id="185" />
+      <Item id="186" />
+      <Item id="187" />
+      <Item id="188" />
+      <Item id="189" />
+      <Item id="190" />
+      <Item id="191" />
+      <Item id="192" />
+      <Item id="193" />
+      <Item id="7100" />
+      <Item id="7101" />
+      <Item id="7102" />
+      <Item id="7103" />
+      <Item id="7104" />
+      <Item id="7105" />
+      <Item id="7106" />
+      <Item id="7107" />
+      <Item id="7108" />
+      <Item id="7109" />
+      <Item id="7110" />
+      <Item id="7111" />
+      <Item id="70019" />
+      <Item id="70020" />
+      <Item id="70021" />
+      <Item id="70022" />
+      <Item id="70023" />
+      <Item id="70024" />
+      <Item id="70025" />
+      <Item id="70026" />
+      <Item id="70027" />
+      <Item id="70028" />
+      <Item id="70029" />
+      <Item id="70030" />
+      <Item id="70031" />
+      <Item id="70032" />
+      <Item id="70033" />
+      <Item id="70034" />
+      <Item id="70053" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="10" toCaptureSec="30" attackSocialMotionId="37" baseStepGauge="100" oneUserCaptureGaugePerSec="10" captureTryLimitUser="3" autoBackGauge="2" baseAttackShowSec="2" baseAttackShowInterval="2" shareAlarmSec="1">
+      <StrongholdList>
+        <Stronghold id="1" name="22" pos="7740.0508,38344.1953,1690.7493" posDir="0" tombPos="7066.0469,38674.6797,1721.2910" tombDir="0" spawnPos="7066.0469,38674.6797,1721.2910" spawnDir="0" />
+        <Stronghold id="2" name="23" pos="3185.0229,40149.0000,1582.0415" posDir="0" tombPos="2538.4023,40576.1836,1619.3870" tombDir="0" spawnPos="2538.4023,40576.1836,1619.3870" spawnDir="0" />
+        <Stronghold id="3" name="24" pos="12005.9355,36751.6328,1552.7979" posDir="0" tombPos="12859.9990,36326.3242,1599.2111" tombDir="0" spawnPos="12859.9990,36326.3242,1599.2111" spawnDir="0" />
+        <!-- 전장 거점 오브젝트 테스트용 ( 여명의 정원 )-->
+        <!--<Stronghold id="4" name="22" pos="93487,-88197,-4523" posDir="0" tombPos="93487,-88197,-4523" tombDir="0" spawnPos="93487,-88197,-4523" spawnDir="0"/>
+				<Stronghold id="5" name="23" pos="93260,-88642,-4575" posDir="0" tombPos="93260,-88642,-4575" tombDir="0" spawnPos="93260,-88642,-4575" spawnDir="0"/>
+				<Stronghold id="6" name="24" pos="93244,-87761,-4558" posDir="0" tombPos="93244,-87761,-4558" tombDir="0" spawnPos="93244,-87761,-4558" spawnDir="0"/>-->
+      </StrongholdList>
+      <Score victoryScore="5000" tensionScore="5000" strongholdCaptureScore="100" addScore="0" killScore="40">
+        <ScoreData captureBaseGap="1" addPointPerSec="4" />
+        <SocreData captureBaseGap="2" addPointPerSec="6" />
+        <SocreData captureBaseGap="3" addPointPerSec="8" />
+        <ContributeScore contributeScoreRate="0.5" minimumScore="80" />
+      </Score>
+      <TeamBuff enemyCaptureBaseCount="3" minimumApplyPoint="2000" enemyGapTeamPoint="1500" endGapTeamPoint="500">
+        <KillGapBuffList>
+          <KillGap grade="1" applyKill="20" clearKill="10" abnormalityId="2083" />
+          <KillGap grade="2" applyKill="40" clearKill="30" abnormalityId="2084" />
+          <KillGap grade="3" applyKill="60" clearKill="50" abnormalityId="2085" />
+        </KillGapBuffList>
+      </TeamBuff>
+      <BattleFieldAbnormality>
+        <AbnormalityId id="2080" />
+        <AbnormalityId id="2070" />
+        <AbnormalityId id="2060" />
+        <AbnormalityId id="2050" />
+      </BattleFieldAbnormality>
+      <SystemMessage>
+        <OverPointList>
+          <OverPoint point="2500" />
+          <OverPoint point="4000" />
+        </OverPointList>
+        <TrunAroundTeamScore minimumPoint="2000" />
+      </SystemMessage>
+    </SpecificData>
+    <CommanderSkillList team="blue">
+      <Skill id="63000101" />
+      <Skill id="63000111" />
+    </CommanderSkillList>
+    <CommanderSkillList team="red">
+      <Skill id="63000101" />
+      <Skill id="63000111" />
+    </CommanderSkillList>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="10" reviveSec="15" />
+      <Step minDeathCount="11" maxDeathCount="20" reviveSec="15" />
+      <Step minDeathCount="21" maxDeathCount="30" reviveSec="15" />
+      <Step minDeathCount="31" maxDeathCount="50" reviveSec="15" />
+      <Step minDeathCount="51" maxDeathCount="500" reviveSec="15" />
+    </Rivive>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="StrongholdOccupation" id="29" coolTimeMin="10" name="29" listHide="true" isNotOff="true">
+    <!-- 60레벨 통일장비 명예의 전장 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Start_Cue" start="War_Battle.War_Music_Cue.War_Time_honor_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_02" desc="290" checkBoxType="0" />
+    <!-- checkBoxType 값 -1: 체크박스 사용 안함 / 0: 지휘관 지원 / 1: 평점제 적용. default는 값 없으면 0 -->
+    <CommonData maxBattleMin="0" minTeamMember="1" maxTeamMember="15" minLevel="65" maxLevel="65" preCombatSec="90" forceExitSec="120" banSec="120" countOfMinFinalBlow="" continentId="112" blueTeamSpawnPos="3782, 34548, 1625" blueTeamSpawnDir="10" redTeamSpawnPos="11753, 42431, 1625" redTeamSpawnDir="230" blueTeamDoorId="1121" redTeamDoorId="1122" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" isMultiKillBattleField="true" />
+    <Balance increaseAvrGradePointPerSec="20" increaseAvrGradePoint="20" increaseAvrGradePointPerSecLimit="200" permitRangePoint="20" />
+    <RuleData ruleId="2" maxMatchingMember="5" />
+    <EloData eloId="2" basicGradePoint="1000" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" killMagneticEffectId="11808" assistMagneticEffectId="11808" />
+    <WarPoint helperRange="300" killPoint="600" assistPoint="300" capturePoint="1000" winWP="0" loseWP="0" addWP="0" perScore="0" attackStrongholdWP="0" defenceStrongholdWP="0" captureStongholdWP="0" />
+    <Reward>
+      <RewardData maxContributeLimit="100" winPoint="270" losePoint="150" bonusPoint="50" winCaptainPoint="100" personalPointRate="0.01" npcGuildId="901" winExp="150" loseExp="50" />
+      <RewardData maxContributeLimit="50" winPoint="120" losePoint="45" bonusPoint="50" winCaptainPoint="30" personalPointRate="0.01" npcGuildId="902" winExp="150" loseExp="50" />
+    </Reward>
+    <CompetitionPoint winReward="2" />
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="98" />
+      <Item id="400" />
+      <Item id="70116" />
+      <Item id="70117" />
+      <Item id="6" />
+      <Item id="7" />
+      <Item id="8" />
+      <Item id="31" />
+      <Item id="32" />
+      <Item id="33" />
+      <Item id="178" />
+      <Item id="179" />
+      <Item id="180" />
+      <Item id="181" />
+      <Item id="182" />
+      <Item id="183" />
+      <Item id="184" />
+      <Item id="185" />
+      <Item id="186" />
+      <Item id="187" />
+      <Item id="188" />
+      <Item id="189" />
+      <Item id="190" />
+      <Item id="191" />
+      <Item id="192" />
+      <Item id="193" />
+      <Item id="7100" />
+      <Item id="7101" />
+      <Item id="7102" />
+      <Item id="7103" />
+      <Item id="7104" />
+      <Item id="7105" />
+      <Item id="7106" />
+      <Item id="7107" />
+      <Item id="7108" />
+      <Item id="7109" />
+      <Item id="7110" />
+      <Item id="7111" />
+      <Item id="70019" />
+      <Item id="70020" />
+      <Item id="70021" />
+      <Item id="70022" />
+      <Item id="70023" />
+      <Item id="70024" />
+      <Item id="70025" />
+      <Item id="70026" />
+      <Item id="70027" />
+      <Item id="70028" />
+      <Item id="70029" />
+      <Item id="70030" />
+      <Item id="70031" />
+      <Item id="70032" />
+      <Item id="70033" />
+      <Item id="70034" />
+      <Item id="70053" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="10" toCaptureSec="30" attackSocialMotionId="37" baseStepGauge="100" oneUserCaptureGaugePerSec="10" captureTryLimitUser="3" autoBackGauge="2" baseAttackShowSec="2" baseAttackShowInterval="2" shareAlarmSec="1">
+      <StrongholdList>
+        <Stronghold id="1" name="22" pos="7740.0508,38344.1953,1690.7493" posDir="0" tombPos="7066.0469,38674.6797,1721.2910" tombDir="0" spawnPos="7066.0469,38674.6797,1721.2910" spawnDir="0" />
+        <Stronghold id="2" name="23" pos="3185.0229,40149.0000,1582.0415" posDir="0" tombPos="2538.4023,40576.1836,1619.3870" tombDir="0" spawnPos="2538.4023,40576.1836,1619.3870" spawnDir="0" />
+        <Stronghold id="3" name="24" pos="12005.9355,36751.6328,1552.7979" posDir="0" tombPos="12859.9990,36326.3242,1599.2111" tombDir="0" spawnPos="12859.9990,36326.3242,1599.2111" spawnDir="0" />
+        <!-- 전장 거점 오브젝트 테스트용 ( 여명의 정원 )-->
+        <!--<Stronghold id="4" name="22" pos="93487,-88197,-4523" posDir="0" tombPos="93487,-88197,-4523" tombDir="0" spawnPos="93487,-88197,-4523" spawnDir="0"/>
+				<Stronghold id="5" name="23" pos="93260,-88642,-4575" posDir="0" tombPos="93260,-88642,-4575" tombDir="0" spawnPos="93260,-88642,-4575" spawnDir="0"/>
+				<Stronghold id="6" name="24" pos="93244,-87761,-4558" posDir="0" tombPos="93244,-87761,-4558" tombDir="0" spawnPos="93244,-87761,-4558" spawnDir="0"/>-->
+      </StrongholdList>
+      <Score victoryScore="5000" tensionScore="5000" strongholdCaptureScore="100" addScore="0" killScore="10">
+        <ScoreData captureBaseGap="1" addPointPerSec="4" />
+        <SocreData captureBaseGap="2" addPointPerSec="6" />
+        <SocreData captureBaseGap="3" addPointPerSec="8" />
+        <ContributeScore contributeScoreRate="0.5" minimumScore="20" />
+      </Score>
+      <TeamBuff enemyCaptureBaseCount="3" minimumApplyPoint="2000" enemyGapTeamPoint="1500" endGapTeamPoint="500">
+        <KillGapBuffList>
+          <KillGap grade="1" applyKill="20" clearKill="10" abnormalityId="2083" />
+          <KillGap grade="2" applyKill="40" clearKill="30" abnormalityId="2084" />
+          <KillGap grade="3" applyKill="60" clearKill="50" abnormalityId="2085" />
+        </KillGapBuffList>
+      </TeamBuff>
+      <BattleFieldAbnormality>
+        <AbnormalityId id="2080" />
+        <AbnormalityId id="2070" />
+        <AbnormalityId id="2060" />
+        <AbnormalityId id="2050" />
+        <AbnormalityId id="2083" />
+        <AbnormalityId id="2084" />
+        <AbnormalityId id="2085" />
+      </BattleFieldAbnormality>
+      <SystemMessage>
+        <OverPointList>
+          <OverPoint point="2500" />
+          <OverPoint point="4000" />
+        </OverPointList>
+        <TrunAroundTeamScore minimumPoint="2000" />
+      </SystemMessage>
+    </SpecificData>
+    <CommanderSkillList team="blue">
+      <Skill id="63000101" />
+      <Skill id="63000111" />
+    </CommanderSkillList>
+    <CommanderSkillList team="red">
+      <Skill id="63000101" />
+      <Skill id="63000111" />
+    </CommanderSkillList>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="10" reviveSec="15" />
+      <Step minDeathCount="11" maxDeathCount="20" reviveSec="15" />
+      <Step minDeathCount="21" maxDeathCount="30" reviveSec="15" />
+      <Step minDeathCount="31" maxDeathCount="50" reviveSec="15" />
+      <Step minDeathCount="51" maxDeathCount="500" reviveSec="15" />
+    </Rivive>
+    <!--잭팟시스템-->
+    <Jackpot event="true" notifyTime="7" bindRewardGroup="true">
+      <RewardGroup id="1" type="item" prob="0.05" sender="@Event:201" title="@Event:20101" text="@Event:20102" abnormality="999001002">
+        <Reward templateId="365" amount="1" prob="0.1" />
+        <Reward templateId="366" amount="1" prob="0.32" />
+        <Reward templateId="367" amount="1" prob="0.45" />
+        <Reward templateId="368" amount="1" prob="0.1" />
+        <Reward templateId="369" amount="1" prob="0.03" />
+      </RewardGroup>
+      <RewardGroup id="2" type="winPoint" prob="0.03" abnormality="999001001">
+        <Reward winExpRatio="2" prob="0.5" />
+        <Reward winExpRatio="3" prob="0.35" />
+        <Reward winExpRatio="5" prob="0.1" />
+        <Reward winExpRatio="10" prob="0.05" />
+      </RewardGroup>
+    </Jackpot>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="StrongholdOccupation" id="28" listHide="true" coolTimeMin="10" name="27">
+    <!-- 60레벨 통일 전장 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Start_Cue" start="War_Battle.War_Music_Cue.War_Time_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_02" desc="28" checkBoxType="0" />
+    <!-- checkBoxType 값 -1: 체크박스 사용 안함 / 0: 지휘관 지원 / 1: 평점제 적용. default는 값 없으면 0 -->
+    <CommonData maxBattleMin="0" minTeamMember="1" maxTeamMember="15" minLevel="65" maxLevel="65" preCombatSec="90" forceExitSec="120" banSec="120" countOfMinFinalBlow="" continentId="112" blueTeamSpawnPos="3782, 34548, 1625" blueTeamSpawnDir="10" redTeamSpawnPos="11753, 42431, 1625" redTeamSpawnDir="230" blueTeamDoorId="1121" redTeamDoorId="1122" desertionAbnormalityId="999998" initCoolTimeSec="120" />
+    <Balance increaseAvrGradePointPerSec="10" increaseAvrGradePoint="10" increaseAvrGradePointPerSecLimit="100" permitRangePoint="50" />
+    <RuleData ruleId="5" minMatchingMember="15" maxMatchingMember="15" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" killMagneticEffectId="11808" assistMagneticEffectId="11808" />
+    <WarPoint helperRange="300" killPoint="300" assistPoint="150" capturePoint="500" winWP="0" loseWP="0" addWP="0" perScore="0" attackStrongholdWP="0" defenceStrongholdWP="0" captureStongholdWP="0" />
+    <Reward>
+      <RewardData maxContributeLimit="30" winPoint="35" losePoint="15" winCaptainPoint="40" bonusPoint="10" personalPointRate="0.01" npcGuildId="901" winExp="150" loseExp="50" />
+      <RewardData maxContributeLimit="0" winPoint="20" losePoint="0" bonusPoint="0" personalPointRate="0.03" npcGuildId="902" winExp="50" loseExp="0" />
+    </Reward>
+    <CompetitionPoint winReward="2" />
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="98" />
+      <Item id="400" />
+      <Item id="70116" />
+      <Item id="70117" />
+      <Item id="6" />
+      <Item id="7" />
+      <Item id="8" />
+      <Item id="31" />
+      <Item id="32" />
+      <Item id="33" />
+      <Item id="178" />
+      <Item id="179" />
+      <Item id="180" />
+      <Item id="181" />
+      <Item id="182" />
+      <Item id="183" />
+      <Item id="184" />
+      <Item id="185" />
+      <Item id="186" />
+      <Item id="187" />
+      <Item id="188" />
+      <Item id="189" />
+      <Item id="190" />
+      <Item id="191" />
+      <Item id="192" />
+      <Item id="193" />
+      <Item id="7100" />
+      <Item id="7101" />
+      <Item id="7102" />
+      <Item id="7103" />
+      <Item id="7104" />
+      <Item id="7105" />
+      <Item id="7106" />
+      <Item id="7107" />
+      <Item id="7108" />
+      <Item id="7109" />
+      <Item id="7110" />
+      <Item id="7111" />
+      <Item id="70019" />
+      <Item id="70020" />
+      <Item id="70021" />
+      <Item id="70022" />
+      <Item id="70023" />
+      <Item id="70024" />
+      <Item id="70025" />
+      <Item id="70026" />
+      <Item id="70027" />
+      <Item id="70028" />
+      <Item id="70029" />
+      <Item id="70030" />
+      <Item id="70031" />
+      <Item id="70032" />
+      <Item id="70033" />
+      <Item id="70034" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="10" toCaptureSec="30" attackSocialMotionId="37" baseStepGauge="100" oneUserCaptureGaugePerSec="10" captureTryLimitUser="3" autoBackGauge="2" baseAttackShowSec="2" baseAttackShowInterval="2" shareAlarmSec="1">
+      <StrongholdList>
+        <Stronghold id="1" name="22" pos="7740.0508,38344.1953,1690.7493" posDir="0" tombPos="7066.0469,38674.6797,1721.2910" tombDir="0" spawnPos="7066.0469,38674.6797,1721.2910" spawnDir="0" />
+        <Stronghold id="2" name="23" pos="3185.0229,40149.0000,1582.0415" posDir="0" tombPos="2538.4023,40576.1836,1619.3870" tombDir="0" spawnPos="2538.4023,40576.1836,1619.3870" spawnDir="0" />
+        <Stronghold id="3" name="24" pos="12005.9355,36751.6328,1552.7979" posDir="0" tombPos="12859.9990,36326.3242,1599.2111" tombDir="0" spawnPos="12859.9990,36326.3242,1599.2111" spawnDir="0" />
+        <!-- 전장 거점 오브젝트 테스트용 ( 여명의 정원 )-->
+        <!--<Stronghold id="4" name="22" pos="93487,-88197,-4523" posDir="0" tombPos="93487,-88197,-4523" tombDir="0" spawnPos="93487,-88197,-4523" spawnDir="0"/>
+				<Stronghold id="5" name="23" pos="93260,-88642,-4575" posDir="0" tombPos="93260,-88642,-4575" tombDir="0" spawnPos="93260,-88642,-4575" spawnDir="0"/>
+				<Stronghold id="6" name="24" pos="93244,-87761,-4558" posDir="0" tombPos="93244,-87761,-4558" tombDir="0" spawnPos="93244,-87761,-4558" spawnDir="0"/>-->
+      </StrongholdList>
+      <Score victoryScore="5000" tensionScore="5000" strongholdCaptureScore="200" addScore="0" killScore="8">
+        <ScoreData captureBaseGap="1" addPointPerSec="3" />
+        <SocreData captureBaseGap="2" addPointPerSec="5" />
+        <SocreData captureBaseGap="3" addPointPerSec="7" />
+      </Score>
+      <TeamBuff enemyCaptureBaseCount="3" minimumApplyPoint="2000" enemyGapTeamPoint="1200" endGapTeamPoint="300" abnormalId="2080" />
+      <BattleFieldAbnormality>
+        <AbnormalityId id="2080" />
+        <AbnormalityId id="2070" />
+        <AbnormalityId id="2060" />
+        <AbnormalityId id="2050" />
+      </BattleFieldAbnormality>
+      <SystemMessage>
+        <OverPointList>
+          <OverPoint point="2500" />
+          <OverPoint point="4000" />
+        </OverPointList>
+        <TrunAroundTeamScore minimumPoint="2000" />
+      </SystemMessage>
+    </SpecificData>
+    <CommanderSkillList team="blue">
+      <Skill id="63000101" />
+      <Skill id="63000111" />
+    </CommanderSkillList>
+    <CommanderSkillList team="red">
+      <Skill id="63000101" />
+      <Skill id="63000111" />
+    </CommanderSkillList>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="10" reviveSec="10" />
+      <Step minDeathCount="11" maxDeathCount="20" reviveSec="15" />
+      <Step minDeathCount="21" maxDeathCount="30" reviveSec="20" />
+      <Step minDeathCount="31" maxDeathCount="50" reviveSec="25" />
+      <Step minDeathCount="51" maxDeathCount="500" reviveSec="30" />
+    </Rivive>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="Round_PvP" id="37" coolTimeMin="5" name="32">
+    <!-- 60레벨 평점제 투지의 전장 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Start_Cue" start="War_Battle.War_Music_Cue.War_Time_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_03" desc="31" checkBoxType="-1" />
+    <CommonData realTimeRevive="false" maxBattleMin="3" minTeamMember="1" maxTeamMember="3" minLevel="65" maxLevel="65" preCombatSec="40" forceExitSec="120" banSec="360" countOfMinFinalBlow="0" continentId="115" blueTeamSpawnPos="5947.8267,99880.8594,6758.6182" blueTeamSpawnDir="0" redTeamSpawnPos="9368.1289,99881.3047,6756.6172" redTeamSpawnDir="180" blueTeamDoorId="1151" redTeamDoorId="1152" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" useObserverMode="true" observerViewDistance="14000" />
+    <Balance increaseAvrGradePointPerSec="10" increaseAvrGradePoint="10" increaseAvrGradePointPerSecLimit="300" permitRangePoint="50" />
+    <RuleData ruleId="4" minMatchingMember="3" maxMatchingMember="3" isSupplement="false" />
+    <EloData eloId="1" basicGradePoint="1000" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" />
+    <WarPoint helperRange="300" finalBlowWP="5" finalBlowHelperWP="2" winWP="100" loseWP="20" addWP="50" perScore="500" attackStrongholdWP="50" defenceStrongholdWP="50" captureStongholdWP="10" />
+    <CompetitionPoint winReward="1" />
+    <Reward>
+      <RewardData maxContributeLimit="0" winPoint="50" losePoint="20" bonusPoint="0" personalPointRate="0.01" npcGuildId="901" winExp="0" loseExp="0" />
+      <RewardData maxContributeLimit="0" winPoint="500" losePoint="200" bonusPoint="0" personalPointRate="0.01" npcGuildId="902" winExp="150" loseExp="50" />
+      <TeamRewardData>
+        <WinOrLoseTeam WinTeamRewardItem="92074" winTeamRewardItemCount="15" LoseTeamRewardItem="92074" LoseTeamRewardItemCount="10" />
+      </TeamRewardData>
+    </Reward>
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="1300" />
+      <Item id="1301" />
+      <Item id="1302" />
+      <Item id="1303" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="5" toCaptureSec="30" attackSocialMotionId="37">
+      <Round maxRound="3" victoryRound="2" maxBatleFieldRoundMin="360" roundMinCountDown="10" resultPrintTime="10" />
+      <Score victoryScore="1000" tensionScore="800" strongholdCaptureScore="5" addScore="10" killScore="40" />
+    </SpecificData>
+    <Rivive></Rivive>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="Round_PvP" id="38" coolTimeMin="5" name="38">
+    <!-- 60레벨 개인매칭 평점제 투지의 전장 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Start_Cue" start="War_Battle.War_Music_Cue.War_Time_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_03" desc="39" checkBoxType="-1" />
+    <CommonData realTimeRevive="false" maxBattleMin="3" minTeamMember="1" maxTeamMember="3" minLevel="65" maxLevel="65" preCombatSec="40" forceExitSec="120" banSec="360" countOfMinFinalBlow="0" continentId="115" blueTeamSpawnPos="5947.8267,99880.8594,6758.6182" blueTeamSpawnDir="0" redTeamSpawnPos="9368.1289,99881.3047,6756.6172" redTeamSpawnDir="180" blueTeamDoorId="1151" redTeamDoorId="1152" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" useObserverMode="true" observerViewDistance="14000" minChatbanEnableMemberCount="6" />
+    <Balance increaseAvrGradePointPerSec="30" increaseAvrGradePoint="30" increaseAvrGradePointPerSecLimit="300" permitRangePoint="30" />
+    <RuleData ruleId="10" minMatchingMember="1" maxMatchingMember="1" isSupplement="true" />
+    <EloData eloId="1" basicGradePoint="1000" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" />
+    <WarPoint helperRange="300" finalBlowWP="5" finalBlowHelperWP="2" winWP="100" loseWP="20" addWP="50" perScore="500" attackStrongholdWP="50" defenceStrongholdWP="50" captureStongholdWP="10" />
+    <CompetitionPoint winReward="1" />
+    <Reward>
+      <RewardData maxContributeLimit="0" winPoint="50" losePoint="20" bonusPoint="0" personalPointRate="0.01" npcGuildId="901" winExp="0" loseExp="0" />
+      <RewardData maxContributeLimit="0" winPoint="500" losePoint="200" bonusPoint="0" personalPointRate="0.01" npcGuildId="902" winExp="150" loseExp="50" />
+      <TeamRewardData>
+        <WinOrLoseTeam WinTeamRewardItem="92074" winTeamRewardItemCount="15" LoseTeamRewardItem="92074" LoseTeamRewardItemCount="10" />
+      </TeamRewardData>
+    </Reward>
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="1300" />
+      <Item id="1301" />
+      <Item id="1302" />
+      <Item id="1303" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="5" toCaptureSec="30" attackSocialMotionId="37">
+      <Round maxRound="3" victoryRound="2" maxBatleFieldRoundMin="360" roundMinCountDown="10" resultPrintTime="10" />
+      <Score victoryScore="1000" tensionScore="800" strongholdCaptureScore="5" addScore="10" killScore="40" />
+    </SpecificData>
+    <Rivive></Rivive>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="Round_PvP" id="39" coolTimeMin="5" name="33">
+    <!-- 65레벨 평점제 추억의 투지의 전장 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Start_Cue" start="War_Battle.War_Music_Cue.War_Time_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_03" desc="35" checkBoxType="-1" />
+    <CommonData realTimeRevive="false" maxBattleMin="3" minTeamMember="1" maxTeamMember="5" minLevel="65" maxLevel="65" preCombatSec="40" forceExitSec="120" banSec="360" countOfMinFinalBlow="0" continentId="115" blueTeamSpawnPos="5947.8267,99880.8594,6758.6182" blueTeamSpawnDir="0" redTeamSpawnPos="9368.1289,99881.3047,6756.6172" redTeamSpawnDir="180" blueTeamDoorId="1151" redTeamDoorId="1152" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" useObserverMode="true" observerViewDistance="14000" />
+    <Balance increaseAvrGradePointPerSec="10" increaseAvrGradePoint="10" increaseAvrGradePointPerSecLimit="200" permitRangePoint="50" />
+    <RuleData ruleId="20" minMatchingMember="5" maxMatchingMember="5" isSupplement="false" />
+    <EloData eloId="1" basicGradePoint="1000" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" />
+    <WarPoint helperRange="300" finalBlowWP="5" finalBlowHelperWP="2" winWP="100" loseWP="20" addWP="50" perScore="500" attackStrongholdWP="50" defenceStrongholdWP="50" captureStongholdWP="10" />
+    <CompetitionPoint winReward="1" />
+    <Reward>
+      <RewardData maxContributeLimit="0" winPoint="400" losePoint="150" bonusPoint="0" personalPointRate="0.01" npcGuildId="901" winExp="0" loseExp="0" />
+      <RewardData maxContributeLimit="0" winPoint="650" losePoint="250" bonusPoint="0" personalPointRate="0.01" npcGuildId="902" winExp="250" loseExp="80" />
+    </Reward>
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="1300" />
+      <Item id="1301" />
+      <Item id="1302" />
+      <Item id="1303" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="5" toCaptureSec="30" attackSocialMotionId="37">
+      <Round maxRound="3" victoryRound="2" maxBatleFieldRoundMin="360" roundMinCountDown="10" resultPrintTime="10" />
+      <Score victoryScore="1000" tensionScore="800" strongholdCaptureScore="5" addScore="10" killScore="40" />
+    </SpecificData>
+    <Rivive></Rivive>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="Round_PvP" id="40" coolTimeMin="5" name="34">
+    <!-- 65레벨 개인매칭 평점제 추억의 투지의 전장 !-->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_Cue.War_Start_Cue" start="War_Battle.War_Music_Cue.War_Time_Cue" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_03" desc="36" checkBoxType="-1" />
+    <CommonData realTimeRevive="false" maxBattleMin="3" minTeamMember="1" maxTeamMember="5" minLevel="65" maxLevel="65" preCombatSec="40" forceExitSec="120" banSec="360" countOfMinFinalBlow="0" continentId="115" blueTeamSpawnPos="5947.8267,99880.8594,6758.6182" blueTeamSpawnDir="0" redTeamSpawnPos="9368.1289,99881.3047,6756.6172" redTeamSpawnDir="180" blueTeamDoorId="1151" redTeamDoorId="1152" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" useObserverMode="true" observerViewDistance="14000" minChatbanEnableMemberCount="6" />
+    <Balance increaseAvrGradePointPerSec="30" increaseAvrGradePoint="30" increaseAvrGradePointPerSecLimit="300" permitRangePoint="30" />
+    <RuleData ruleId="19" minMatchingMember="1" maxMatchingMember="1" isSupplement="true" />
+    <EloData eloId="1" basicGradePoint="1000" />
+    <Resource nStrongholdPackageName="BattleField_Objects.Stronghold.BF_Stronghold_SM" tombPackageName="" />
+    <WarPoint helperRange="300" finalBlowWP="5" finalBlowHelperWP="2" winWP="100" loseWP="20" addWP="50" perScore="500" attackStrongholdWP="50" defenceStrongholdWP="50" captureStongholdWP="10" />
+    <CompetitionPoint winReward="1" />
+    <Reward>
+      <RewardData maxContributeLimit="0" winPoint="400" losePoint="150" bonusPoint="0" personalPointRate="0.01" npcGuildId="901" winExp="0" loseExp="0" />
+      <RewardData maxContributeLimit="0" winPoint="650" losePoint="250" bonusPoint="0" personalPointRate="0.01" npcGuildId="902" winExp="250" loseExp="80" />
+    </Reward>
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="1300" />
+      <Item id="1301" />
+      <Item id="1302" />
+      <Item id="1303" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="5" toCaptureSec="30" attackSocialMotionId="37">
+      <Round maxRound="3" victoryRound="2" maxBatleFieldRoundMin="360" roundMinCountDown="10" resultPrintTime="10" />
+      <Score victoryScore="1000" tensionScore="800" strongholdCaptureScore="5" addScore="10" killScore="40" />
+    </SpecificData>
+    <Rivive></Rivive>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="Free_Fight" id="70" coolTimeMin="5" name="60" guideText="62" listHide="true" isNotOff="true">
+    <!-- type : BFType, id : BFId, listHide : 전장매칭창 포함 여부, name, guideText( 매칭창에서 매칭설명 ) : StrSheet_BattleField.xml -->
+    <BGM fadeTime="1.0" enter="War_Battle.War_Music_CUE.War_FreeFight_StartCue" start="War_Battle.War_Music_CUE.War_FreeFight_TimeCue" finish="War_Battle.War_Music_CUE.War_FreeFight_EndCue" />
+    <!-- BGM 입장, 시작, 종료 -->
+    <CommonUIData mapImgName="__WMap_BF.WMap_BFMatching_06" desc="61" checkBoxType="-1" />
+    <!-- checkBoxType 값 -1: 체크박스 사용 안함 / 0: 지휘관 지원 / 1: 평점제 적용. default는 값 없으면 0 -->
+    <!-- 전장 매칭창에서 보여지는 이미지와 설명 -->
+    <CommonData realTimeRevive="false" maxBattleMin="10" minTeamMember="1" maxTeamMember="15" minLevel="65" maxLevel="65" preCombatSec="1" forceExitSec="120" banSec="12000" countOfMinFinalBlow="0" continentId="110" blueTeamSpawnPos="7604,9173,1028" blueTeamSpawnDir="270" redTeamSpawnPos="7600,6114,1028" redTeamSpawnDir="90" blueTeamDoorId="7001" redTeamDoorId="7002" desertionAbnormalityId="999998" initCoolTimeSec="0" blueTeamStringId="25" redTeamStringId="26" despawnTerritoryIdsAfterCombatStart="10200006,10200007" useObserverMode="false" observerViewDistance="14000" isMultiKillBattleField="true" />
+    <WarPoint helperRange="300" killPoint="100" assistPoint="50" />
+    <Balance increaseAvrGradePointPerSec="10" increaseAvrGradePoint="20" increaseAvrGradePointPerSecLimit="100" permitRangePoint="150" />
+    <RuleData ruleId="21" maxMatchingMember="1" />
+    <!-- MatchingRoleTemplate.xml -->
+    <Reward expRewardGuildId="901" expRewardMultiple="1.5" miniScoreRankingReward="30">
+      <RewardData maxContributeLimit="500" winPoint="700" losePoint="300" bonusPoint="100" winCaptainPoint="" personalPointRate="0.1" npcGuildId="901" winExp="150" loseExp="50" />
+      <RewardData maxContributeLimit="500" winPoint="500" losePoint="150" bonusPoint="100" winCaptainPoint="" personalPointRate="0.1" npcGuildId="902" winExp="150" loseExp="50" />
+      <RankingData rank="1" rewardId="554" rewardAmount="10" />
+      <RankingData rank="5" rewardId="554" rewardAmount="8" />
+      <RankingData rank="10" rewardId="554" rewardAmount="5" />
+      <RankingData rank="15" rewardId="554" rewardAmount="3" />
+      <RankingData rank="30" rewardId="554" rewardAmount="1" />
+    </Reward>
+    <StartDoorList>
+      <StartDoor doorId="7001" />
+      <StartDoor doorId="7002" />
+      <StartDoor doorId="7003" />
+      <StartDoor doorId="7004" />
+      <StartDoor doorId="7005" />
+      <StartDoor doorId="7006" />
+      <StartDoor doorId="7007" />
+      <StartDoor doorId="7008" />
+      <StartDoor doorId="7009" />
+      <StartDoor doorId="7010" />
+      <StartDoor doorId="7011" />
+      <StartDoor doorId="7012" />
+      <StartDoor doorId="7013" />
+      <StartDoor doorId="7014" />
+      <StartDoor doorId="7015" />
+      <StartDoor doorId="7016" />
+    </StartDoorList>
+    <ContinualKill>
+      <KillInfo killCount="2" abnormalityId="0" bonusScore="0" />
+      <KillInfo killCount="3" abnormalityId="0" bonusScore="0" />
+      <KillInfo killCount="4" abnormalityId="999009800" bonusScore="100" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR1" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY1" />
+      <KillInfo killCount="5" abnormalityId="0" bonusScore="100" />
+      <KillInfo killCount="6" abnormalityId="999009800" bonusScore="200" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR2" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY2" />
+      <KillInfo killCount="7" abnormalityId="0" bonusScore="200" />
+      <KillInfo killCount="8" abnormalityId="999009800" bonusScore="300" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR3" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY3" />
+      <KillInfo killCount="9" abnormalityId="0" bonusScore="300" />
+      <KillInfo killCount="10" abnormalityId="999009800" bonusScore="400" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR4" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY4" />
+      <KillInfo killCount="11" abnormalityId="0" bonusScore="400" />
+      <KillInfo killCount="12" abnormalityId="999009800" bonusScore="500" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR5" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY5" />
+      <KillInfo killCount="13" abnormalityId="999009800" bonusScore="500" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR5" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY5" />
+      <KillInfo killCount="14" abnormalityId="999009800" bonusScore="500" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR5" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY5" />
+      <KillInfo killCount="15" abnormalityId="999009800" bonusScore="500" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR5" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY5" />
+      <KillInfo killCount="16" abnormalityId="999009800" bonusScore="500" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR5" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY5" />
+      <KillInfo killCount="17" abnormalityId="999009800" bonusScore="500" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR5" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY5" />
+      <KillInfo killCount="18" abnormalityId="999009800" bonusScore="500" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR5" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY5" />
+      <KillInfo killCount="19" abnormalityId="999009800" bonusScore="500" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR5" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY5" />
+      <KillInfo killCount="20" abnormalityId="999009800" bonusScore="500" ourMessageId="SMT_BF_CONTINUALKILLMESSAGE_OUR5" enemyMessageId="SMT_BF_CONTINUALKILLMESSAGE_ENEMY5" />
+    </ContinualKill>
+    <AvailableItems>
+      <Item id="70053" />
+      <Item id="8704" />
+      <Item id="8710" />
+      <Item id="8716" />
+      <Item id="8722" />
+      <Item id="8728" />
+      <Item id="8734" />
+      <Item id="8740" />
+      <Item id="8746" />
+      <Item id="8752" />
+      <Item id="8758" />
+      <Item id="8764" />
+      <Item id="8770" />
+      <Item id="8776" />
+      <Item id="8782" />
+      <Item id="8788" />
+      <Item id="8794" />
+      <Item id="8800" />
+      <Item id="8806" />
+      <Item id="8812" />
+      <Item id="8818" />
+      <Item id="8824" />
+      <Item id="8830" />
+      <Item id="8836" />
+      <Item id="8842" />
+      <Item id="8848" />
+      <Item id="8854" />
+      <Item id="8860" />
+      <Item id="6010" />
+      <Item id="6011" />
+      <Item id="6026" />
+      <Item id="6027" />
+      <Item id="111" />
+      <Item id="116" />
+      <Item id="130" />
+      <Item id="6291" />
+      <Item id="6286" />
+      <Item id="6221" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData>
+      <Score victoryScore="70" tensionScore="70" addScore="0" killScore="1"></Score>
+      <RespawnList>
+        <RespawnInfo team="blue" pos="6000,7653,523" dir="180" prob="0.50" />
+        <RespawnInfo team="blue" pos="7604,9173,1028" dir="270" prob="0.40" />
+        <RespawnInfo team="red" pos="9213,7654,523" dir="180" prob="0.50" />
+        <RespawnInfo team="red" pos="7600,6114,1028" dir="90" prob="0.40" />
+        <RespawnInfo team="common" pos="5949,9353,579" dir="270" prob="0.05" />
+        <RespawnInfo team="common" pos="9264,5998,705" dir="270" prob="0.05" />
+      </RespawnList>
+      <BattleFieldAbnormality>
+        <AbnormalityId id="2093" />
+        <AbnormalityId id="914" />
+        <AbnormalityId id="2094" invoke="true" />
+        <AbnormalityId id="2095" invoke="true" />
+        <AbnormalityId id="999009700" />
+        <AbnormalityId id="999009710" />
+        <AbnormalityId id="999009720" />
+        <AbnormalityId id="999009730" />
+        <AbnormalityId id="999009740" />
+        <AbnormalityId id="999009750" />
+        <AbnormalityId id="999009751" />
+        <AbnormalityId id="999009790" />
+        <AbnormalityId id="999009800" />
+        <AbnormalityId id="999009810" />
+        <AbnormalityId id="999009820" />
+      </BattleFieldAbnormality>
+      <SystemMessage>
+        <OverPointList>
+          <OverPoint point="2" />
+          <OverPoint point="4" />
+        </OverPointList>
+        <TimeRemainList>
+          <TimeRemain minuteLeft="9" />
+          <TimeRemain minuteLeft="8" />
+        </TimeRemainList>
+        <TrunAroundTeamScore minimumPoint="2000" />
+      </SystemMessage>
+    </SpecificData>
+    <ReviveAdvantage>
+      <Gap killGap="5" advantageSec="3" />
+      <Gap killGap="10" advantageSec="5" />
+      <Gap killGap="20" advantageSec="7" />
+    </ReviveAdvantage>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="500" reviveSec="15" />
+    </Rivive>
+    <!-- 이벤트 보상 추가 -->
+    <EventReward event="true">
+      <Condition win="1">
+        <Reward templateId="193011" min="5" max="5" />
+        <!-- CN 길드 토큰 보상 -->
+        <Message senderId="@Event:101" title="@Event:10101" text="@Event:10102" />
+      </Condition>
+      <Condition lose="1">
+        <Reward templateId="193011" min="3" max="3" />
+        <!-- CN 길드 토큰 보상 -->
+        <Message senderId="@Event:102" title="@Event:10201" text="@Event:10202" />
+      </Condition>
+      <PreventAbuse prevent="true">
+        <AbuseScore kill="0" death="0" asist="0" hold="0" prevent="true" />
+        <AbuseDisconnect prevent="true" />
+      </PreventAbuse>
+    </EventReward>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="RoundPve" id="110" name="110" listHide="true" isNotOff="true">
+    <!-- PVE경쟁 LV50!-->
+    <BGM fadeTime="1.0" enter="Ambience_Field.Amb_EmotionCUE.Amb_Emotion_4CUE" start="boss_battle.Named_battle_Cue.Named_Battle_9" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_DG_BF_PVEBattle.WMAP_BFMatching_PVEBattle" desc="111" checkBoxType="0" />
+    <CommonData realTimeRevive="false" maxBattleMin="3" minTeamMember="1" maxTeamMember="3" minLevel="50" maxLevel="50" preCombatSec="40" forceExitSec="120" banSec="360" countOfMinFinalBlow="0" continentId="119" blueTeamSpawnPos="5497,140461,2811" blueTeamSpawnDir="0" redTeamSpawnPos="9915,140462,2811" redTeamSpawnDir="180" blueTeamDoorId="" redTeamDoorId="" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" useObserverMode="false" observerViewDistance="14000" />
+    <RuleData ruleId="18" minMatchingMember="3" maxMatchingMember="3" isSupplement="false" />
+    <EloData eloId="" basicGradePoint="" />
+    <Resource nStrongholdPackageName="" tombPackageName="" />
+    <WarPoint helperRange="" finalBlowWP="" finalBlowHelperWP="" winWP="" loseWP="" addWP="" perScore="" attackStrongholdWP="" defenceStrongholdWP="" captureStongholdWP="" />
+    <CompetitionPoint winReward="1" />
+    <Reward>
+      <RewardData maxContributeLimit="0" winPoint="" losePoint="" bonusPoint="" personalPointRate="" npcGuildId="" winExp="0" loseExp="0" />
+      <RewardData maxContributeLimit="0" winPoint="" losePoint="" bonusPoint="" personalPointRate="" npcGuildId="" winExp="" loseExp="" />
+    </Reward>
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="98" />
+      <Item id="400" />
+      <Item id="70116" />
+      <Item id="70117" />
+      <Item id="6" />
+      <Item id="7" />
+      <Item id="8" />
+      <Item id="31" />
+      <Item id="32" />
+      <Item id="33" />
+      <Item id="178" />
+      <Item id="179" />
+      <Item id="180" />
+      <Item id="181" />
+      <Item id="182" />
+      <Item id="183" />
+      <Item id="184" />
+      <Item id="185" />
+      <Item id="186" />
+      <Item id="187" />
+      <Item id="188" />
+      <Item id="189" />
+      <Item id="190" />
+      <Item id="191" />
+      <Item id="192" />
+      <Item id="193" />
+      <Item id="7100" />
+      <Item id="7101" />
+      <Item id="7102" />
+      <Item id="7103" />
+      <Item id="7104" />
+      <Item id="7105" />
+      <Item id="7106" />
+      <Item id="7107" />
+      <Item id="7108" />
+      <Item id="7109" />
+      <Item id="7110" />
+      <Item id="7111" />
+      <Item id="70019" />
+      <Item id="70020" />
+      <Item id="70021" />
+      <Item id="70022" />
+      <Item id="70023" />
+      <Item id="70024" />
+      <Item id="70025" />
+      <Item id="70026" />
+      <Item id="70027" />
+      <Item id="70028" />
+      <Item id="70029" />
+      <Item id="70030" />
+      <Item id="70031" />
+      <Item id="70032" />
+      <Item id="70033" />
+      <Item id="70034" />
+      <Item id="70053" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="8000" />
+      <Item id="8005" />
+      <Item id="6011" />
+      <Item id="6010" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="5" toCaptureSec="30" attackSocialMotionId="37">
+      <AeroData scoreDifferenceMin="200" scoreDifferenceMax="500">
+        <WinAero aero="BF_PVEBattle_Aeroset.AERO.BF_PVEBattle_Winning_AERO" blendTime="1.0" />
+        <LoseAero aero="BF_PVEBattle_Aeroset.AERO.BF_PVEBattle_Losing_AERO" blendTime="1.0" />
+      </AeroData>
+      <!--<Score victoryScore="1000" tensionScore="" strongholdCaptureScore="" addScore="" killScore=""/> !-->
+      <Round maxRound="" victoryRound="" maxBatleFieldRoundMin="" roundMinCountDown="" resultPrintTime="" />
+      <IrregularRound maxRound="5" roundIntervalSec="60">
+        <RoundSet id="1" roundTimeSec="162" />
+        <RoundSet id="2" roundTimeSec="279" />
+        <RoundSet id="3" roundTimeSec="275" />
+        <RoundSet id="4" roundTimeSec="313" />
+        <RoundSet id="5" roundTimeSec="412" />
+      </IrregularRound>
+      <BonusPoint bonusSkillPoint="1000">
+        <!-- bonusSkillPoint : 보너스 점수의 기본값 -->
+        <Rating min="100" max="200" chaserRatio="0.15" runawayRatio="0" />
+        <!-- min 이상, max 미만의 점수차이일때 , chaserRatio : 지고있는 팀에게 줄 점수 비율, runawayRatio : 이기고 있는 팀에게 줄 점수 비율 -->
+        <Rating min="200" max="500" chaserRatio="0.3" runawayRatio="0" />
+        <!-- 테스트 코드 입니다-->
+        <Rating min="500" max="700" chaserRatio="0.55" runawayRatio="0" />
+        <Rating min="700" max="1000" chaserRatio="0.75" runawayRatio="0" />
+        <!-- 수정하시면 됩니다-->
+        <Rating min="1000" max="10000" chaserRatio="1" runawayRatio="0" />
+      </BonusPoint>
+      <PveSkillList skillUseTimeSec="10" givenSkillPoint="1500" aliveSkillUISec="44">
+        <SkillList typeName="@BattleField:401" id="0">
+          <Skill index="21" icon="Icon_Status.plusattack_Tex" name="@BattleField:201" maxCount="1" desc="@BattleField:301" abnormalityId="999008300" spawnNpcTerritoryId="" usePlayPoint="775" targetType="allyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="22" icon="Icon_Skills.Healinglightlockon_Tex" name="@BattleField:202" maxCount="1" desc="@BattleField:302" abnormalityId="999008600" spawnNpcTerritoryId="" usePlayPoint="775" targetType="allyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="23" icon="Icon_Status.DarkRiftAreaDance_Tex" name="@BattleField:203" maxCount="1" desc="@BattleField:303" abnormalityId="999008700" spawnNpcTerritoryId="" usePlayPoint="775" targetType="allyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="24" icon="Icon_Skills.handyslash_Tex" name="@BattleField:204" maxCount="1" desc="@BattleField:304" abnormalityId="999008800" spawnNpcTerritoryId="" usePlayPoint="775" targetType="allyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+        </SkillList>
+        <SkillList typeName="@BattleField:402" id="1">
+          <Skill index="11" icon="Icon_Status.minusdefence_Tex" name="@BattleField:205" maxCount="1" desc="@BattleField:305" abnormalityId="999008400" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="12" icon="Icon_Status.plusmove_Tex" name="@BattleField:206" maxCount="1" desc="@BattleField:306" abnormalityId="999008900" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="13" icon="Icon_Status.minuscriticalresist_Tex" name="@BattleField:207" maxCount="1" desc="@BattleField:307" abnormalityId="999009000" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="14" icon="Icon_Status.minuscritical_Tex" name="@BattleField:208" maxCount="1" desc="@BattleField:308" abnormalityId="999009100" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="15" icon="Icon_Status.poisondown_Tex" name="@BattleField:221" maxCount="1" desc="@BattleField:321" abnormalityId="999009500" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="16" icon="Icon_Status.MindDomination_Tex" name="@BattleField:222" maxCount="1" desc="@BattleField:322" abnormalityId="999009600" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+        </SkillList>
+        <SkillList typeName="@BattleField:403" id="2">
+          <Skill index="31" icon="Icon_Status.cruel_slayer_1_Tex" name="@BattleField:209" maxCount="1" desc="@BattleField:309" abnormalityId="" spawnBlueTeamSkill="11900043" spawnRedTeamSkill="11900045" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="30" lifeTime="12" />
+          <Skill index="32" icon="Icon_Status.cruel_slayer_1_Tex" name="@BattleField:210" maxCount="1" desc="@BattleField:310" abnormalityId="" spawnBlueTeamSkill="11900043" spawnRedTeamSkill="11900045" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="60" lifeTime="12" />
+          <Skill index="33" icon="Icon_Status.cruel_slayer_1_Tex" name="@BattleField:211" maxCount="1" desc="@BattleField:311" abnormalityId="" spawnBlueTeamSkill="11900043" spawnRedTeamSkill="11900045" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="90" lifeTime="12" />
+          <Skill index="34" icon="Icon_Status.cruel_slayer_1_Tex" name="@BattleField:212" maxCount="1" desc="@BattleField:312" abnormalityId="" spawnBlueTeamSkill="11900043" spawnRedTeamSkill="11900045" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="120" lifeTime="12" />
+          <Skill index="35" icon="Icon_Status.cruel_slayer_1_Tex" name="@BattleField:213" maxCount="1" desc="@BattleField:313" abnormalityId="" spawnBlueTeamSkill="11900043" spawnRedTeamSkill="11900045" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="150" lifeTime="12" />
+          <Skill index="36" icon="Icon_Status.cruel_slayer_2_Tex" name="@BattleField:214" maxCount="1" desc="@BattleField:314" abnormalityId="" spawnBlueTeamSkill="11900046" spawnRedTeamSkill="11900047" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="30" lifeTime="12" />
+          <Skill index="37" icon="Icon_Status.cruel_slayer_2_Tex" name="@BattleField:215" maxCount="1" desc="@BattleField:315" abnormalityId="" spawnBlueTeamSkill="11900046" spawnRedTeamSkill="11900047" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="60" lifeTime="12" />
+          <Skill index="38" icon="Icon_Status.cruel_slayer_2_Tex" name="@BattleField:216" maxCount="1" desc="@BattleField:316" abnormalityId="" spawnBlueTeamSkill="11900046" spawnRedTeamSkill="11900047" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="90" lifeTime="12" />
+          <Skill index="39" icon="Icon_Status.cruel_slayer_2_Tex" name="@BattleField:217" maxCount="1" desc="@BattleField:317" abnormalityId="" spawnBlueTeamSkill="11900046" spawnRedTeamSkill="11900047" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="120" lifeTime="12" />
+          <Skill index="40" icon="Icon_Status.cruel_slayer_2_Tex" name="@BattleField:218" maxCount="1" desc="@BattleField:318" abnormalityId="" spawnBlueTeamSkill="11900046" spawnRedTeamSkill="11900047" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="150" lifeTime="12" />
+          <Skill index="101" icon="Icon_Status.diseaseup_Tex" name="@BattleField:219" maxCount="1" desc="@BattleField:319" abnormalityId="999009300" spawnNpcTerritoryId="" usePlayPoint="1050" targetType="allyNpc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="102" icon="Icon_Status.DarkRiftRecovery_Tex" name="@BattleField:220" maxCount="1" desc="@BattleField:320" abnormalityId="999009200" spawnNpcTerritoryId="" usePlayPoint="1050" targetType="allyNpc" skillType="abnormalitySkill" invokeTimeSec="1" />
+        </SkillList>
+      </PveSkillList>
+      <RoundTerritoryData defaultLifeTimeSec="17">
+        <Round id="1">
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900029" redTerritoryId="11900011" spawnTerritoryTimeSec="1" territoryLifeTimeSec="19" />
+          <!--  원숭이 4 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="18" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900024" redTerritoryId="11900005" spawnTerritoryTimeSec="11" territoryLifeTimeSec="26" />
+          <!--  쿠차트 4 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="18" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900025" redTerritoryId="11900006" spawnTerritoryTimeSec="13" territoryLifeTimeSec="32" />
+          <!--  길리두_1 4 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="18" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900024" redTerritoryId="11900005" spawnTerritoryTimeSec="16" territoryLifeTimeSec="25" />
+          <!--  쿠차트 4 2턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900029" redTerritoryId="11900011" spawnTerritoryTimeSec="13" territoryLifeTimeSec="19" />
+          <!--  원숭이 4 2턴!-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="18" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900027" redTerritoryId="11900009" spawnTerritoryTimeSec="14" territoryLifeTimeSec="32" />
+          <!--  아크투스4 2턴!-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="13" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+        </Round>
+        <Round id="2">
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900028" redTerritoryId="11900010" spawnTerritoryTimeSec="1" territoryLifeTimeSec="40" />
+          <!--  프리온 약탈자 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900029" redTerritoryId="11900015" spawnTerritoryTimeSec="11" territoryLifeTimeSec="19" />
+          <!--  원숭이 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900025" redTerritoryId="11900006" spawnTerritoryTimeSec="13" territoryLifeTimeSec="32" />
+          <!--  길리두_1 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="14" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="11" territoryLifeTimeSec="44" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900032" redTerritoryId="11900014" spawnTerritoryTimeSec="13" territoryLifeTimeSec="50" />
+          <!--  시조새 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="12" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900051" redTerritoryId="11900050" spawnTerritoryTimeSec="2" territoryLifeTimeSec="40" needBroadcast="true" />
+          <!--  보너스 몬스터 "점수"  !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="11" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="15" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900027" redTerritoryId="11900009" spawnTerritoryTimeSec="13" territoryLifeTimeSec="19" />
+          <!--  아크투스 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="9" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="9" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+        </Round>
+        <Round id="3">
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="1" territoryLifeTimeSec="41" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900029" redTerritoryId="11900011" spawnTerritoryTimeSec="10" territoryLifeTimeSec="19" />
+          <!--  원숭이 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900033" redTerritoryId="11900015" spawnTerritoryTimeSec="11" territoryLifeTimeSec="32" />
+          <!--  길리두_2 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="12" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="13" territoryLifeTimeSec="41" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900032" redTerritoryId="11900014" spawnTerritoryTimeSec="15" territoryLifeTimeSec="50" />
+          <!--  시조새 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="11" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900027" redTerritoryId="11900009" spawnTerritoryTimeSec="11" territoryLifeTimeSec="32" />
+          <!--  아크투스 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="6" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900049" redTerritoryId="11900048" spawnTerritoryTimeSec="6" territoryLifeTimeSec="40" needBroadcast="true" />
+          <!--  보너스 몬스터 "점수"  !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900036" redTerritoryId="11900018" spawnTerritoryTimeSec="10" territoryLifeTimeSec="95" />
+          <!--  바실리스크 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="12" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="12" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="12" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+        </Round>
+        <Round id="4">
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="1" territoryLifeTimeSec="41" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="9" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="10" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900033" redTerritoryId="11900015" spawnTerritoryTimeSec="11" territoryLifeTimeSec="32" />
+          <!--  길리두_2 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900032" redTerritoryId="11900014" spawnTerritoryTimeSec="12" territoryLifeTimeSec="50" />
+          <!--  시조새 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="10" territoryLifeTimeSec="41" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="14" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900036" redTerritoryId="11900018" spawnTerritoryTimeSec="9" territoryLifeTimeSec="90" />
+          <!--  바실리스크 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900033" redTerritoryId="11900015" spawnTerritoryTimeSec="14" territoryLifeTimeSec="32" />
+          <!--  길리두_2 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="11" territoryLifeTimeSec="43" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900051" redTerritoryId="11900050" spawnTerritoryTimeSec="5" territoryLifeTimeSec="40" needBroadcast="true" />
+          <!--  보너스 몬스터 "점수"  !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="5" territoryLifeTimeSec="17" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900031" redTerritoryId="11900013" spawnTerritoryTimeSec="11" territoryLifeTimeSec="90" />
+          <!--  블러드 골렘 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900033" redTerritoryId="11900015" spawnTerritoryTimeSec="9" territoryLifeTimeSec="32" />
+          <!--  길리두_2 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="9" territoryLifeTimeSec="43" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="7" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="11" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="7" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="7" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+        </Round>
+        <Round id="5">
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900036" redTerritoryId="11900018" spawnTerritoryTimeSec="1" territoryLifeTimeSec="90" />
+          <!--  바실리스크 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="11" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900028" redTerritoryId="11900010" spawnTerritoryTimeSec="9" territoryLifeTimeSec="32" />
+          <!--  프리온 약탈자 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900032" redTerritoryId="11900014" spawnTerritoryTimeSec="12" territoryLifeTimeSec="50" />
+          <!--  시조새 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="12" territoryLifeTimeSec="43" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="12" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900031" redTerritoryId="11900013" spawnTerritoryTimeSec="12" territoryLifeTimeSec="90" />
+          <!--  블러드 골렘 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900049" redTerritoryId="11900048" spawnTerritoryTimeSec="5" territoryLifeTimeSec="40" needBroadcast="true" />
+          <!--  보너스 몬스터 점수 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="5" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="12" territoryLifeTimeSec="43" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="11" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900038" redTerritoryId="11900022" spawnTerritoryTimeSec="12" territoryLifeTimeSec="140" />
+          <!--  거대 원숭이 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="10" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900033" redTerritoryId="11900015" spawnTerritoryTimeSec="10" territoryLifeTimeSec="32" />
+          <!--  길리두_2 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="12" territoryLifeTimeSec="43" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="8" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900049" redTerritoryId="11900048" spawnTerritoryTimeSec="5" territoryLifeTimeSec="40" needBroadcast="true" />
+          <!--  보너스 몬스터 "점수"  !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="5" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="13" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900032" redTerritoryId="11900014" spawnTerritoryTimeSec="12" territoryLifeTimeSec="50" />
+          <!--  시조새 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="8" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900033" redTerritoryId="11900015" spawnTerritoryTimeSec="8" territoryLifeTimeSec="32" />
+          <!--  길리두_2 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="6" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="9" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="6" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+        </Round>
+      </RoundTerritoryData>
+      <NpcKillPoint>
+        <KillPoint huntingZoneId="119" npcTemplateId="101" npcKillPoint="1050" abilityPoint="600" needBroadcast="true" />
+        <KillPoint huntingZoneId="119" npcTemplateId="102" npcKillPoint="1600" abilityPoint="1000" needBroadcast="true" />
+        <KillPoint huntingZoneId="119" npcTemplateId="103" npcKillPoint="1050" abilityPoint="500" needBroadcast="true" />
+        <KillPoint huntingZoneId="119" npcTemplateId="201" npcKillPoint="250" abilityPoint="50" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="202" npcKillPoint="430" abilityPoint="65" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="203" npcKillPoint="170" abilityPoint="35" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="204" npcKillPoint="200" abilityPoint="40" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="205" npcKillPoint="250" abilityPoint="50" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="206" npcKillPoint="250" abilityPoint="50" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="207" npcKillPoint="150" abilityPoint="30" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="208" npcKillPoint="150" abilityPoint="30" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="209" npcKillPoint="500" abilityPoint="80" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="210" npcKillPoint="180" abilityPoint="50" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="211" npcKillPoint="0" abilityPoint="700" needBroadcast="true" />
+        <KillPoint huntingZoneId="119" npcTemplateId="212" npcKillPoint="700" abilityPoint="0" needBroadcast="true" />
+        <KillPoint huntingZoneId="119" npcTemplateId="213" npcKillPoint="100" abilityPoint="10" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="214" npcKillPoint="100" abilityPoint="10" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="301" npcKillPoint="5" abilityPoint="3" />
+        <KillPoint huntingZoneId="119" npcTemplateId="302" npcKillPoint="5" abilityPoint="3" />
+        <KillPoint huntingZoneId="119" npcTemplateId="303" npcKillPoint="" penaltyPoint="-100" abilityPoint="" />
+        <KillPoint huntingZoneId="119" npcTemplateId="304" npcKillPoint="" penaltyPoint="-100" abilityPoint="" />
+        <KillPoint huntingZoneId="119" npcTemplateId="305" npcKillPoint="" penaltyPoint="-100" abilityPoint="" />
+      </NpcKillPoint>
+      <BattleFieldAbnormality>
+        <AbnormalityId id="999008300" />
+        <AbnormalityId id="999008600" />
+        <AbnormalityId id="999008700" />
+        <AbnormalityId id="999008800" />
+        <AbnormalityId id="999008400" />
+        <AbnormalityId id="999008900" />
+        <AbnormalityId id="999009000" />
+        <AbnormalityId id="999009100" />
+        <AbnormalityId id="999009500" />
+        <AbnormalityId id="999009600" />
+      </BattleFieldAbnormality>
+    </SpecificData>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="1000" reviveSec="7" />
+    </Rivive>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+  <BattleField type="RoundPve" id="111" coolTimeMin="15" name="112" listHide="false" isNotOff="false">
+    <!-- 역전의 수련장 //PVE경쟁 LV60~ 65 통일 장비 -->
+    <BGM fadeTime="1.0" enter="Ambience_Field.Amb_EmotionCUE.Amb_Emotion_4CUE" start="boss_battle.Named_battle_Cue.Named_Battle_9" finish="War_Battle.War_Music_Cue.War_End_Cue" />
+    <CommonUIData mapImgName="__WMap_DG_BF_PVEBattle.WMAP_BFMatching_PVEBattle" desc="111" checkBoxType="0" />
+    <CommonData realTimeRevive="false" maxBattleMin="15" minTeamMember="1" maxTeamMember="3" minLevel="60" maxLevel="65" preCombatSec="40" forceExitSec="120" banSec="120" countOfMinFinalBlow="0" continentId="119" blueTeamSpawnPos="5497,140461,2811" blueTeamSpawnDir="0" redTeamSpawnPos="9915,140462,2811" redTeamSpawnDir="180" blueTeamDoorId="" redTeamDoorId="" desertionAbnormalityId="999998" initCoolTimeSec="120" blueTeamStringId="25" redTeamStringId="26" useObserverMode="false" observerViewDistance="14000" />
+    <RuleData ruleId="18" minMatchingMember="1" maxMatchingMember="3" isSupplement="false" />
+    <EloData eloId="" basicGradePoint="" />
+    <Resource nStrongholdPackageName="" tombPackageName="" />
+    <WarPoint helperRange="" finalBlowWP="" finalBlowHelperWP="" winWP="" loseWP="" addWP="" perScore="" attackStrongholdWP="" defenceStrongholdWP="" captureStongholdWP="" />
+    <CompetitionPoint winReward="1" />
+    <Reward expRewardGuildId="901" expRewardMultiple="1.45">
+      <RewardData maxContributeLimit="" winPoint="900" losePoint="500" bonusPoint="100" winCaptainPoint="100" personalPointRate="0" npcGuildId="901" winExp="150" loseExp="50" />
+      <RewardData maxContributeLimit="" winPoint="300" losePoint="150" bonusPoint="100" winCaptainPoint="100" personalPointRate="0" npcGuildId="902" winExp="150" loseExp="50" />
+      <TeamRewardData>
+        <WinOrLoseTeam WinTeamRewardItem="92074" winTeamRewardItemCount="30" LoseTeamRewardItem="92074" LoseTeamRewardItemCount="15" />
+      </TeamRewardData>
+    </Reward>
+    <AvailableItems>
+      <Item id="7000" />
+      <Item id="98" />
+      <Item id="400" />
+      <Item id="70116" />
+      <Item id="70117" />
+      <Item id="6" />
+      <Item id="7" />
+      <Item id="8" />
+      <Item id="31" />
+      <Item id="32" />
+      <Item id="33" />
+      <Item id="178" />
+      <Item id="179" />
+      <Item id="180" />
+      <Item id="181" />
+      <Item id="182" />
+      <Item id="183" />
+      <Item id="184" />
+      <Item id="185" />
+      <Item id="186" />
+      <Item id="187" />
+      <Item id="188" />
+      <Item id="189" />
+      <Item id="190" />
+      <Item id="191" />
+      <Item id="192" />
+      <Item id="193" />
+      <Item id="7100" />
+      <Item id="7101" />
+      <Item id="7102" />
+      <Item id="7103" />
+      <Item id="7104" />
+      <Item id="7105" />
+      <Item id="7106" />
+      <Item id="7107" />
+      <Item id="7108" />
+      <Item id="7109" />
+      <Item id="7110" />
+      <Item id="7111" />
+      <Item id="70019" />
+      <Item id="70020" />
+      <Item id="70021" />
+      <Item id="70022" />
+      <Item id="70023" />
+      <Item id="70024" />
+      <Item id="70025" />
+      <Item id="70026" />
+      <Item id="70027" />
+      <Item id="70028" />
+      <Item id="70029" />
+      <Item id="70030" />
+      <Item id="70031" />
+      <Item id="70032" />
+      <Item id="70033" />
+      <Item id="70034" />
+      <Item id="70053" />
+      <Item id="8008" />
+      <Item id="8009" />
+      <Item id="8010" />
+      <Item id="8011" />
+      <Item id="8012" />
+      <Item id="8013" />
+      <Item id="8014" />
+      <Item id="8015" />
+      <Item id="8016" />
+      <Item id="8017" />
+      <Item id="8018" />
+      <Item id="8019" />
+      <Item id="8020" />
+      <Item id="8021" />
+      <Item id="8022" />
+      <Item id="8023" />
+      <Item id="117" />
+      <Item id="129" />
+      <Item id="171" />
+      <Item id="139004" />
+      <Item id="6260" />
+      <Item id="6261" />
+      <Item id="6262" />
+      <Item id="8000" />
+      <Item id="8005" />
+      <Item id="6011" />
+      <Item id="6010" />
+      <Item id="70053" />
+      <Item id="139518" />
+      <Item id="212981" />
+    </AvailableItems>
+    <SpecificData toAttackSec="5" toCaptureSec="30" attackSocialMotionId="37">
+      <AeroData scoreDifferenceMin="200" scoreDifferenceMax="500">
+        <WinAero aero="BF_PVEBattle_Aeroset.AERO.BF_PVEBattle_Winning_AERO" blendTime="1.0" />
+        <LoseAero aero="BF_PVEBattle_Aeroset.AERO.BF_PVEBattle_Losing_AERO" blendTime="1.0" />
+      </AeroData>
+      <!--<Score victoryScore="1000" tensionScore="" strongholdCaptureScore="" addScore="" killScore=""/> !-->
+      <Round maxRound="" victoryRound="" maxBatleFieldRoundMin="" roundMinCountDown="" resultPrintTime="" />
+      <IrregularRound maxRound="3" roundIntervalSec="60">
+        <RoundSet id="1" roundTimeSec="192" />
+        <RoundSet id="2" roundTimeSec="327" />
+        <RoundSet id="3" roundTimeSec="336" />
+      </IrregularRound>
+      <BonusPoint bonusSkillPoint="1000">
+        <!-- bonusSkillPoint : 보너스 점수의 기본값 -->
+        <Rating min="100" max="200" chaserRatio="0.15" runawayRatio="0" />
+        <!-- min 이상, max 미만의 점수차이일때 , chaserRatio : 지고있는 팀에게 줄 점수 비율, runawayRatio : 이기고 있는 팀에게 줄 점수 비율 -->
+        <Rating min="200" max="500" chaserRatio="0.3" runawayRatio="0" />
+        <!-- 테스트 코드 입니다-->
+        <Rating min="500" max="700" chaserRatio="0.55" runawayRatio="0" />
+        <Rating min="700" max="1000" chaserRatio="0.75" runawayRatio="0" />
+        <!-- 수정하시면 됩니다-->
+        <Rating min="1000" max="10000" chaserRatio="1" runawayRatio="0" />
+      </BonusPoint>
+      <PveSkillList skillUseTimeSec="10" givenSkillPoint="1500" aliveSkillUISec="44">
+        <SkillList typeName="@BattleField:401" id="0">
+          <Skill index="21" icon="Icon_Status.plusattack_Tex" name="@BattleField:201" maxCount="1" desc="@BattleField:301" abnormalityId="999008300" spawnNpcTerritoryId="" usePlayPoint="775" targetType="allyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="22" icon="Icon_Skills.Healinglightlockon_Tex" name="@BattleField:202" maxCount="1" desc="@BattleField:302" abnormalityId="999008600" spawnNpcTerritoryId="" usePlayPoint="775" targetType="allyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="23" icon="Icon_Status.DarkRiftAreaDance_Tex" name="@BattleField:203" maxCount="1" desc="@BattleField:303" abnormalityId="999008700" spawnNpcTerritoryId="" usePlayPoint="775" targetType="allyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <!-- <Skill index="24" icon="Icon_Skills.handyslash_Tex" name="@BattleField:204" maxCount="1" desc="@BattleField:304" abnormalityId="999008800" spawnNpcTerritoryId="" usePlayPoint="775" targetType="allyPc" skillType="abnormalitySkill" invokeTimeSec="1"/> -->
+        </SkillList>
+        <SkillList typeName="@BattleField:402" id="1">
+          <Skill index="11" icon="Icon_Status.minusdefence_Tex" name="@BattleField:205" maxCount="1" desc="@BattleField:305" abnormalityId="999008400" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="12" icon="Icon_Status.plusmove_Tex" name="@BattleField:206" maxCount="1" desc="@BattleField:306" abnormalityId="999008900" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="13" icon="Icon_Status.minuscriticalresist_Tex" name="@BattleField:207" maxCount="1" desc="@BattleField:307" abnormalityId="999009000" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="14" icon="Icon_Status.minuscritical_Tex" name="@BattleField:208" maxCount="1" desc="@BattleField:308" abnormalityId="999009100" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="15" icon="Icon_Status.poisondown_Tex" name="@BattleField:221" maxCount="1" desc="@BattleField:321" abnormalityId="999009500" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="16" icon="Icon_Status.MindDomination_Tex" name="@BattleField:222" maxCount="1" desc="@BattleField:322" abnormalityId="999009600" spawnNpcTerritoryId="" usePlayPoint="775" targetType="enemyPc" skillType="abnormalitySkill" invokeTimeSec="1" />
+        </SkillList>
+        <SkillList typeName="@BattleField:403" id="2">
+          <Skill index="31" icon="Icon_Status.cruel_slayer_1_Tex" name="@BattleField:209" maxCount="1" desc="@BattleField:309" abnormalityId="" spawnBlueTeamSkill="11900043" spawnRedTeamSkill="11900045" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="30" lifeTime="12" />
+          <Skill index="32" icon="Icon_Status.cruel_slayer_1_Tex" name="@BattleField:210" maxCount="1" desc="@BattleField:310" abnormalityId="" spawnBlueTeamSkill="11900043" spawnRedTeamSkill="11900045" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="60" lifeTime="12" />
+          <Skill index="33" icon="Icon_Status.cruel_slayer_1_Tex" name="@BattleField:211" maxCount="1" desc="@BattleField:311" abnormalityId="" spawnBlueTeamSkill="11900043" spawnRedTeamSkill="11900045" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="90" lifeTime="12" />
+          <Skill index="34" icon="Icon_Status.cruel_slayer_1_Tex" name="@BattleField:212" maxCount="1" desc="@BattleField:312" abnormalityId="" spawnBlueTeamSkill="11900043" spawnRedTeamSkill="11900045" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="120" lifeTime="12" />
+          <Skill index="35" icon="Icon_Status.cruel_slayer_1_Tex" name="@BattleField:213" maxCount="1" desc="@BattleField:313" abnormalityId="" spawnBlueTeamSkill="11900043" spawnRedTeamSkill="11900045" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="150" lifeTime="12" />
+          <Skill index="36" icon="Icon_Status.cruel_slayer_2_Tex" name="@BattleField:214" maxCount="1" desc="@BattleField:314" abnormalityId="" spawnBlueTeamSkill="11900046" spawnRedTeamSkill="11900047" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="30" lifeTime="12" />
+          <Skill index="37" icon="Icon_Status.cruel_slayer_2_Tex" name="@BattleField:215" maxCount="1" desc="@BattleField:315" abnormalityId="" spawnBlueTeamSkill="11900046" spawnRedTeamSkill="11900047" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="60" lifeTime="12" />
+          <Skill index="38" icon="Icon_Status.cruel_slayer_2_Tex" name="@BattleField:216" maxCount="1" desc="@BattleField:316" abnormalityId="" spawnBlueTeamSkill="11900046" spawnRedTeamSkill="11900047" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="90" lifeTime="12" />
+          <Skill index="39" icon="Icon_Status.cruel_slayer_2_Tex" name="@BattleField:217" maxCount="1" desc="@BattleField:317" abnormalityId="" spawnBlueTeamSkill="11900046" spawnRedTeamSkill="11900047" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="120" lifeTime="12" />
+          <Skill index="40" icon="Icon_Status.cruel_slayer_2_Tex" name="@BattleField:218" maxCount="1" desc="@BattleField:318" abnormalityId="" spawnBlueTeamSkill="11900046" spawnRedTeamSkill="11900047" usePlayPoint="1000" targetType="allyNpc" skillType="spawnSkill" invokeTimeSec="150" lifeTime="12" />
+          <Skill index="101" icon="Icon_Status.diseaseup_Tex" name="@BattleField:219" maxCount="1" desc="@BattleField:319" abnormalityId="999009300" spawnNpcTerritoryId="" usePlayPoint="1050" targetType="allyNpc" skillType="abnormalitySkill" invokeTimeSec="1" />
+          <Skill index="102" icon="Icon_Status.DarkRiftRecovery_Tex" name="@BattleField:220" maxCount="1" desc="@BattleField:320" abnormalityId="999009200" spawnNpcTerritoryId="" usePlayPoint="1050" targetType="allyNpc" skillType="abnormalitySkill" invokeTimeSec="1" />
+        </SkillList>
+      </PveSkillList>
+      <RoundTerritoryData defaultLifeTimeSec="17">
+        <Round id="1">
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900029" redTerritoryId="11900011" spawnTerritoryTimeSec="1" territoryLifeTimeSec="19" />
+          <!--  원숭이 4 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="18" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900024" redTerritoryId="11900005" spawnTerritoryTimeSec="14" territoryLifeTimeSec="26" />
+          <!--  쿠차트 4 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="18" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900025" redTerritoryId="11900006" spawnTerritoryTimeSec="16" territoryLifeTimeSec="32" />
+          <!--  길리두_1 4 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="18" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900024" redTerritoryId="11900005" spawnTerritoryTimeSec="16" territoryLifeTimeSec="25" />
+          <!--  쿠차트 4 2턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900029" redTerritoryId="11900011" spawnTerritoryTimeSec="15" territoryLifeTimeSec="19" />
+          <!--  원숭이 4 2턴!-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="18" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900027" redTerritoryId="11900009" spawnTerritoryTimeSec="14" territoryLifeTimeSec="32" />
+          <!--  아크투스4 2턴!-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="13" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+        </Round>
+        <Round id="2">
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900028" redTerritoryId="11900010" spawnTerritoryTimeSec="1" territoryLifeTimeSec="40" />
+          <!--  프리온 약탈자 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900029" redTerritoryId="11900015" spawnTerritoryTimeSec="14" territoryLifeTimeSec="19" />
+          <!--  원숭이 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900025" redTerritoryId="11900006" spawnTerritoryTimeSec="13" territoryLifeTimeSec="32" />
+          <!--  길리두_1 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="15" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="14" territoryLifeTimeSec="44" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900032" redTerritoryId="11900014" spawnTerritoryTimeSec="13" territoryLifeTimeSec="50" />
+          <!--  시조새 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="12" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900051" redTerritoryId="11900050" spawnTerritoryTimeSec="2" territoryLifeTimeSec="40" needBroadcast="true" />
+          <!--  보너스 몬스터 "점수"  !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="11" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="14" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="15" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="13" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900027" redTerritoryId="11900009" spawnTerritoryTimeSec="16" territoryLifeTimeSec="19" />
+          <!--  아크투스 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="13" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="13" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="9" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="12" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+        </Round>
+        <Round id="3">
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="1" territoryLifeTimeSec="41" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="13" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900029" redTerritoryId="11900011" spawnTerritoryTimeSec="13" territoryLifeTimeSec="19" />
+          <!--  원숭이 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900033" redTerritoryId="11900015" spawnTerritoryTimeSec="14" territoryLifeTimeSec="32" />
+          <!--  길리두_2 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="15" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900026" redTerritoryId="11900008" spawnTerritoryTimeSec="16" territoryLifeTimeSec="41" />
+          <!--  쉐도우 쿠거 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900032" redTerritoryId="11900014" spawnTerritoryTimeSec="18" territoryLifeTimeSec="50" />
+          <!--  시조새 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="14" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="13" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900027" redTerritoryId="11900009" spawnTerritoryTimeSec="14" territoryLifeTimeSec="32" />
+          <!--  아크투스 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="6" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900049" redTerritoryId="11900048" spawnTerritoryTimeSec="6" territoryLifeTimeSec="40" needBroadcast="true" />
+          <!--  보너스 몬스터 "점수"  !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="14" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900036" redTerritoryId="11900018" spawnTerritoryTimeSec="13" territoryLifeTimeSec="95" />
+          <!--  바실리스크 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="13" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="13" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="15" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900042" redTerritoryId="11900041" spawnTerritoryTimeSec="14" territoryLifeTimeSec="16" />
+          <!--  코볼트 12 1턴 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900023" redTerritoryId="11900003" spawnTerritoryTimeSec="12" territoryLifeTimeSec="19" />
+          <!--  광포한 곰 4 !-->
+          <TerritoryData huntingZoneId="119" blueTerritoryId="11900053" redTerritoryId="11900052" spawnTerritoryTimeSec="11" territoryLifeTimeSec="13" />
+          <!--  스톤헤드 12 1턴 !-->
+        </Round>
+      </RoundTerritoryData>
+      <NpcKillPoint>
+        <KillPoint huntingZoneId="119" npcTemplateId="101" npcKillPoint="1050" abilityPoint="600" needBroadcast="true" />
+        <KillPoint huntingZoneId="119" npcTemplateId="102" npcKillPoint="1600" abilityPoint="1000" needBroadcast="true" />
+        <KillPoint huntingZoneId="119" npcTemplateId="103" npcKillPoint="1050" abilityPoint="500" needBroadcast="true" />
+        <KillPoint huntingZoneId="119" npcTemplateId="201" npcKillPoint="250" abilityPoint="50" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="202" npcKillPoint="430" abilityPoint="65" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="203" npcKillPoint="170" abilityPoint="35" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="204" npcKillPoint="200" abilityPoint="40" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="205" npcKillPoint="250" abilityPoint="50" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="206" npcKillPoint="250" abilityPoint="50" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="207" npcKillPoint="150" abilityPoint="30" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="208" npcKillPoint="150" abilityPoint="30" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="209" npcKillPoint="500" abilityPoint="80" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="210" npcKillPoint="180" abilityPoint="50" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="211" npcKillPoint="0" abilityPoint="700" needBroadcast="true" />
+        <KillPoint huntingZoneId="119" npcTemplateId="212" npcKillPoint="700" abilityPoint="0" needBroadcast="true" />
+        <KillPoint huntingZoneId="119" npcTemplateId="213" npcKillPoint="100" abilityPoint="10" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="214" npcKillPoint="100" abilityPoint="10" needBroadcast="false" />
+        <KillPoint huntingZoneId="119" npcTemplateId="301" npcKillPoint="3" abilityPoint="3" />
+        <KillPoint huntingZoneId="119" npcTemplateId="302" npcKillPoint="3" abilityPoint="3" />
+        <KillPoint huntingZoneId="119" npcTemplateId="303" npcKillPoint="" penaltyPoint="-100" abilityPoint="" />
+        <KillPoint huntingZoneId="119" npcTemplateId="304" npcKillPoint="" penaltyPoint="-100" abilityPoint="" />
+        <KillPoint huntingZoneId="119" npcTemplateId="305" npcKillPoint="" penaltyPoint="-100" abilityPoint="" />
+      </NpcKillPoint>
+      <BattleFieldAbnormality>
+        <AbnormalityId id="999008300" />
+        <AbnormalityId id="999008600" />
+        <AbnormalityId id="999008700" />
+        <AbnormalityId id="999008800" />
+        <AbnormalityId id="999008400" />
+        <AbnormalityId id="999008900" />
+        <AbnormalityId id="999009000" />
+        <AbnormalityId id="999009100" />
+      </BattleFieldAbnormality>
+    </SpecificData>
+    <Rivive>
+      <Step minDeathCount="0" maxDeathCount="1000" reviveSec="7" />
+    </Rivive>
+    <Revision>
+      <LevelRevision isLevelRevision="true" maxRevisionLevel="64" revisionLevel="65" />
+      <SkillRevision isSkillRevision="true" />
+    </Revision>
+    <!-- 이벤트 보상 추가 -->
+    <EventReward event="true">
+      <Condition win="3">
+        <Reward templateId="5173" min="1" max="1" />
+        <Message senderId="@Event:101" title="@Event:10101" text="@Event:10102" />
+      </Condition>
+      <Condition lose="3">
+        <Reward templateId="5174" min="1" max="1" />
+        <Message senderId="@Event:102" title="@Event:10201" text="@Event:10202" />
+      </Condition>
+      <PreventAbuse prevent="true">
+        <AbuseScore kill="0" death="0" asist="0" hold="0" prevent="true" />
+        <AbuseDisconnect prevent="true" />
+      </PreventAbuse>
+    </EventReward>
+    <EnableTimeList>
+      <EnableTime day="Monday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Tuesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Wednesday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Thursday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Friday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Saturday" openHour="0" closeHour="24" competitionPointReward="false" />
+      <EnableTime day="Sunday" openHour="0" closeHour="24" competitionPointReward="false" />
+    </EnableTimeList>
+  </BattleField>
+</BattleFieldData>

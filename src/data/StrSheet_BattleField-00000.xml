@@ -1,0 +1,104 @@
+<StrSheet_BattleField xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://vezel.dev/novadrop/dc/StrSheet_BattleField StrSheet_BattleField.xsd" xmlns="https://vezel.dev/novadrop/dc/StrSheet_BattleField">
+    <String id="1" string="In battle." />
+    <String id="2" string="Entering..." />
+    <String id="3" string="Standing by..." />
+    <String id="4" string="Commander" />
+    <String id="5" string="Resurrection Location" />
+    <String id="6" string="Meteor Skill" />
+    <String id="7" string="Valkyon Reward Coordinator" />
+    <String id="8" string="Reward based on battleground valor" />
+    <String id="9" string="I commend you on behalf of the Valkyon Federation for your victories on the field!" />
+    <String id="10" string="Targony Base" />
+    <String id="11" string="PvPvE in Targony Base" />
+    <String id="20" string="Fraywind Canyon" />
+    <String id="21" string="[Normal] Join alone or with a party of up to 5 members. You'll be grouped with others to fill out a 15-player raid. Score points by defeating opponents, monsters, and controlling pyres. Pyres generate points while burning blue. First side to reach the target score, wins." />
+    <String id="22" string="Central Pyre (1)" />
+    <String id="23" string="Southern Pyre (2)" />
+    <String id="24" string="Northern Pyre (3)" />
+    <String id="25" string="Your Base" />
+    <String id="26" string="Enemy's Base" />
+    <String id="27" string="Fraywind Canyon (15-player pre-made raid)" />
+    <String id="28" string="[RAID] Does not progress quests! Join with your own 15-player raid. Score points by defeating opponents, monsters, and controlling pyres. Pyres generate points while burning blue. First raid to reach the target score, wins." />
+    <String id="29" string="Fraywind Canyon—Equalized" />
+    <String id="290" string="[Equalized] Does not progress quests! Players enter the battle wearing superior equalized PvP gear. You can customize the gear and jewelry with crystals. Score points by defeating opponents, monsters, and controlling pyres. First side to reach the target score, wins." />
+    <String id="60" string="Battle Royale" />
+    <String id="61" string="In this Battleground, the first team to kill 70 enemies wins. If the time runs out before the final kill, the team with the most total kills wins. Rewards relie more on individual score than  team success." />
+    <String id="62" string="Destroying statues and monoliths bring special effects. Individual rankings determine the rewards. If your the gear level is below XXX, equalized gear is supplied." />
+    <String id="30" string="Champions' Skyring (Unranked)" />
+    <String id="31" string="Queue as a team to go up against other teams. Your Champions' Skyring personal ranking applies to both team and solo matches." />
+    <String id="32" string="Champions' Skyring (Team)" />
+    <String id="33" string="Champions' Skyring Mark V (Team)" />
+    <String id="34" string="Champions' Skyring Mark V—Equalized (Solo)" />
+    <String id="35" string="Queue with a 5 player party of all different classes and no more than one healing class. Defeat all opponents to win a round. First team to win two rounds is the victor. " />
+    <String id="36" string="Queue solo and be matched with a party. Defeat all opponents to win a round. First team to win two rounds is the victor." />
+    <String id="38" string="Champions' Skyring (Solo)" />
+    <String id="39" string="Queue solo to go up against other solos. All players' gear will be equalized while in Champions' Skyring. Your Champions' Skyring personal ranking applies to both team and solo matches." />
+    <String id="100" string="All" />
+    <String id="101" string="My Server" />
+    <String id="40" string="Corsairs' Stronghold" />
+    <String id="41" string="In round one, the defenders' goal is to protect the anchorstone for 15 minutes. In round two, the teams switch roles, and the attackers must destroy it before time runs out." />
+    <String id="42" string="Resurrection Location" />
+    <String id="43" string="Corsairs' Stronghold (20-player pre-made raid)" />
+    <String id="44" string="Join with your own 20-player raid. In round one, the defenders' goal is to protect the anchorstone for 15 minutes. In round two, the teams switch roles, and the attackers must destroy it before time runs out." />
+    <String id="45" string="Northern Pyre" />
+    <String id="46" string="Southern Pyre" />
+    <String id="50" string="Kumasylum" />
+    <String id="51" string="A team of federation players battles a trio of kumas players. The federation players must find and return three pieces of kumas rock candy within the time limit. The kumas players must stop them from reaching a loading dock with the rock candy." />
+    <String id="52" string="Resurrection Location" />
+    <String id="53" string="Rock Candy" />
+    <String id="54" string="Kumas Trio" />
+    <String id="55" string="Federation Team" />
+    <String id="90" string="Wintera Snowfield" />
+    <String id="91" string="Available only during Wintera!  You win the round when the entire opposing team is dead. Win two out of three rounds to win the battle. (Can be entered a maximum of 10 times per day)" />
+    <String id="92" string="[Seasonal Battleground] &#xA;&#xA;  Regular character skills cannot be used on the Wintera Snowfield. All characters have the same HP regardless of level. (HP recovery may vary depending on character level.)&#xA; Gather snowballs scattered on the snowfield. Use them to damage your opponents, open ice chests for more attacks, and open warm-up boxes for defenses." />
+    <String id="110" string="Coliseum" />
+    <String id="111" string="Compete against another team to defeat monsters and earn points. Leaders buy skills to buff teammates, debuff opponents, or harry opponents with more monsters." />
+    <String id="112" string="Coliseum—Equalized" />
+    <String id="201" string="Buff: Power" />
+    <String id="202" string="Buff: Recover HP" />
+    <String id="203" string="Buff: Attack Speed" />
+    <String id="204" string="Buff: Crit Factor" />
+    <String id="205" string="Debuff: Defense" />
+    <String id="206" string="Debuff: Movement Speed" />
+    <String id="207" string="Debuff: Knockdown Resistance" />
+    <String id="208" string="Debuff: Power" />
+    <String id="209" string="Summon: Kobold I" />
+    <String id="210" string="Summon: Kobold II" />
+    <String id="211" string="Summon: Kobold III" />
+    <String id="212" string="Summon: Kobold IV" />
+    <String id="213" string="Summon: Kobold V" />
+    <String id="214" string="Summon: Naga I" />
+    <String id="215" string="Summon: Naga II" />
+    <String id="216" string="Summon: Naga III" />
+    <String id="217" string="Summon: Naga IV" />
+    <String id="218" string="Summon: Naga V" />
+    <String id="219" string="Buff: Monsters HP" />
+    <String id="220" string="Buff: Monsters Power" />
+    <String id="221" string="Debuff: Life Leech" />
+    <String id="222" string="Debuff: Stun Wave" />
+    <String id="301" string="Your allies' Power increases by 15%." />
+    <String id="302" string="Your allies recover 8% of max HP every 10 seconds." />
+    <String id="303" string="Your allies' Attack Speed increases by 15%." />
+    <String id="304" string="Allies' Crit Factor increases by 50%." />
+    <String id="305" string="Decreases opponents' Defense by 15%." />
+    <String id="306" string="Decreases opponents' Movement Speed by 20%." />
+    <String id="307" string="Decreases opponents' resistance to knockdown by 20%." />
+    <String id="308" string="Decreases opponents' Power by 15%." />
+    <String id="309" string="Summons swift minions to the opponents' ring for 12 seconds 1 minute into the round. Failing to kill each minion will deduct 100 points." />
+    <String id="310" string="Summons swift minions to the opponents' ring for 12 seconds 2 minutes into the round. Failing to kill each minion will deduct 100 points." />
+    <String id="311" string="Summons swift minions to the opponents' ring for 12 seconds 3 minutes into the round. Failing to kill each minion will deduct 100 points." />
+    <String id="312" string="Summons swift minions to the opponents' ring for 12 seconds 4 minutes into the round. Failing to kill each minion will deduct 100 points." />
+    <String id="313" string="Summons swift minions to the opponents' ring for 12 seconds 5 minutes into the round. Failing to kill each minion will deduct 100 points." />
+    <String id="314" string="Summons powerful minions to the opponents' ring for 12 seconds 1 minute into the round. Failing to kill each minion will deduct 100 points." />
+    <String id="315" string="Summons powerful minions to the opponents' ring for 12 seconds 2 minutes into the round. Failing to kill each minion will deduct 100 points." />
+    <String id="316" string="Summons powerful minions to the opponents' ring for 12 seconds 3 minutes into the round. Failing to kill each minion will deduct 100 points." />
+    <String id="317" string="Summons powerful minions to the opponents' ring for 12 seconds 4 minutes into the round. Failing to kill each minion will deduct 100 points." />
+    <String id="318" string="Summons powerful minions to the opponents' ring for 12 seconds 5 minutes into the round. Failing to kill each minion will deduct 100 points." />
+    <String id="319" string="Increases max HP of all monsters spawned in opponent's ring by 25%." />
+    <String id="320" string="Increases power of all monsters spawned in opponent's ring by 30%." />
+    <String id="321" string="Ongoing damage decreases opponents' HP by 10% of max every 5 seconds." />
+    <String id="322" string="Stuns opponents every 15 seconds." />
+    <String id="401" string="Ally Buffs" />
+    <String id="402" string="Opponent Debuffs" />
+    <String id="403" string="Summon Minions" />
+</StrSheet_BattleField>
