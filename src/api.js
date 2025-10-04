@@ -442,6 +442,36 @@ function createApiServer(port = 3000) {
       });
     }
   );
+
+  // Clear a specific queue type (dungeons or battlegrounds)
+  v1Router.delete('/servers/:server/queues/:type',
+    validateApiKey,
+    validateServerName,
+    (req, res) => {
+      const { server, type } = req.params;
+      if (type !== 'dungeons' && type !== 'battlegrounds') {
+        logSecurityEvent('INVALID_QUEUE_TYPE', req, { type, fingerprint: req.fingerprint });
+        return res.status(400).end();
+      }
+
+      if (type === 'dungeons') {
+        queueManager.queues.dungeons.clear();
+        queueManager.playerCounters.dungeons.clear();
+        queueManager.sortedDungeonKeys = [];
+      } else {
+        queueManager.queues.bgs.clear();
+        queueManager.playerCounters.bgs.clear();
+      }
+
+      queueManager.lastUpdated = new Date();
+
+      res.json({
+        success: true,
+        message: `${type} queues cleared for server: ${server}`,
+        timestamp: new Date().toISOString()
+      });
+    }
+  );
   
   app.use('/api/v1', v1Router);
   

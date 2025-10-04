@@ -14,7 +14,16 @@ function shouldRetryDiscordError(err) {
   // Retry on rate limits and transient server/network conditions
   if (status === 429) return true;
   if (status === 500 || status === 502 || status === 503 || status === 504) return true;
-  if (/ECONNRESET|ETIMEDOUT|ENOTFOUND|EAI_AGAIN/i.test(msg)) return true;
+  
+  // Handle undici connection errors
+  if (code === 'UND_ERR_CONNECT_TIMEOUT') return true;
+  if (code === 'UND_ERR_SOCKET') return true;
+  if (code === 'UND_ERR_DESTROYED') return true;
+  if (code === 'UND_ERR_CLOSED') return true;
+  
+  // Handle network errors
+  if (/ECONNRESET|ETIMEDOUT|ENOTFOUND|EAI_AGAIN|ECONNREFUSED|EHOSTUNREACH/i.test(msg)) return true;
+  if (/Connect Timeout Error|Connection timeout|Socket timeout/i.test(msg)) return true;
 
   return false;
 }
