@@ -11,6 +11,11 @@ class QueueManager {
       dungeons: new Map(),
       bgs: new Map()
     };
+    // Track role splits per server:instance
+    this.rolesByKey = {
+      dungeons: new Map(),
+      bgs: new Map()
+    };
     this.lastUpdated = new Date();
     this.sortedDungeonKeys = [];
     this.playerCounters = {
@@ -23,7 +28,7 @@ class QueueManager {
   // matching_state === 1 → add `players` to queued for each instance
   // matching_state === 0 → subtract `players` from queued for each instance
   updateQueue(queueData) {
-    const { type, players, instances, server, matching_state } = queueData;
+    const { type, players, instances, server, matching_state, rolesCount } = queueData;
     
     // Determine queue type: 0 = dungeons, 1 = battlegrounds
     const queueType = type === 0 ? 'dungeons' : 'bgs';
@@ -47,15 +52,44 @@ class QueueManager {
 
       if (matching_state === 1) {
         this.queues[queueType].set(key, current + Number(players || 0));
+        // Merge incoming roles into the roles map (if provided)
+        if (rolesCount && typeof rolesCount === 'object') {
+          const rm = this.rolesByKey[queueType];
+          const cur = rm.get(key) || { tank: 0, healer: 0, dps: 0, unknown: 0 };
+          rm.set(key, {
+            tank: Math.max(0, (cur.tank || 0) + (Number(rolesCount.tank) || 0)),
+            healer: Math.max(0, (cur.healer || 0) + (Number(rolesCount.healer) || 0)),
+            dps: Math.max(0, (cur.dps || 0) + (Number(rolesCount.dps) || 0)),
+            unknown: Math.max(0, (cur.unknown || 0) + (Number(rolesCount.unknown) || 0)),
+          });
+        }
       } else {
         const newValue = Math.max(0, current - Number(players || 0));
         if (newValue > 0) {
           this.queues[queueType].set(key, newValue);
         } else {
           this.queues[queueType].delete(key);
+          // Also drop roles if zeroed
+          this.rolesByKey[queueType].delete(key);
+        }
+
+        // Subtract roles if provided
+        if (rolesCount && typeof rolesCount === 'object') {
+          const rm = this.rolesByKey[queueType];
+          const cur = rm.get(key) || { tank: 0, healer: 0, dps: 0, unknown: 0 };
+          const next = {
+            tank: Math.max(0, (cur.tank || 0) - (Number(rolesCount.tank) || 0)),
+            healer: Math.max(0, (cur.healer || 0) - (Number(rolesCount.healer) || 0)),
+            dps: Math.max(0, (cur.dps || 0) - (Number(rolesCount.dps) || 0)),
+            unknown: Math.max(0, (cur.unknown || 0) - (Number(rolesCount.unknown) || 0)),
+          };
+          const sum = (next.tank || 0) + (next.healer || 0) + (next.dps || 0) + (next.unknown || 0);
+          if (sum > 0) rm.set(key, next); else rm.delete(key);
         }
       }
     });
+
+    // Optionally, in the future, we could aggregate rolesCount per key.
     
     // Maintain player counters by server (players are per request, not per instance)
     {
@@ -99,11 +133,14 @@ class QueueManager {
   getQueues() {
     const mapEntryToObj = (key, queued) => {
       const [server, instance] = key.split(':');
+      const [typeKey] = this.queues.dungeons.has(key) ? ['dungeons'] : (this.queues.bgs.has(key) ? ['bgs'] : ['dungeons']);
+      const roles = this.rolesByKey[typeKey].get(key);
       return {
         server,
         instances: [instance],
         queued,
-        lastSeen: this.lastUpdated
+        lastSeen: this.lastUpdated,
+        rolesCount: roles
       };
     };
 
@@ -184,7 +221,18 @@ const queueDataSchema = Joi.object({
   players: Joi.number().integer().min(0).max(1000).required(),
   instances: Joi.array().items(Joi.string().max(50)).max(20).required(),
   server: Joi.string().max(50).required(),
-  matching_state: Joi.number().integer().min(0).max(1).required()
+  matching_state: Joi.number().integer().min(0).max(1).required(),
+  // Optional enrichments from proxy for roles/classes
+  playersDetail: Joi.array().items(Joi.object({
+    class: Joi.number().integer().min(0).max(255).allow(null),
+    role: Joi.number().integer().min(0).max(255).allow(null)
+  })).max(20).optional(),
+  rolesCount: Joi.object({
+    tank: Joi.number().integer().min(0),
+    healer: Joi.number().integer().min(0),
+    dps: Joi.number().integer().min(0),
+    unknown: Joi.number().integer().min(0)
+  }).optional()
 });
 
 const serverNameSchema = Joi.string().max(50).pattern(/^[a-zA-Z0-9_-]+$/);
@@ -438,36 +486,6 @@ function createApiServer(port = 3000) {
       res.json({ 
         success: true, 
         message: `All queues cleared for server: ${server}`,
-        timestamp: new Date().toISOString()
-      });
-    }
-  );
-
-  // Clear a specific queue type (dungeons or battlegrounds)
-  v1Router.delete('/servers/:server/queues/:type',
-    validateApiKey,
-    validateServerName,
-    (req, res) => {
-      const { server, type } = req.params;
-      if (type !== 'dungeons' && type !== 'battlegrounds') {
-        logSecurityEvent('INVALID_QUEUE_TYPE', req, { type, fingerprint: req.fingerprint });
-        return res.status(400).end();
-      }
-
-      if (type === 'dungeons') {
-        queueManager.queues.dungeons.clear();
-        queueManager.playerCounters.dungeons.clear();
-        queueManager.sortedDungeonKeys = [];
-      } else {
-        queueManager.queues.bgs.clear();
-        queueManager.playerCounters.bgs.clear();
-      }
-
-      queueManager.lastUpdated = new Date();
-
-      res.json({
-        success: true,
-        message: `${type} queues cleared for server: ${server}`,
         timestamp: new Date().toISOString()
       });
     }

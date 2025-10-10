@@ -49,7 +49,22 @@ function sumQueued(items) {
   }, 0);
 }
 
-function formatList(items) {
+function roleSuffix(it, { isBG = false } = {}) {
+  const r = it && it.rolesCount;
+  if (!r) return '';
+  const h = (r.healer ?? 0), d = (r.dps ?? 0);
+  if (isBG) {
+    const sumHD = h + d;
+    if (sumHD <= 0) return '';
+    return `  [H/D: ${h}/${d}]`;
+  }
+  const t = (r.tank ?? 0);
+  const sum = t + h + d;
+  if (sum <= 0) return '';
+  return `  [T/H/D: ${t}/${h}/${d}]`;
+}
+
+function formatList(items, { isBG = false } = {}) {
   if (!Array.isArray(items) || items.length === 0) return '`no queues`';
 
   // Build a neat table-like list in a code block, truncated to fit field limits.
@@ -65,7 +80,7 @@ function formatList(items) {
     return displayNames.map((name) => {
       const left = name.length > 38 ? name.slice(0, 37) + '…' : name;
       const padded = left.padEnd(40, ' ');
-      return `${padded} ${qty}${waitTxt ? `  (${waitTxt})` : ''}`;
+      return `${padded} ${qty}${waitTxt ? `  (${waitTxt})` : ''}${roleSuffix(it, { isBG })}`;
     });
   });
 
@@ -132,7 +147,7 @@ function buildEmbed(data) {
     fields: [
       { name: `🏰 Dungeons — Endgame: ${endCount}`, value: endTxt, inline: false },
       { name: `🏰 Dungeons — Leveling: ${lvlCount}`, value: lvlTxt, inline: false },
-      { name: `⚔️ Battlegrounds — Players: ${totalPlayersB}`, value: formatList(bgs), inline: false },
+      { name: `⚔️ Battlegrounds — Players: ${totalPlayersB}`, value: formatList(bgs, { isBG: true }), inline: false },
     ],
     footer: { text: 'Use !track to auto-update' },
   };

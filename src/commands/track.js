@@ -16,8 +16,8 @@ module.exports = function createTrackCommand({fetchQueues, buildEmbed, messaging
                 const sent = await messaging.send(message.channel, {embeds: [embed]});
                 if (!sent) return;
 
-                tracking.start(sent, fetchQueues);
-                await messaging.reply(message, 'Tracking this message. It will update every 1 minute.').catch(() => {
+                tracking.start(sent, fetchQueues, 10_000);
+                await messaging.reply(message, 'Tracking this message. It will update every 10 seconds.').catch(() => {
                 });
             } catch (err) {
                 console.error('track command failed', err);
@@ -25,5 +25,3 @@ module.exports = function createTrackCommand({fetchQueues, buildEmbed, messaging
         }
     };
 };
-
-
