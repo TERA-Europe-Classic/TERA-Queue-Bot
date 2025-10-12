@@ -17,7 +17,7 @@ async function fetchQueues() {
         rejectUnauthorized: process.env.NODE_ENV === 'production' // Only reject in production
       })
     };
-    
+
     const [dungeonRes, bgRes] = await Promise.all([
       axios.get(DUNGEON_URL, axiosConfig),
       axios.get(BG_URL, axiosConfig)
@@ -61,11 +61,13 @@ function formatList(items) {
     const wait = it.avgWait || it.average || it.wait || null;
     const qty = queued !== undefined ? queued.toString() : '-';
     const waitTxt = wait ? String(wait) : '';
+    const rolesTxt = it.roles ? ` [🛡️:${it.roles.TANK || 0} ⚔️:${it.roles.DD || 0} 🪄:${it.roles.HEAL || 0}]` : '';
 
     return displayNames.map((name) => {
       const left = name.length > 38 ? name.slice(0, 37) + '…' : name;
-      const padded = left.padEnd(40, ' ');
-      return `${padded} ${qty}${waitTxt ? `  (${waitTxt})` : ''}`;
+      const padded = left.padEnd(30, ' ');
+
+      return `${padded} ${qty}${waitTxt ? `  (${waitTxt})` : ''}${rolesTxt}`;
     });
   });
 
@@ -117,7 +119,7 @@ function dynamicColor(totalQueued) {
 }
 
 function buildEmbed(data) {
-  const { dungeons, bgs, playersTotals } = data;
+  const { dungeons, bgs, playersTotals, roles } = data;
   const { endTxt, lvlTxt, endCount, lvlCount } = formatDungeonSections(dungeons);
   const totalDQueues = endCount + lvlCount;
   const totalBQueues = sumQueued(bgs);
