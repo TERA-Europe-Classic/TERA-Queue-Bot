@@ -64,10 +64,24 @@ function formatList(items) {
     const rolesTxt = it.roles ? ` [🛡️:${it.roles.TANK || 0} ⚔️:${it.roles.DD || 0} 🪄:${it.roles.HEAL || 0}]` : '';
 
     return displayNames.map((name) => {
-      const left = name.length > 38 ? name.slice(0, 37) + '…' : name;
-      const padded = left.padEnd(30, ' ');
-
-      return `${padded} ${qty}${waitTxt ? `  (${waitTxt})` : ''}${rolesTxt}`;
+      // Fixed-width approach for consistent alignment
+      const NAME_WIDTH = 45; // Fixed width for name column
+      const QTY_WIDTH = 3; // Fixed width for quantity column
+      const WAIT_WIDTH = 8; // Fixed width for wait time column
+      
+      // Truncate name to fit in fixed width
+      const truncatedName = name.length > NAME_WIDTH ? name.slice(0, NAME_WIDTH - 1) + '…' : name;
+      const paddedName = truncatedName.padEnd(NAME_WIDTH, ' ');
+      
+      // Format quantity with fixed width
+      const paddedQty = qty.padEnd(QTY_WIDTH, ' ');
+      
+      // Format wait time with fixed width
+      const waitDisplay = waitTxt ? `(${waitTxt})` : '';
+      const paddedWait = waitDisplay.padEnd(WAIT_WIDTH, ' ');
+      
+      // Build the line with minimal spacing - role count close to quantity
+      return `${paddedName} ${paddedQty}${waitDisplay ? ' ' + paddedWait : ''}${rolesTxt}`;
     });
   });
 
