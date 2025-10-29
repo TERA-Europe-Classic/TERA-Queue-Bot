@@ -30,9 +30,25 @@ class QueueManager {
     if (roles && typeof roles === 'object') {
       const roleCounts = {TANK: 0, DD: 0, HEAL: 0};
 
-      if (typeof roles[RolesEnum.TANK] === 'number') roleCounts.TANK = roles[RolesEnum.TANK];
-      if (typeof roles[RolesEnum.DD] === 'number') roleCounts.DD = roles[RolesEnum.DD];
-      if (typeof roles[RolesEnum.HEAL] === 'number') roleCounts.HEAL = roles[RolesEnum.HEAL];
+      // Handle both numeric keys (0, 1, 2) and string keys (TANK, DD, HEAL)
+      if (typeof roles[RolesEnum.TANK] === 'number') {
+        roleCounts.TANK = roles[RolesEnum.TANK];
+      } else if (typeof roles.TANK === 'number') {
+        roleCounts.TANK = roles.TANK;
+      }
+      
+      if (typeof roles[RolesEnum.DD] === 'number') {
+        roleCounts.DD = roles[RolesEnum.DD];
+      } else if (typeof roles.DD === 'number') {
+        roleCounts.DD = roles.DD;
+      }
+      
+      if (typeof roles[RolesEnum.HEAL] === 'number') {
+        roleCounts.HEAL = roles[RolesEnum.HEAL];
+      } else if (typeof roles.HEAL === 'number') {
+        roleCounts.HEAL = roles.HEAL;
+      }
+      
       if (DEBUG_BFP) {
         console.log(`QueueManager: Added ${players} players to ${key} with roles ${JSON.stringify(roleCounts)}`);
       }
@@ -51,7 +67,9 @@ class QueueManager {
   // matching_state === 1 → add `players` to queued for each instance
   // matching_state === 0 → subtract `players` from queued for each instance
   updateQueue(queueData) {
-    const { type, players, instances, server, matching_state, roles } = queueData;
+    const { type, players, instances, server, matching_state, roles, role } = queueData;
+    // Accept both 'role' and 'roles' field names for backwards compatibility
+    const normalizedRoles = roles || role;
 
     // Determine queue type: 0 = dungeons, 1 = battlegrounds
     const queueType = type === 0 ? 'dungeons' : 'bgs';
@@ -75,21 +93,28 @@ class QueueManager {
 
       if (matching_state === 1) {
         this.queues[queueType].set(key, current + Number(players || 0));
-        this.roleCount(roles, players, key, DEBUG_BFP);
+        this.roleCount(normalizedRoles, players, key, DEBUG_BFP);
       } else {
         const newValue = Math.max(0, current - Number(players || 0));
         if (newValue > 0) {
           this.queues[queueType].set(key, newValue);
 
           let revers_roles = {};
-          if (roles && typeof roles === 'object') {
-            revers_roles[RolesEnum.TANK] = -Math.abs(roles[RolesEnum.TANK] || 0);
-            revers_roles[RolesEnum.DD] = -Math.abs(roles[RolesEnum.DD] || 0);
-            revers_roles[RolesEnum.HEAL] = -Math.abs(roles[RolesEnum.HEAL] || 0);
+          if (normalizedRoles && typeof normalizedRoles === 'object') {
+            // Handle both numeric keys (0, 1, 2) and string keys (TANK, DD, HEAL)
+            const tankCount = normalizedRoles[RolesEnum.TANK] ?? normalizedRoles.TANK ?? 0;
+            const ddCount = normalizedRoles[RolesEnum.DD] ?? normalizedRoles.DD ?? 0;
+            const healCount = normalizedRoles[RolesEnum.HEAL] ?? normalizedRoles.HEAL ?? 0;
+            revers_roles[RolesEnum.TANK] = -Math.abs(tankCount);
+            revers_roles[RolesEnum.DD] = -Math.abs(ddCount);
+            revers_roles[RolesEnum.HEAL] = -Math.abs(healCount);
           }
           this.roleCount(revers_roles, players, key, DEBUG_BFP);
         } else {
           this.queues[queueType].delete(key);
+          // Also delete role counts when queue is deleted
+          const roleKey = `${key}:roles`;
+          this.queues.rolePerInstance.delete(roleKey);
         }
       }
     });
@@ -181,10 +206,30 @@ class QueueManager {
     };
   }
 
+  _clearRoleCountsForType(queueType, server) {
+    // Clear role counts for all instances of a specific queue type
+    // Role keys are stored as `${server}:${instance}:roles`
+    // Collect instance IDs from the queue map before clearing it
+    const instancesToClear = [];
+    for (const [queueKey] of this.queues[queueType]) {
+      const [queueServer, instance] = queueKey.split(':');
+      if (queueServer === server) {
+        instancesToClear.push(instance);
+      }
+    }
+    
+    // Delete role keys for these instances
+    instancesToClear.forEach(instance => {
+      const roleKey = `${server}:${instance}:roles`;
+      this.queues.rolePerInstance.delete(roleKey);
+    });
+  }
+
   clearAll() {
     this.queues = {
       dungeons: new Map(),
-      bgs: new Map()
+      bgs: new Map(),
+      rolePerInstance: new Map()
     };
     this.lastUpdated = new Date();
     this.sortedDungeonKeys = [];
@@ -239,10 +284,22 @@ const queueDataSchema = Joi.object({
   instances: Joi.array().items(Joi.string().max(50)).max(20).required(),
   server: Joi.string().max(50).required(),
   matching_state: Joi.number().integer().min(0).max(1).required(),
+  // Accept both 'roles' and 'role' field names
   roles: Joi.object().keys({
-    0: Joi.number().integer().min(0).max(1000).required(), // tanks
-    1: Joi.number().integer().min(0).max(1000).required(), // dps
-    2: Joi.number().integer().min(0).max(1000).required(), // healers
+    0: Joi.number().integer().min(0).max(1000).optional(), // tanks (numeric key)
+    1: Joi.number().integer().min(0).max(1000).optional(), // dps (numeric key)
+    2: Joi.number().integer().min(0).max(1000).optional(), // healers (numeric key)
+    TANK: Joi.number().integer().min(0).max(1000).optional(), // tanks (string key)
+    DD: Joi.number().integer().min(0).max(1000).optional(), // dps (string key)
+    HEAL: Joi.number().integer().min(0).max(1000).optional(), // healers (string key)
+  }).optional(),
+  role: Joi.object().keys({
+    0: Joi.number().integer().min(0).max(1000).optional(), // tanks (numeric key)
+    1: Joi.number().integer().min(0).max(1000).optional(), // dps (numeric key)
+    2: Joi.number().integer().min(0).max(1000).optional(), // healers (numeric key)
+    TANK: Joi.number().integer().min(0).max(1000).optional(), // tanks (string key)
+    DD: Joi.number().integer().min(0).max(1000).optional(), // dps (string key)
+    HEAL: Joi.number().integer().min(0).max(1000).optional(), // healers (string key)
   }).optional(),
 });
 
@@ -514,10 +571,14 @@ function createApiServer(port = 3000) {
       }
 
       if (type === 'dungeons') {
+        // Clear role counts BEFORE clearing the queue map
+        queueManager._clearRoleCountsForType('dungeons', server);
         queueManager.queues.dungeons.clear();
         queueManager.playerCounters.dungeons.clear();
         queueManager.sortedDungeonKeys = [];
       } else {
+        // Clear role counts BEFORE clearing the queue map
+        queueManager._clearRoleCountsForType('bgs', server);
         queueManager.queues.bgs.clear();
         queueManager.playerCounters.bgs.clear();
       }
