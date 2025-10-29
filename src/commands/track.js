@@ -5,10 +5,10 @@ module.exports = function createTrackCommand({fetchQueues, buildEmbed, messaging
         name: 'track',
         async execute(message) {
             // check if user has permission to manage channels
-            if (!message.member.permissions.has(PermissionsBitField.Flags.ManageChannels)) {
-                await messaging.reply(message, 'You do not have permission to use this command.');
-                throw new Error(`User ${message.author.tag} attempted to use track command without permission.`);
-            }
+            // if (!message.member.permissions.has(PermissionsBitField.Flags.ManageChannels)) {
+            //     await messaging.reply(message, 'You do not have permission to use this command.');
+            //     throw new Error(`User ${message.author.tag} attempted to use track command without permission.`);
+            // }
 
             try {
                 const data = await fetchQueues();
