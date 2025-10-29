@@ -49,7 +49,7 @@ function sumQueued(items) {
   }, 0);
 }
 
-function formatList(items) {
+function formatList(items, nameWidth = null) {
   if (!Array.isArray(items) || items.length === 0) return '`no queues`';
 
   // First pass: collect all display names and calculate dynamic width based on active items
@@ -72,26 +72,30 @@ function formatList(items) {
     };
   });
 
-  // Find the longest name among active items
-  const allNames = processedItems
-    .filter(item => !item.isString)
-    .flatMap(item => item.displayNames);
-  const maxNameLength = allNames.length > 0 ? Math.max(...allNames.map(n => n.length)) : 0;
-
-  // Calculate optimal width: use longest active name, but cap at reasonable limit
-  // Discord code blocks typically wrap around 70-80 chars, so we need to leave room for qty + roles
+  // Calculate width: use provided width, or calculate from this section's items
   const MAX_LINE_WIDTH = 75; // Safe limit for Discord code blocks
   const QTY_WIDTH = 3;
   const WAIT_WIDTH = 8;
   const ROLE_TEXT_LENGTH = 30; // Approximate length of role count text [🛡️:XX ⚔️:XX ✨:XX]
-  const SPACING_AFTER_NAME = 1; // Space between name and qty
+  const SPACING_AFTER_NAME = 2; // Space between name and qty
   const SPACING_AFTER_QTY = 1; // Space between qty and wait/roles
   
-  // Calculate available width for name (worst case: with wait time)
-  // Format: name + space + qty + space + wait + roles
-  const worstCaseWidth = SPACING_AFTER_NAME + QTY_WIDTH + SPACING_AFTER_QTY + WAIT_WIDTH + ROLE_TEXT_LENGTH;
-  const availableNameWidth = MAX_LINE_WIDTH - worstCaseWidth;
-  const NAME_WIDTH = Math.min(maxNameLength, availableNameWidth);
+  let NAME_WIDTH;
+  if (nameWidth !== null) {
+    // Use provided global width
+    NAME_WIDTH = nameWidth;
+  } else {
+    // Calculate from this section's items
+    const allNames = processedItems
+      .filter(item => !item.isString)
+      .flatMap(item => item.displayNames);
+    const maxNameLength = allNames.length > 0 ? Math.max(...allNames.map(n => n.length)) : 0;
+    
+    // Calculate available width for name (worst case: with wait time)
+    const worstCaseWidth = SPACING_AFTER_NAME + QTY_WIDTH + SPACING_AFTER_QTY + WAIT_WIDTH + ROLE_TEXT_LENGTH;
+    const availableNameWidth = MAX_LINE_WIDTH - worstCaseWidth;
+    NAME_WIDTH = Math.min(maxNameLength, availableNameWidth);
+  }
 
   // Second pass: format using calculated width
   const rows = processedItems.flatMap((item) => {
@@ -109,8 +113,8 @@ function formatList(items) {
       const waitDisplay = item.waitTxt ? `(${item.waitTxt})` : '';
       const paddedWait = waitDisplay.padEnd(WAIT_WIDTH, ' ');
       
-      // Build the line with minimal spacing - role count close to quantity
-      const spaceAfterName = ' ';
+      // Build the line with spacing - extra padding between name and qty
+      const spaceAfterName = '  '; // Two spaces for better readability
       const spaceAfterQty = waitDisplay ? ' ' : '';
       return `${paddedName}${spaceAfterName}${paddedQty}${spaceAfterQty}${waitDisplay ? paddedWait : ''}${item.rolesTxt}`;
     });
@@ -136,7 +140,7 @@ function sortByIlvlThenLevelThenId(items) {
   });
 }
 
-function formatDungeonSections(items) {
+function formatDungeonSections(items, nameWidth = null) {
   if (!Array.isArray(items) || items.length === 0) {
     return { endTxt: '`no queues`', lvlTxt: '`no queues`', endCount: 0, lvlCount: 0 };
   }
@@ -150,8 +154,8 @@ function formatDungeonSections(items) {
   const endgame = sortByIlvlThenLevelThenId(withCat.filter((x) => x._category === 'endgame'));
   const leveling = sortByIlvlThenLevelThenId(withCat.filter((x) => x._category !== 'endgame'));
 
-  const endTxt = endgame.length ? formatList(endgame) : '`none`';
-  const lvlTxt = leveling.length ? formatList(leveling) : '`none`';
+  const endTxt = endgame.length ? formatList(endgame, nameWidth) : '`none`';
+  const lvlTxt = leveling.length ? formatList(leveling, nameWidth) : '`none`';
 
   return { endTxt, lvlTxt, endCount: sumQueued(endgame), lvlCount: sumQueued(leveling) };
 }
@@ -165,7 +169,49 @@ function dynamicColor(totalQueued) {
 
 function buildEmbed(data) {
   const { dungeons, bgs, playersTotals, roles } = data;
-  const { endTxt, lvlTxt, endCount, lvlCount } = formatDungeonSections(dungeons);
+  
+  // Calculate global width across ALL sections (dungeons endgame, leveling, and battlegrounds)
+  const MAX_LINE_WIDTH = 75;
+  const QTY_WIDTH = 3;
+  const WAIT_WIDTH = 8;
+  const ROLE_TEXT_LENGTH = 30;
+  const SPACING_AFTER_NAME = 1;
+  const SPACING_AFTER_QTY = 1;
+  const worstCaseWidth = SPACING_AFTER_NAME + QTY_WIDTH + SPACING_AFTER_QTY + WAIT_WIDTH + ROLE_TEXT_LENGTH;
+  const availableNameWidth = MAX_LINE_WIDTH - worstCaseWidth;
+  
+  // Collect all names from all active sections
+  const allSectionNames = [];
+  
+  // Dungeons (endgame and leveling)
+  if (Array.isArray(dungeons) && dungeons.length > 0) {
+    dungeons.forEach(item => {
+      const names = resolveNames(item?.instances, true);
+      if (names.length > 0) {
+        allSectionNames.push(...names);
+      }
+    });
+  }
+  
+  // Battlegrounds
+  if (Array.isArray(bgs) && bgs.length > 0) {
+    bgs.forEach(item => {
+      const names = resolveNames(item?.instances, false); // BGs don't use level prefix
+      if (names.length > 0) {
+        allSectionNames.push(...names);
+      }
+    });
+  }
+  
+  // Calculate global max name length
+  const globalMaxNameLength = allSectionNames.length > 0 ? Math.max(...allSectionNames.map(n => n.length)) : 0;
+  // Use global width if we have items, otherwise use available width as default
+  const globalNameWidth = allSectionNames.length > 0 
+    ? Math.min(globalMaxNameLength, availableNameWidth)
+    : availableNameWidth;
+  
+  // Use global width for all sections
+  const { endTxt, lvlTxt, endCount, lvlCount } = formatDungeonSections(dungeons, globalNameWidth);
   const totalDQueues = endCount + lvlCount;
   const totalBQueues = sumQueued(bgs);
   const totalPlayersD = playersTotals?.dungeons ?? totalDQueues;
@@ -179,7 +225,7 @@ function buildEmbed(data) {
     fields: [
       { name: `🏰 Dungeons — Endgame: ${endCount}`, value: endTxt, inline: false },
       { name: `🏰 Dungeons — Leveling: ${lvlCount}`, value: lvlTxt, inline: false },
-      { name: `⚔️ Battlegrounds — Players: ${totalPlayersB}`, value: formatList(bgs), inline: false },
+      { name: `⚔️ Battlegrounds — Players: ${totalPlayersB}`, value: formatList(bgs, globalNameWidth), inline: false },
     ],
     footer: { text: 'Use !track to auto-update' },
   };
