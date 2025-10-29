@@ -281,7 +281,7 @@ const logSecurityEvent = (event, req, details = {}) => {
 const queueDataSchema = Joi.object({
   type: Joi.number().integer().min(0).max(1).required(),
   players: Joi.number().integer().min(0).max(1000).required(),
-  instances: Joi.array().items(Joi.string().max(50)).max(20).required(),
+  instances: Joi.array().items(Joi.string().max(50)).max(50).required(),
   server: Joi.string().max(50).required(),
   matching_state: Joi.number().integer().min(0).max(1).required(),
   // Accept both 'roles' and 'role' field names
