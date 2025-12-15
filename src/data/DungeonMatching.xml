@@ -44,6 +44,7 @@
   <SupportMatching id="9999" dungeonMinLevel="60" dungeonMaxLevel="65" increaseSupportUserTime="60" maxSupportUser="2">
 		<MatchingDungeon id="9087" name="Bastion of Lok"/>
 		<MatchingDungeon id="9088" name="Sinestral Manor"/>
+		<MatchingDungeon id="9979" name="Saravash's Ascent"/>
 		<MatchingDungeon id="9089" name="Cultists' Refuge"/>
 		<MatchingDungeon id="9071" name="Necromancer Tomb"/>
 		<MatchingDungeon id="9072" name="Golden Labyrinth"/> 
