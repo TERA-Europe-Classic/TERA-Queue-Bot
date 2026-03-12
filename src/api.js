@@ -400,12 +400,11 @@ function createApiServer(port = 3000) {
     }
 
     const providedKey = authHeader.substring(7);
+    const providedKeyBuffer = Buffer.from(providedKey, 'utf8');
+    const expectedKeyBuffer = Buffer.from(expectedApiKey, 'utf8');
 
-    // Constant-time comparison to prevent timing attacks
-    const isValid = crypto.timingSafeEqual(
-      Buffer.from(providedKey, 'utf8'),
-      Buffer.from(expectedApiKey, 'utf8')
-    );
+    const isValid = providedKeyBuffer.length === expectedKeyBuffer.length
+      && crypto.timingSafeEqual(providedKeyBuffer, expectedKeyBuffer);
 
     if (!isValid) {
       logSecurityEvent('INVALID_API_KEY', req, {
@@ -605,7 +604,8 @@ function createApiServer(port = 3000) {
   });
 
   // Start HTTP server only
-  app.listen(port, () => {});
+  const server = app.listen(port, () => {});
+  app.server = server;
 
   return app;
 }
