@@ -55,7 +55,13 @@ Discord bot that displays and tracks TERA queue status for Dungeons and Battlegr
    LOG_SECURITY_EVENTS=true
    NODE_ENV=production
    ```
-4. Start the bot (this will start both the Discord bot and API server):
+4. Run the local validation suite before opening a PR:
+   ```bash
+   npm run check:syntax
+   npm test
+   npm run ci:startup
+   ```
+5. Start the bot (this will start both the Discord bot and API server):
    ```bash
    npm start
    ```
@@ -123,6 +129,11 @@ In any text channel where the bot has access:
 - The API server runs on the same process as the Discord bot for simplicity.
 - HTTPS server with SSL certificate support (falls back to HTTP if certificates not found).
 - Comprehensive security middleware including rate limiting, CORS, and API key authentication.
+
+## CI coverage
+- PR CI runs only on `pull_request` via GitHub Actions.
+- The workflow performs real dependency install (`npm ci`), JavaScript syntax validation, the Node test suite, and a startup sanity check that boots the internal API and exercises queue endpoints.
+- This repo does **not** currently ship an ESLint config or a build step, so the CI intentionally does not pretend those checks exist.
 
 ## Troubleshooting
 - If the bot does not respond to commands:
