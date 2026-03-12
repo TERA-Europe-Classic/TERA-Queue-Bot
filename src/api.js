@@ -11,12 +11,20 @@ const RolesEnum = {
   HEAL: 2
 }
 
+// Timeout for considering an instance as "active" (30 minutes)
+const ACTIVE_INSTANCE_TIMEOUT = 30 * 60 * 1000;
+
 class QueueManager {
   constructor() {
     this.queues = {
       dungeons: new Map(),
       bgs: new Map(),
       rolePerInstance: new Map()
+    };
+    // Track active/in-progress instances
+    this.activeInstances = {
+      dungeons: new Map(), // key -> { timestamp, players }
+      bgs: new Map()
     };
     this.lastUpdated = new Date();
     this.sortedDungeonKeys = [];
@@ -60,6 +68,57 @@ class QueueManager {
         DD: currentRoles.DD + roleCounts.DD,
         HEAL: currentRoles.HEAL + roleCounts.HEAL,
       });
+    }
+  }
+
+  // Mark an instance as active (players are inside)
+  markInstanceActive(queueType, server, instance, players) {
+    const key = `${server}:${instance}`;
+    this.activeInstances[queueType].set(key, {
+      timestamp: Date.now(),
+      players: Number(players || 0)
+    });
+  }
+
+  // Update active instance timestamp (heartbeat)
+  updateInstanceHeartbeat(queueType, server, instance) {
+    const key = `${server}:${instance}`;
+    const existing = this.activeInstances[queueType].get(key);
+    if (existing) {
+      this.activeInstances[queueType].set(key, {
+        ...existing,
+        timestamp: Date.now()
+      });
+    }
+  }
+
+  // Get active instances that haven't timed out
+  getActiveInstances(queueType) {
+    const now = Date.now();
+    const active = [];
+    for (const [key, data] of this.activeInstances[queueType]) {
+      if (now - data.timestamp < ACTIVE_INSTANCE_TIMEOUT) {
+        const [server, instance] = key.split(':');
+        active.push({
+          server,
+          instances: [instance],
+          players: data.players,
+          lastSeen: new Date(data.timestamp)
+        });
+      } else {
+        // Clean up expired entry
+        this.activeInstances[queueType].delete(key);
+      }
+    }
+    return active;
+  }
+
+  // Clear active instances for a server
+  clearActiveInstances(queueType, server) {
+    for (const key of this.activeInstances[queueType].keys()) {
+      if (key.startsWith(`${server}:`)) {
+        this.activeInstances[queueType].delete(key);
+      }
     }
   }
 
@@ -201,6 +260,8 @@ class QueueManager {
     return {
       dungeons,
       bgs,
+      activeDungeons: this.getActiveInstances('dungeons'),
+      activeBgs: this.getActiveInstances('bgs'),
       playersTotals,
       lastUpdated: this.lastUpdated
     };
@@ -230,6 +291,10 @@ class QueueManager {
       dungeons: new Map(),
       bgs: new Map(),
       rolePerInstance: new Map()
+    };
+    this.activeInstances = {
+      dungeons: new Map(),
+      bgs: new Map()
     };
     this.lastUpdated = new Date();
     this.sortedDungeonKeys = [];
@@ -515,6 +580,29 @@ function createApiServer(port = 3000) {
       logSecurityEvent('INVALID_QUEUE_TYPE', req, {type, fingerprint: req.fingerprint});
       res.status(400).end();
     }
+  });
+
+  // Get active (ongoing) instances
+  v1Router.get('/servers/:server/queues/:type/active', validateServerName, (req, res) => {
+    const { server, type } = req.params;
+    const queues = queueManager.getQueues();
+
+    let activeData;
+    if (type === 'dungeons') {
+      activeData = queues.activeDungeons || [];
+    } else if (type === 'battlegrounds') {
+      activeData = queues.activeBgs || [];
+    } else {
+      logSecurityEvent('INVALID_QUEUE_TYPE', req, {type, fingerprint: req.fingerprint});
+      return res.status(400).end();
+    }
+
+    res.json({
+      server,
+      type: type,
+      data: activeData,
+      timestamp: new Date().toISOString()
+    });
   });
 
   v1Router.post('/servers/:server/queues',

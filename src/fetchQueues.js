@@ -7,6 +7,8 @@ const SERVER_NAME = process.env.SERVER_NAME || 'Yurian';
 
 const DUNGEON_URL = `${API_BASE_URL}/api/v1/servers/${SERVER_NAME}/queues/dungeons`;
 const BG_URL = `${API_BASE_URL}/api/v1/servers/${SERVER_NAME}/queues/battlegrounds`;
+const ACTIVE_DUNGEON_URL = `${API_BASE_URL}/api/v1/servers/${SERVER_NAME}/queues/dungeons/active`;
+const ACTIVE_BG_URL = `${API_BASE_URL}/api/v1/servers/${SERVER_NAME}/queues/battlegrounds/active`;
 
 async function fetchQueues() {
   try {
@@ -18,18 +20,24 @@ async function fetchQueues() {
       })
     };
 
-    const [dungeonRes, bgRes] = await Promise.all([
+    const [dungeonRes, bgRes, activeDungeonRes, activeBgRes] = await Promise.all([
       axios.get(DUNGEON_URL, axiosConfig),
-      axios.get(BG_URL, axiosConfig)
+      axios.get(BG_URL, axiosConfig),
+      axios.get(ACTIVE_DUNGEON_URL, axiosConfig).catch(() => ({ data: { data: [] } })),
+      axios.get(ACTIVE_BG_URL, axiosConfig).catch(() => ({ data: { data: [] } }))
     ]);
 
     return {
       dungeons: dungeonRes.data?.data ?? [],
       bgs: bgRes.data?.data ?? [],
+      activeDungeons: activeDungeonRes.data?.data ?? [],
+      activeBgs: activeBgRes.data?.data ?? [],
       playersTotals: dungeonRes.data?.playersTotals ? dungeonRes.data.playersTotals : undefined,
       raw: {
         dungeons: dungeonRes.data,
         bgs: bgRes.data,
+        activeDungeons: activeDungeonRes.data,
+        activeBgs: activeBgRes.data,
       },
     };
   } catch (e) {
@@ -168,9 +176,9 @@ function dynamicColor(totalQueued) {
 }
 
 function buildEmbed(data) {
-  const { dungeons, bgs, playersTotals, roles } = data;
-  
-  // Calculate global width across ALL sections (dungeons endgame, leveling, and battlegrounds)
+  const { dungeons, bgs, activeDungeons, activeBgs, playersTotals, roles } = data;
+
+  // Calculate global width across ALL sections (dungeons endgame, leveling, battlegrounds, and active)
   const MAX_LINE_WIDTH = 75;
   const QTY_WIDTH = 3;
   const WAIT_WIDTH = 8;
@@ -179,10 +187,10 @@ function buildEmbed(data) {
   const SPACING_AFTER_QTY = 1;
   const worstCaseWidth = SPACING_AFTER_NAME + QTY_WIDTH + SPACING_AFTER_QTY + WAIT_WIDTH + ROLE_TEXT_LENGTH;
   const availableNameWidth = MAX_LINE_WIDTH - worstCaseWidth;
-  
+
   // Collect all names from all active sections
   const allSectionNames = [];
-  
+
   // Dungeons (endgame and leveling)
   if (Array.isArray(dungeons) && dungeons.length > 0) {
     dungeons.forEach(item => {
@@ -192,7 +200,7 @@ function buildEmbed(data) {
       }
     });
   }
-  
+
   // Battlegrounds
   if (Array.isArray(bgs) && bgs.length > 0) {
     bgs.forEach(item => {
@@ -202,14 +210,34 @@ function buildEmbed(data) {
       }
     });
   }
-  
+
+  // Active dungeons
+  if (Array.isArray(activeDungeons) && activeDungeons.length > 0) {
+    activeDungeons.forEach(item => {
+      const names = resolveNames(item?.instances, true);
+      if (names.length > 0) {
+        allSectionNames.push(...names);
+      }
+    });
+  }
+
+  // Active battlegrounds
+  if (Array.isArray(activeBgs) && activeBgs.length > 0) {
+    activeBgs.forEach(item => {
+      const names = resolveNames(item?.instances, false);
+      if (names.length > 0) {
+        allSectionNames.push(...names);
+      }
+    });
+  }
+
   // Calculate global max name length
   const globalMaxNameLength = allSectionNames.length > 0 ? Math.max(...allSectionNames.map(n => n.length)) : 0;
   // Use global width if we have items, otherwise use available width as default
-  const globalNameWidth = allSectionNames.length > 0 
+  const globalNameWidth = allSectionNames.length > 0
     ? Math.min(globalMaxNameLength, availableNameWidth)
     : availableNameWidth;
-  
+
   // Use global width for all sections
   const { endTxt, lvlTxt, endCount, lvlCount } = formatDungeonSections(dungeons, globalNameWidth);
   const totalDQueues = endCount + lvlCount;
@@ -217,16 +245,57 @@ function buildEmbed(data) {
   const totalPlayersD = playersTotals?.dungeons ?? totalDQueues;
   const totalPlayersB = playersTotals?.bgs ?? totalBQueues;
   const totalPlayers = totalPlayersD + totalPlayersB;
+
+  // Calculate active instance counts
+  const activeDungeonCount = Array.isArray(activeDungeons) ? activeDungeons.length : 0;
+  const activeBgCount = Array.isArray(activeBgs) ? activeBgs.length : 0;
+  const activeDungeonPlayers = Array.isArray(activeDungeons)
+    ? activeDungeons.reduce((acc, it) => acc + (it.players || 0), 0)
+    : 0;
+  const activeBgPlayers = Array.isArray(activeBgs)
+    ? activeBgs.reduce((acc, it) => acc + (it.players || 0), 0)
+    : 0;
+
   const now = new Date();
+
+  // Build fields array
+  const fields = [];
+
+  // Ongoing dungeons section
+  if (activeDungeonCount > 0) {
+    fields.push({
+      name: `🔥 Dungeons — Ongoing: ${activeDungeonCount} (${activeDungeonPlayers} playing)`,
+      value: formatList(activeDungeons, globalNameWidth),
+      inline: false
+    });
+  }
+
+  // Endgame dungeons (queued)
+  fields.push({ name: `🏰 Dungeons — Endgame: ${endCount}`, value: endTxt, inline: false });
+
+  // Leveling dungeons (queued)
+  fields.push({ name: `🏰 Dungeons — Leveling: ${lvlCount}`, value: lvlTxt, inline: false });
+
+  // Ongoing battlegrounds section
+  if (activeBgCount > 0) {
+    fields.push({
+      name: `🔥 Battlegrounds — Ongoing: ${activeBgCount} (${activeBgPlayers} playing)`,
+      value: formatList(activeBgs, globalNameWidth),
+      inline: false
+    });
+  }
+
+  // Battlegrounds (queued)
+  fields.push({
+    name: `⚔️ Battlegrounds — Queued: ${totalPlayersB}`,
+    value: formatList(bgs, globalNameWidth),
+    inline: false
+  });
 
   return {
     color: dynamicColor(totalPlayers),
     timestamp: now.toISOString(),
-    fields: [
-      { name: `🏰 Dungeons — Endgame: ${endCount}`, value: endTxt, inline: false },
-      { name: `🏰 Dungeons — Leveling: ${lvlCount}`, value: lvlTxt, inline: false },
-      { name: `⚔️ Battlegrounds — Players: ${totalPlayersB}`, value: formatList(bgs, globalNameWidth), inline: false },
-    ],
+    fields,
     footer: { text: 'Use !track to auto-update' },
   };
 }
